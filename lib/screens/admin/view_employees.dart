@@ -10,14 +10,78 @@ class _ViewEmployeesScreenState extends State<ViewEmployeesScreen> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: const EdgeInsets.all(8),
       children: <Widget>[
-        CardUserProfile(
+        CardUserProfileComponent(
           fullname: 'Phạm Đức Bình',
           role: 'Manager',
           phoneNumber: '3127826121',
           email: 'binh1298@gmail.com',
-        )
-    ],
+        ),
+        CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),
+        CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),
+        CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),
+        CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),
+        CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),
+        CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),
+        CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),
+        CardUserProfileComponent(
+          fullname: 'Phạm Đức Bình',
+          role: 'Manager',
+          phoneNumber: '3127826121',
+          email: 'binh1298@gmail.com',
+        ),
+      ],
     );
   }
 }
