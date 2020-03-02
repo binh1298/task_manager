@@ -31,12 +31,12 @@ class _ButtonNavigationState extends State<ButtonNavigation> {
         children: <Widget>[
           Icon(
             widget.iconData,
-            color: widget.isActive ? primaryColor : inactiveColor,
+            color: widget.isActive ? colorPrimary : colorInactive,
           ),
           Text(
             widget.title,
-            style: defaultTextStyle.copyWith(
-              color: widget.isActive ? primaryColor : inactiveColor,
+            style: textStyleDefault.copyWith(
+              color: widget.isActive ? colorPrimary : colorInactive,
             )
           )
         ],

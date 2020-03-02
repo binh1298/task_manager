@@ -9,10 +9,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    TextStyle style = defaultTextStyle;
     final emailField = TextField(
       obscureText: false,
-      style: style,
+      style: textStyleDefault,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Email",
@@ -21,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
     final passwordField = TextField(
       obscureText: true,
-      style: style,
+      style: textStyleDefault,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
@@ -40,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         child: Text("Login",
             textAlign: TextAlign.center,
-            style: style.copyWith(
+            style: textStyleDefault.copyWith(
                 color: Colors.white, fontWeight: FontWeight.bold)),
       ),
     );
@@ -62,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Text(
                   "Task Manager",
-                  style: style.copyWith(
+                  style: textStyleDefault.copyWith(
                     fontWeight: FontWeight.bold,
                     fontSize: 25.0,
                     ),
