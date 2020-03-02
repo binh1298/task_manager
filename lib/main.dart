@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/screens/createGroup.dart';
-import 'package:task_manager/screens/createUser.dart';
+import 'package:task_manager/screens/admin/home.dart';
 import 'package:task_manager/screens/login.dart';
-import 'package:task_manager/screens/viewUserInfo.dart';
-import 'package:task_manager/screens/viewUsers.dart';
 void main() async {
   runApp(MyApp());
 }
@@ -32,11 +29,12 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginScreen(
         ),
+        '/admin': (context) => HomeScreen(),
         // Admin
-        '/userList': (context) => ViewUsersScreen(),
-        '/viewUserInfo': (context) => ViewUserInfo(),
-        '/createUser': (context) => CreateUserScreen(),
-        '/createGroup': (context) => CreateGroupScreen(),
+        // '/userList': (context) => ViewUsersScreen(),
+        // '/viewUserInfo': (context) => ViewUserInfo(),
+        // '/createUser': (context) => CreateUserScreen(),
+        // '/createGroup': (context) => CreateGroupScreen(),
         
       },
     );

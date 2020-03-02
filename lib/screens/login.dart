@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () async {
-          Navigator.pushNamed(context, '/userList');
+          Navigator.pushReplacementNamed(context, '/admin');
         },
         child: Text("Login",
             textAlign: TextAlign.center,
