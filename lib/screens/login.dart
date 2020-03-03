@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/button_confirm.dart';
 import 'package:task_manager/components/text_form_field_rounded.dart';
-import 'package:task_manager/models/user_login_credentials.dart';
+import 'package:task_manager/models/user_credentials.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 
