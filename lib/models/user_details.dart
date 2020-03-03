@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:task_manager/classes/api_routes.dart';
 import 'package:task_manager/utils/api_caller.dart';
 import 'package:http/http.dart' as http;
 
@@ -30,7 +31,7 @@ class UserDetails {
 
 Future<List<UserDetails>> fetchUsersDetailsList() async {
   final http.Response response =
-      await apiCaller.get(route: '/admin/users');
+      await apiCaller.get(route: apiRoutes.createAdminRoute(apiRoutes.getUsers));
   if (response.statusCode == 200) {
     var userDetailsListJson = json.decode(response.body)['result'] as List;
     return userDetailsListJson.map((userDetails) => UserDetails.fromJson(userDetails)).toList();

@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/style/style.dart';
 
 class TextFormFieldComponent extends StatefulWidget {
-  final String title;
-  final Function validator;
-  final TextEditingController controller;
+  final bool obscureText;
+  final String hintText, title;
+  final Function onSaved, validator;
 
-  TextFormFieldComponent({this.title, this.validator, this.controller});
+  TextFormFieldComponent(
+      {this.hintText = '',
+      this.title,
+      this.obscureText = false,
+      this.onSaved,
+      this.validator});
+
   @override
   _TextFormFieldComponentState createState() => _TextFormFieldComponentState();
 }
@@ -23,9 +29,9 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
             style: textStyleTitle,
           ),
           TextFormField(
-            controller: widget.controller,
             style: textStyleSubtitle,
             validator: widget.validator,
+            onSaved: widget.onSaved,
           ),
           SizedBox(
             height: 20.0,
