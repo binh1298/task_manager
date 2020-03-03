@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 // Text
-TextStyle textStyleDefault =
-    TextStyle(fontFamily: 'Montserrat', fontSize: 18.0);
+TextStyle textStyleDefault = TextStyle(fontFamily: 'Montserrat', fontSize: 18.0);
+TextStyle textStyleHeading = textStyleDefault.copyWith(
+  fontWeight: FontWeight.bold,
+  fontSize: 30.0,
+);
 TextStyle textStyleTitle = textStyleDefault.copyWith(
   fontWeight: FontWeight.bold,
   fontSize: 22.0,

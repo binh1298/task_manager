@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
             _currentIndex = index;
           });
         },
+        selectedItemColor: Colors.black,
         items: adminDestinations.map((Destination destination) {
           return BottomNavigationBarItem(
             backgroundColor: colorPrimary,
