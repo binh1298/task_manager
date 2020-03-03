@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/components/text_safe.dart';
 
 class IconTextComponent extends StatefulWidget {
   final String text;
@@ -19,7 +20,9 @@ class _IconTextComponentState extends State<IconTextComponent> {
         SizedBox(
           width: 5.0,
         ),
-        Text(widget.text),
+        TextSafeComponent(
+          text: widget.text
+        ),
       ],
     );
   }

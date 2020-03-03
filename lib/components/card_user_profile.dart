@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/icon_text.dart';
+import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/style/style.dart';
 
 class CardUserProfileComponent extends StatefulWidget {
@@ -35,12 +36,12 @@ class _CardUserProfileComponentState extends State<CardUserProfileComponent> {
               SizedBox(
                 height: 8.0,
               ),
-              Text(
-                widget.fullname,
+              TextSafeComponent(
+                text: widget.fullname,
                 style: textStyleTitle,
               ),
-              Text(
-                widget.role,
+              TextSafeComponent(
+                text: widget.role,
                 style: textStyleSubtitle,
               ),
               SizedBox(
