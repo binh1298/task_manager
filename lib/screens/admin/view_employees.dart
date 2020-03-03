@@ -9,79 +9,90 @@ class ViewEmployeesScreen extends StatefulWidget {
 class _ViewEmployeesScreenState extends State<ViewEmployeesScreen> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(8),
-      children: <Widget>[
-        CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),
-        CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),
-        CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),
-        CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),
-        CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),
-        CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),
-        CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),
-        CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),
-        CardUserProfileComponent(
-          fullname: 'Phạm Đức Bình',
-          role: 'Manager',
-          phoneNumber: '3127826121',
-          email: 'binh1298@gmail.com',
-        ),
-      ],
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.pushNamed(context, '/createUser');
+        },
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(8),
+        children: <Widget>[
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+          CardUserProfileComponent(
+            fullname: 'Phạm Đức Bình',
+            role: 'Manager',
+            phoneNumber: '3127826121',
+            email: 'binh1298@gmail.com',
+          ),
+        ],
+      ),
     );
   }
 }

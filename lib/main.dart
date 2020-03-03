@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/screens/admin/create_user.dart';
 import 'package:task_manager/screens/admin/home.dart';
 import 'package:task_manager/screens/login.dart';
 void main() async {
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
         // Admin
         // '/userList': (context) => ViewUsersScreen(),
         // '/viewUserInfo': (context) => ViewUserInfo(),
-        '/createUser': (context) => CreateUserScreen(),
+        // '/createUser': (context) => CreateUserScreen(),
         // '/createGroup': (context) => CreateGroupScreen(),
         
       },

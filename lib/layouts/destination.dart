@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/screens/admin/create_user.dart';
 import '../classes/destination.dart';
 
 class DestinationLayout extends StatefulWidget {
   final Destination destination;
-  DestinationLayout({ Key key, this.destination }) : super(key: key);
+  DestinationLayout({Key key, this.destination}) : super(key: key);
 
   @override
   _DestinationLayoutState createState() => _DestinationLayoutState();
@@ -12,11 +13,32 @@ class DestinationLayout extends StatefulWidget {
 class _DestinationLayoutState extends State<DestinationLayout> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.destination.title),
-      ),
-      body: widget.destination.component,
+    return Navigator(
+      onGenerateRoute: (RouteSettings settings) {
+        Widget body;
+        switch (settings.name) {
+          case '/':
+            body = widget.destination.component;
+            break;
+          case '/createUser':
+            body = CreateUserScreen();
+            break;
+          default:
+            body = CreateUserScreen();
+            break;
+        }
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (BuildContext context) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(widget.destination.title),
+              ),
+              body: body,
+            );
+          },
+        );
+      },
     );
   }
 }
