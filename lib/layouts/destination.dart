@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/classes/view_navigation_observer.dart';
 import 'package:task_manager/screens/admin/create_user.dart';
+import 'package:task_manager/screens/admin/view_user_detail.dart';
 import '../classes/destination.dart';
 
 class DestinationLayout extends StatefulWidget {
@@ -14,6 +15,7 @@ class DestinationLayout extends StatefulWidget {
 }
 
 class _DestinationLayoutState extends State<DestinationLayout> {
+  String title = '';
   @override
   Widget build(BuildContext context) {
     return Navigator(
@@ -27,6 +29,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
             body = widget.destination.component;
             break;
           case '/createUser':
+            title = 'Create User';
             body = CreateUserScreen();
             break;
           default:
@@ -38,7 +41,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           builder: (BuildContext context) {
             return Scaffold(
               appBar: AppBar(
-                title: Text(widget.destination.title),
+                title: Text(settings.name == '/' ? widget.destination.title : title),
               ),
               body: body,
             );
