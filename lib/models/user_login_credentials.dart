@@ -25,7 +25,7 @@ class UserLoginCredentials {
     if (response.statusCode == 200) {
       return json.decode(response.body)['token'];
     } else {
-      throw Exception('Login Failed');
+      return null;
     }
   }
 }
