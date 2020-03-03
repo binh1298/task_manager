@@ -5,10 +5,10 @@ import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/style/style.dart';
 
 class CardUserProfileComponent extends StatefulWidget {
-  final String fullname, role, email, phoneNumber;
+  final String fullname, role, email, phoneNumber, avatar;
 
   CardUserProfileComponent(
-      {Key key, this.fullname, this.role, this.email, this.phoneNumber})
+      {Key key, this.fullname, this.role, this.email, this.phoneNumber, this.avatar})
       : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class _CardUserProfileComponentState extends State<CardUserProfileComponent> {
             padding: const EdgeInsets.all(12.0),
             child: CircleAvatar(
               radius: 40.0,
-              backgroundImage: AssetImage('lib/assets/images/avatar.jpg'),
+              backgroundImage: widget.avatar != null ? NetworkImage(widget.avatar) : AssetImage('lib/assets/images/defaultAvatar.png'),
             ),
           ),
           Column(

@@ -32,19 +32,22 @@ class _ViewEmployeesScreenState extends State<ViewEmployeesScreen> {
           if (snapshot.hasData) {
             return ListView(
               padding: const EdgeInsets.all(8),
-              children: snapshot.data.map((userDetail) => 
-              CardUserProfileComponent(
-                  fullname: userDetail.fullname,
-                  role: userDetail.roleName,
-                  phoneNumber: userDetail.phoneNumber,
-                  email: userDetail.email,
-                ),
-              ).toList(),
+              children: snapshot.data
+                  .map(
+                    (userDetail) => CardUserProfileComponent(
+                      fullname: userDetail.fullname,
+                      role: userDetail.roleName,
+                      phoneNumber: userDetail.phoneNumber,
+                      email: userDetail.email,
+                      avatar: userDetail.avatar,
+                    ),
+                  )
+                  .toList(),
             );
-          } else if(snapshot.hasError) {
+          } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator(),);
         },
       ),
     );
