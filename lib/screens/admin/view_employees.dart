@@ -9,13 +9,24 @@ class ViewEmployeesScreen extends StatefulWidget {
 
 class _ViewEmployeesScreenState extends State<ViewEmployeesScreen> {
   Future<List<UserDetails>> userDetailsList;
+  GlobalKey<RefreshIndicatorState> refreshKey = GlobalKey<RefreshIndicatorState>();
 
   @override
   void initState() {
     super.initState();
-    userDetailsList = fetchUsersDetailsList();
+    refreshList();
   }
 
+  Future<Null> refreshList() async {
+    refreshKey.currentState?.show(atTop: false);
+    await Future.delayed(Duration(seconds: 1));
+
+    setState(() {
+      userDetailsList = fetchUsersDetailsList();
+    });
+
+    return null;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,29 +37,35 @@ class _ViewEmployeesScreenState extends State<ViewEmployeesScreen> {
           Navigator.pushNamed(context, '/createUser');
         },
       ),
-      body: FutureBuilder<List<UserDetails>>(
-        future: userDetailsList,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView(
-              padding: const EdgeInsets.all(8),
-              children: snapshot.data
-                  .map(
-                    (userDetail) => CardUserProfileComponent(
-                      fullname: userDetail.fullname,
-                      role: userDetail.roleName,
-                      phoneNumber: userDetail.phoneNumber,
-                      email: userDetail.email,
-                      avatar: userDetail.avatar,
-                    ),
-                  )
-                  .toList(),
+      body: RefreshIndicator(
+        onRefresh: refreshList,
+        key: refreshKey,
+        child: FutureBuilder<List<UserDetails>>(
+          future: userDetailsList,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView(
+                padding: const EdgeInsets.all(8),
+                children: snapshot.data
+                    .map(
+                      (userDetail) => CardUserProfileComponent(
+                        fullname: userDetail.fullname,
+                        role: userDetail.roleName,
+                        phoneNumber: userDetail.phoneNumber,
+                        email: userDetail.email,
+                        avatar: userDetail.avatar,
+                      ),
+                    )
+                    .toList(),
+              );
+            } else if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
+            return Center(
+              child: CircularProgressIndicator(),
             );
-          } else if (snapshot.hasError) {
-            return Text('${snapshot.error}');
-          }
-          return Center(child: CircularProgressIndicator(),);
-        },
+          },
+        ),
       ),
     );
   }
