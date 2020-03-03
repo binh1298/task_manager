@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/style/style.dart';
 
-class TextFieldRounded extends StatefulWidget {
+class TextFormFieldRounded extends StatefulWidget {
   final bool obscureText;
   final String hintText;
-
-  TextFieldRounded({this.hintText = '', this.obscureText = false});
+  final Function onSaved, validator;
+  TextFormFieldRounded(
+      {this.hintText = '',
+      this.obscureText = false,
+      this.onSaved,
+      this.validator});
 
   @override
-  _TextFieldRoundedState createState() => _TextFieldRoundedState();
+  _TextFormFieldRoundedState createState() => _TextFormFieldRoundedState();
 }
 
-class _TextFieldRoundedState extends State<TextFieldRounded> {
+class _TextFormFieldRoundedState extends State<TextFormFieldRounded> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       obscureText: widget.obscureText,
       style: textStyleDefault,
       decoration: InputDecoration(
@@ -24,6 +28,8 @@ class _TextFieldRoundedState extends State<TextFieldRounded> {
           borderRadius: BorderRadius.circular(32.0),
         ),
       ),
+      validator: widget.validator,
+      onSaved: widget.onSaved,
     );
   }
 }
