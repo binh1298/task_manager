@@ -52,6 +52,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                         },
                       ),
                       TextFormFieldComponent(
+                        obscureText: true,
                         title: 'Password',
                         validator: (value) {
                           if (value.isEmpty) {
@@ -61,6 +62,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                         },
                       ),
                       TextFormFieldComponent(
+                        obscureText: true,
                         title: 'Confirm Password',
                         validator: (value) {
                           if (value.isEmpty) {
