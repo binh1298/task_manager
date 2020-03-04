@@ -6,6 +6,19 @@ import 'package:http/http.dart' as http;
 import 'package:task_manager/utils/secure_storage.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 
+class UserTokenCredentials {
+  String userId, username, roleName;
+
+  UserTokenCredentials({this.userId, this.username, this.roleName});
+  factory UserTokenCredentials.fromJson(dynamic json) {
+    return UserTokenCredentials(
+      roleName: json['roleName'],
+      userId: json['userId'],
+      username: json['username'],
+    );
+  }
+}
+
 class UserLoginCredentials {
   String username = '';
   String password = '';
