@@ -14,7 +14,10 @@ TextStyle textStyleSubtitle = textStyleDefault.copyWith(
   fontSize: 20.0,
 );
 
+TextStyle textStyleErrorMessage = TextStyle(color: colorError); 
+
 // Color
 Color colorPrimary = Colors.blue;
 Color colorBackground = Colors.white;
 Color colorInactive = Colors.grey;
+Color colorError = Colors.red;

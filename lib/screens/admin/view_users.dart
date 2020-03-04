@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/card_user_profile.dart';
 import 'package:task_manager/models/user_details.dart';
+import 'package:task_manager/utils/snack_bar.dart';
 
 class ViewUsersScreen extends StatefulWidget {
   @override
@@ -35,8 +36,12 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
       floatingActionButton: FloatingActionButton(
         heroTag: 'CreateUser',
         child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushNamed(context, '/createUser');
+        onPressed: () async {
+          final result = await Navigator.pushNamed(context, '/createUser');
+          if(result != null && result) {
+            refreshList();
+            showInfoSnackBar(context, 'Created User Successfully!');
+          }
         },
       ),
       body: RefreshIndicator(
