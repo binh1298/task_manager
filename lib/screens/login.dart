@@ -3,7 +3,6 @@ import 'package:task_manager/components/button_confirm.dart';
 import 'package:task_manager/components/text_form_field_rounded.dart';
 import 'package:task_manager/models/user_credentials.dart';
 import 'package:task_manager/style/style.dart';
-import 'package:task_manager/utils/secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -47,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (username) {
                         if (username.isEmpty)
                           return 'Please enter your username';
+                        return null;
                       },
                     ),
                     SizedBox(height: 25.0),
@@ -61,6 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (password) {
                         if (password.isEmpty)
                           return 'Please enter your password';
+                        return null;
                       },
                     ),
                     SizedBox(
@@ -72,14 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         final form = _loginFormKey.currentState;
                         if (form.validate()) {
                           form.save();
-                          String token = await _userCredentials.login();
-                          if (token != null) {
-                            setJwtToken(token);
+                          bool success = await _userCredentials.login(context);
+                          if (success) {
                             Navigator.pushReplacementNamed(context, '/admin');
-                          } else {
-                            Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text('Invalid Username or Password'),
-                            ));
                           }
                         }
                       },
