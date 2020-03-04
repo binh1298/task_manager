@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/card_user_profile.dart';
+import 'package:task_manager/components/scan_button.dart';
 import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 
@@ -38,7 +39,7 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
         child: Icon(Icons.add),
         onPressed: () async {
           final result = await Navigator.pushNamed(context, '/createUser');
-          if(result != null && result) {
+          if (result != null && result) {
             refreshList();
             showInfoSnackBar(context, 'Created User Successfully!');
           }
@@ -51,20 +52,33 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
           future: usersDetailsList,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return ListView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(8),
-                children: snapshot.data
-                    .map(
-                      (userDetail) => CardUserProfile(
-                        fullname: userDetail.fullname,
-                        role: userDetail.roleName,
-                        phoneNumber: userDetail.phoneNumber,
-                        email: userDetail.email,
-                        avatar: userDetail.avatar,
-                      ),
-                    )
-                    .toList(),
+              return Column(
+                children: <Widget>[
+                  ScanButton(
+                    context: context,
+                    onSuccessScan: (barcode) {
+                      Navigator.pushNamed(context, '/viewUserDetail',
+                          arguments: barcode);
+                    },
+                  ),
+                  Expanded(
+                    child: ListView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      padding: const EdgeInsets.all(8),
+                      children: snapshot.data
+                          .map(
+                            (userDetail) => CardUserProfile(
+                              fullname: userDetail.fullname,
+                              role: userDetail.roleName,
+                              phoneNumber: userDetail.phoneNumber,
+                              email: userDetail.email,
+                              avatar: userDetail.avatar,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                ],
               );
             } else if (snapshot.hasError) {
               return ListView(

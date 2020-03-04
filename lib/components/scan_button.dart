@@ -3,19 +3,18 @@ import 'dart:async';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:task_manager/utils/snack_bar.dart';
 
 class ScanButton extends StatefulWidget {
+  final BuildContext context;
+  final Function onSuccessScan;
+  ScanButton({this.context, this.onSuccessScan});
   @override
   _ScanState createState() => new _ScanState();
 }
 
 class _ScanState extends State<ScanButton> {
   String barcode = "";
-
-  @override
-  initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +26,12 @@ class _ScanState extends State<ScanButton> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: RaisedButton(
-                color: Colors.blue,
-                textColor: Colors.white,
-                splashColor: Colors.blueGrey,
-                onPressed: scan,
-                child: const Text('START CAMERA SCAN')),
+              color: Colors.blue,
+              textColor: Colors.white,
+              splashColor: Colors.blueGrey,
+              onPressed: scan,
+              child: const Text('Scan QR to find Employee'),
+            ),
           ),
         ],
       ),
@@ -41,21 +41,17 @@ class _ScanState extends State<ScanButton> {
   Future scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
-      print(barcode);
-      setState(() => this.barcode = barcode);
+      widget.onSuccessScan(barcode);
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
-        setState(() {
-          this.barcode = 'The user did not grant the camera permission!';
-        });
+        showErrorSnackBar(context, 'Please grant the camera permission!');
       } else {
-        setState(() => this.barcode = 'Unknown error: $e');
+        showErrorSnackBar(context, 'Unknown error: $e');
       }
     } on FormatException {
-      setState(() => this.barcode =
-          'null (User returned using the "back"-button before scanning anything. Result)');
+      print('User returned using the "back"-button before scanning anything.');
     } catch (e) {
-      setState(() => this.barcode = 'Unknown error: $e');
+      showErrorSnackBar(context, 'Unknown error: $e');
     }
   }
 }

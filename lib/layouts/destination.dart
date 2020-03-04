@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/classes/view_navigation_observer.dart';
 import 'package:task_manager/screens/admin/create_user.dart';
+import 'package:task_manager/screens/admin/view_user_profile.dart';
 import '../classes/destination.dart';
 
 class DestinationLayout extends StatefulWidget {
@@ -30,6 +31,10 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           case '/createUser':
             title = 'Create User';
             body = CreateUserScreen();
+            break;
+          case '/viewUserDetail':
+            title = 'View User Detail';
+            body = ViewUserProfileScreen(userId: settings.arguments,); 
             break;
           default:
             body = CreateUserScreen();
