@@ -51,7 +51,7 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
                 padding: const EdgeInsets.all(8),
                 children: snapshot.data
                     .map(
-                      (userDetail) => CardUserProfileComponent(
+                      (userDetail) => CardUserProfile(
                         fullname: userDetail.fullname,
                         role: userDetail.roleName,
                         phoneNumber: userDetail.phoneNumber,

@@ -5,10 +5,10 @@ import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/style/style.dart';
 
-class CardUserProfileComponent extends StatefulWidget {
+class CardUserProfile extends StatefulWidget {
   final String fullname, role, email, phoneNumber, avatar;
 
-  CardUserProfileComponent(
+  CardUserProfile(
       {Key key,
       this.fullname,
       this.role,
@@ -18,11 +18,11 @@ class CardUserProfileComponent extends StatefulWidget {
       : super(key: key);
 
   @override
-  _CardUserProfileComponentState createState() =>
-      _CardUserProfileComponentState();
+  _CardUserProfileState createState() =>
+      _CardUserProfileState();
 }
 
-class _CardUserProfileComponentState extends State<CardUserProfileComponent> {
+class _CardUserProfileState extends State<CardUserProfile> {
   @override
   Widget build(BuildContext context) {
     return Slidable(
