@@ -7,7 +7,7 @@ class TextFormFieldRounded extends StatefulWidget {
   final Function onSaved, validator;
   TextFormFieldRounded(
       {this.hintText,
-      this.obscureText,
+      this.obscureText = false,
       this.onSaved,
       this.validator});
 
