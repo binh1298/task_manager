@@ -51,13 +51,14 @@ class _ViewUserProfileScreenState extends State<ViewUserProfileScreen> {
                   SizedBox(height: 10),
                   IconTextComponent(
                     icon: Icons.email,
-                    text: 'Email: ${snapshot.data.email}',
-                    style: textStyleSubtitle,
+                    text: '${snapshot.data.email}',
+                    style: textStyleSubtitle.copyWith(fontSize: 18),
                   ),
+                  SizedBox(height: 5),
                   IconTextComponent(
                     icon: Icons.phone,
-                    text: 'Phone: ${snapshot.data.phoneNumber}',
-                    style: textStyleSubtitle,
+                    text: '${snapshot.data.phoneNumber}',
+                    style: textStyleSubtitle.copyWith(fontSize: 18),
                   ),
                   Center(
                     child: QrImage(
