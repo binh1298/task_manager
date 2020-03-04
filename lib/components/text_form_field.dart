@@ -7,7 +7,7 @@ class TextFormFieldComponent extends StatefulWidget {
   final Function onSaved, validator;
 
   TextFormFieldComponent(
-      {this.hintText = '',
+      {this.hintText,
       this.title,
       this.obscureText = false,
       this.onSaved,
@@ -29,6 +29,7 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
             style: textStyleTitle,
           ),
           TextFormField(
+            obscureText: widget.obscureText,
             style: textStyleSubtitle,
             validator: widget.validator,
             onSaved: widget.onSaved,

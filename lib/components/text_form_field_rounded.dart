@@ -6,8 +6,8 @@ class TextFormFieldRounded extends StatefulWidget {
   final String hintText;
   final Function onSaved, validator;
   TextFormFieldRounded(
-      {this.hintText = '',
-      this.obscureText = false,
+      {this.hintText,
+      this.obscureText,
       this.onSaved,
       this.validator});
 
