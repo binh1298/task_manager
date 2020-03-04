@@ -4,7 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/style/style.dart';
 
-class CardGroupDetail extends StatefulWidget {
+class CardGroupDetail extends StatelessWidget {
   final String groupName, managerName;
   final int numberOfMembers;
 
@@ -15,11 +15,6 @@ class CardGroupDetail extends StatefulWidget {
     this.numberOfMembers,
   }) : super(key: key);
 
-  @override
-  _CardGroupDetailState createState() => _CardGroupDetailState();
-}
-
-class _CardGroupDetailState extends State<CardGroupDetail> {
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -37,7 +32,7 @@ class _CardGroupDetailState extends State<CardGroupDetail> {
               ),
               IconTextComponent(
                 icon: Icons.list,
-                text: 'Group: ${widget.groupName}',
+                text: 'Group: ${groupName}',
                 style: textStyleTitle,
               ),
               SizedBox(
@@ -45,7 +40,7 @@ class _CardGroupDetailState extends State<CardGroupDetail> {
               ),
               IconTextComponent(
                 icon: Icons.person,
-                text: 'Manager: ${widget.managerName}',
+                text: 'Manager: ${managerName}',
                 style: textStyleSubtitle,
               ),
               SizedBox(
@@ -53,7 +48,7 @@ class _CardGroupDetailState extends State<CardGroupDetail> {
               ),
               IconTextComponent(
                 icon: Icons.people,
-                text: '${widget.numberOfMembers.toString()} members',
+                text: '${numberOfMembers.toString()} members',
                 style: textStyleSubtitle,
               ),
               SizedBox(

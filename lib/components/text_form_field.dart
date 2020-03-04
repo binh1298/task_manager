@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/style/style.dart';
 
-class TextFormFieldComponent extends StatefulWidget {
+class TextFormFieldComponent extends StatelessWidget {
   final bool obscureText;
   final String hintText, title;
   final Function onSaved, validator;
@@ -12,12 +12,6 @@ class TextFormFieldComponent extends StatefulWidget {
       this.obscureText = false,
       this.onSaved,
       this.validator});
-
-  @override
-  _TextFormFieldComponentState createState() => _TextFormFieldComponentState();
-}
-
-class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,14 +19,14 @@ class _TextFormFieldComponentState extends State<TextFormFieldComponent> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '${widget.title}:',
+            '${title}:',
             style: textStyleTitle,
           ),
           TextFormField(
-            obscureText: widget.obscureText,
+            obscureText: obscureText,
             style: textStyleSubtitle,
-            validator: widget.validator,
-            onSaved: widget.onSaved,
+            validator: validator,
+            onSaved: onSaved,
           ),
           SizedBox(
             height: 20.0,

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../style/style.dart';
 
-class ButtonNavigation extends StatefulWidget {
+class ButtonNavigation extends StatelessWidget {
   final String title;
   final Function onPressed;
   final IconData iconData;
@@ -15,30 +14,22 @@ class ButtonNavigation extends StatefulWidget {
     this.iconData,
     this.isActive,
   }) : super(key: key);
-
-  @override
-  _ButtonNavigationState createState() => _ButtonNavigationState();
-}
-
-class _ButtonNavigationState extends State<ButtonNavigation> {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       minWidth: 40.0,
-      onPressed: widget.onPressed,
+      onPressed: onPressed,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Icon(
-            widget.iconData,
-            color: widget.isActive ? colorPrimary : colorInactive,
+            iconData,
+            color: isActive ? colorPrimary : colorInactive,
           ),
-          Text(
-            widget.title,
-            style: textStyleDefault.copyWith(
-              color: widget.isActive ? colorPrimary : colorInactive,
-            )
-          )
+          Text(title,
+              style: textStyleDefault.copyWith(
+                color: isActive ? colorPrimary : colorInactive,
+              ))
         ],
       ),
     );

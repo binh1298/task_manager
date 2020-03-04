@@ -5,16 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 
-class ScanButton extends StatefulWidget {
+class ScanButton extends StatelessWidget {
   final BuildContext context;
   final Function onSuccessScan;
   ScanButton({this.context, this.onSuccessScan});
-  @override
-  _ScanState createState() => new _ScanState();
-}
-
-class _ScanState extends State<ScanButton> {
-  String barcode = "";
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +35,7 @@ class _ScanState extends State<ScanButton> {
   Future scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
-      widget.onSuccessScan(barcode);
+      onSuccessScan(barcode);
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         showErrorSnackBar(context, 'Please grant the camera permission!');

@@ -5,7 +5,7 @@ import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/style/style.dart';
 
-class CardUserProfile extends StatefulWidget {
+class CardUserProfile extends StatelessWidget {
   final String fullname, role, email, phoneNumber, avatar;
 
   CardUserProfile(
@@ -17,12 +17,6 @@ class CardUserProfile extends StatefulWidget {
       this.avatar})
       : super(key: key);
 
-  @override
-  _CardUserProfileState createState() =>
-      _CardUserProfileState();
-}
-
-class _CardUserProfileState extends State<CardUserProfile> {
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -36,8 +30,8 @@ class _CardUserProfileState extends State<CardUserProfile> {
               padding: const EdgeInsets.all(12.0),
               child: CircleAvatar(
                 radius: 40.0,
-                backgroundImage: widget.avatar != null
-                    ? NetworkImage(widget.avatar)
+                backgroundImage: avatar != null
+                    ? NetworkImage(avatar)
                     : AssetImage('lib/assets/images/defaultAvatar.png'),
               ),
             ),
@@ -48,11 +42,11 @@ class _CardUserProfileState extends State<CardUserProfile> {
                   height: 8.0,
                 ),
                 TextSafeComponent(
-                  text: widget.fullname,
+                  text: fullname,
                   style: textStyleTitle,
                 ),
                 TextSafeComponent(
-                  text: widget.role,
+                  text: role,
                   style: textStyleSubtitle,
                 ),
                 SizedBox(
@@ -60,11 +54,11 @@ class _CardUserProfileState extends State<CardUserProfile> {
                 ),
                 IconTextComponent(
                   icon: Icons.email,
-                  text: widget.email,
+                  text: email,
                 ),
                 IconTextComponent(
                   icon: Icons.phone,
-                  text: widget.phoneNumber,
+                  text: phoneNumber,
                 ),
                 SizedBox(
                   height: 8.0,

@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/style/style.dart';
-
-class ButtonConfirmComponent extends StatefulWidget {
+class ButtonConfirmComponent extends StatelessWidget {
   final Function onPressed;
   final String text;
 
   ButtonConfirmComponent({this.onPressed, this.text});
 
-  @override
-  _ButtonConfirmComponentState createState() => _ButtonConfirmComponentState();
-}
-
-class _ButtonConfirmComponentState extends State<ButtonConfirmComponent> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -21,8 +15,8 @@ class _ButtonConfirmComponentState extends State<ButtonConfirmComponent> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: widget.onPressed,
-        child: Text(widget.text,
+        onPressed: onPressed,
+        child: Text(text,
             textAlign: TextAlign.center,
             style: textStyleDefault.copyWith(
                 color: Colors.white, fontWeight: FontWeight.bold)),
