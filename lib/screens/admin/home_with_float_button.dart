@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/layouts/destination.dart';
-import 'package:task_manager/screens/admin/view_employees.dart';
 import 'package:task_manager/screens/admin/view_groups.dart';
 import 'package:task_manager/screens/admin/view_profile.dart';
 import 'package:task_manager/screens/admin/view_tasks.dart';
+import 'package:task_manager/screens/admin/view_users.dart';
 import '../../classes/destination.dart';
 import '../../components/button_navigation.dart';
 
 List<Destination> adminDestinations = <Destination>[
-  Destination('Users', Icons.person, ViewEmployeesScreen()),
-  Destination('Groups', Icons.group, ViewGroupScreen()),
+  Destination('Users', Icons.person, ViewUsersScreen()),
+  Destination('Groups', Icons.group, ViewGroupsScreen()),
   Destination('Tasks', Icons.event_note, ViewTasksScreen()),
   Destination('Profile', Icons.person, ViewProfileScreen()),
 ];
