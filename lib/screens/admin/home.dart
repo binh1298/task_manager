@@ -10,7 +10,7 @@ import '../../classes/destination.dart';
 
 List<Destination> adminDestinations = <Destination>[
   Destination('Users', Icons.person, ViewUsersScreen()),
-  Destination('Groups', Icons.group, ViewGroupScreen()),
+  Destination('Groups', Icons.group, ViewGroupsScreen()),
   Destination('Tasks', Icons.event_note, ViewTasksScreen()),
   Destination('History', Icons.library_books, ViewTasksScreen()),
   Destination('Profile', Icons.person, ViewProfileScreen()),

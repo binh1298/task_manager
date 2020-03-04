@@ -3,6 +3,7 @@ class ApiRoutes {
   final String getUsers = '/users';
   final String createUsers = '/create-user';
 
+  final String getGroups = '/groups';
   createAdminRoute(route) {
     return '/admin/$route';
   }

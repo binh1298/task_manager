@@ -4,8 +4,8 @@ import 'package:task_manager/components/text_safe.dart';
 class IconTextComponent extends StatefulWidget {
   final String text;
   final IconData icon;
-
-  IconTextComponent({this.text, this.icon});
+  final TextStyle style;
+  IconTextComponent({this.text, this.icon, this.style});
 
   @override
   _IconTextComponentState createState() => _IconTextComponentState();
@@ -21,7 +21,8 @@ class _IconTextComponentState extends State<IconTextComponent> {
           width: 5.0,
         ),
         TextSafeComponent(
-          text: widget.text
+          text: widget.text,
+          style: widget.style,
         ),
       ],
     );
