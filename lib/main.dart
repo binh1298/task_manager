@@ -7,13 +7,13 @@ import 'package:task_manager/utils/secure_storage.dart';
 
 void main() async {
   await DotEnv().load('.env');
-  String token = await getJwtToken();
-  if (token != null) {
-    final userJson = parseJwt(token);
-    final UserDetails user = UserDetails.fromJson(userJson);
-    runApp(MyApp(user: user));
-  }
-  runApp(MyApp());
+  UserDetails user = await getUserFromToken();
+  if (user != null)
+    runApp(MyApp(
+      user: user,
+    ));
+  else
+    runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

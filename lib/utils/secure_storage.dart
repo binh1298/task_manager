@@ -1,6 +1,8 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'dart:convert';
 
+import 'package:task_manager/models/user_details.dart';
+
 // Create storage
 final flutterSecureStorage = new FlutterSecureStorage();
 final jwtTokenName = 'jwtToken';
@@ -11,6 +13,15 @@ void setJwtToken(token) {
 
 Future<String> getJwtToken() {
   return flutterSecureStorage.read(key: jwtTokenName);
+}
+
+Future<UserDetails> getUserFromToken() async {
+  String token = await getJwtToken();
+  if (token != null) {
+    final userJson = parseJwt(token);
+    return UserDetails.fromJson(userJson);
+  }
+  return null;
 }
 
 Map<String, dynamic> parseJwt(String token) {
