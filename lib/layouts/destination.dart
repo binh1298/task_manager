@@ -34,7 +34,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
             break;
           case '/viewUserDetail':
             title = 'View User Detail';
-            body = ViewUserProfileScreen(userId: settings.arguments,); 
+            body = ViewUserProfileScreen(userId: settings.arguments); 
             break;
           default:
             body = CreateUserScreen();
