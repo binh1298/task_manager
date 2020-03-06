@@ -29,6 +29,7 @@ class UserDetails {
   }
 }
 
+// GET
 Future<UserDetails> fetchUserDetails(String userId) async {
   final http.Response response = await apiCaller.get(route: '${apiRoutes.createAdminRoute(apiRoutes.getUserProfile)}/${userId}');
   if(response.statusCode == 200) {
@@ -55,3 +56,5 @@ Future<List<UserDetails>> fetchUsersDetailsList() async {
     return null;
   }
 }
+
+// DELETE 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/style/resouces.dart';
 
 class UserImageSafe extends StatelessWidget {
   final String imgUrl;
@@ -9,7 +10,7 @@ class UserImageSafe extends StatelessWidget {
     return Image(
       image: (imgUrl != null)
           ? NetworkImage(imgUrl)
-          : AssetImage('lib/assets/images/defaultAvatar.png'),
+          : AssetImage(fallBackAvatarUrl),
     );
   }
 }

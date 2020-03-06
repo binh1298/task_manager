@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/components/text_safe.dart';
+import 'package:task_manager/style/resouces.dart';
 import 'package:task_manager/style/style.dart';
 
 class CardUserProfile extends StatelessWidget {
@@ -33,7 +34,7 @@ class CardUserProfile extends StatelessWidget {
                 radius: 40.0,
                 backgroundImage: avatar != null
                     ? NetworkImage(avatar)
-                    : AssetImage('lib/assets/images/defaultAvatar.png'),
+                    : AssetImage(fallBackAvatarUrl),
               ),
             ),
             Column(

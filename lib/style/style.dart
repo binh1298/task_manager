@@ -21,3 +21,4 @@ Color colorPrimary = Colors.blue;
 Color colorBackground = Colors.white;
 Color colorInactive = Colors.grey;
 Color colorError = Colors.red;
+Color colorWarning = Colors.redAccent.shade400;

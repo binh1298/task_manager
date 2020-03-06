@@ -68,6 +68,7 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
                       children: snapshot.data
                           .map(
                             (userDetail) => CardUserProfile(
+                              userId: userDetail.userId,
                               fullname: userDetail.fullname,
                               role: userDetail.roleName,
                               phoneNumber: userDetail.phoneNumber,
