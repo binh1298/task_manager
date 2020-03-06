@@ -6,10 +6,11 @@ import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/style/style.dart';
 
 class CardUserProfile extends StatelessWidget {
-  final String fullname, role, email, phoneNumber, avatar;
+  final String userId, fullname, role, email, phoneNumber, avatar;
 
   CardUserProfile(
       {Key key,
+      this.userId,
       this.fullname,
       this.role,
       this.email,
@@ -70,8 +71,18 @@ class CardUserProfile extends StatelessWidget {
       ),
       secondaryActions: <Widget>[
         IconSlideAction(
+          caption: 'Detail',
+          color: colorPrimary,
+          icon: Icons.person,
+          onTap: () {
+            print(userId);
+            Navigator.pushNamed(context, '/viewUserDetail',
+                          arguments: userId);
+          },
+        ),
+        IconSlideAction(
           caption: 'Delete',
-          color: Colors.red,
+          color: colorWarning,
           icon: Icons.delete,
           onTap: () => print('Delete'),
         ),
