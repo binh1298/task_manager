@@ -1,13 +1,13 @@
 class ApiRoutes {
-  final String login = '/login';
-  final String getUsers = '/users';
-  final String createUsers = '/create-user';
+  final String login = 'login';
+  final String getUsers = 'users';
+  final String createUsers = 'create-user';
 
-  final String getGroups = '/groups';
-  final String getUserProfile = '/show';
+  final String getGroups = 'groups';
+  final String getUserProfile = 'show';
   
   createAdminRoute(route) {
-    return '/admin/$route';
+    return 'admin/$route';
   }
 }
 
