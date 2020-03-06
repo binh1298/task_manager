@@ -40,7 +40,7 @@ class _ViewUserProfileScreenState extends State<ViewUserProfileScreen> {
                   UserImageSafe(imgUrl: snapshot.data.avatar,),
                   SizedBox(height: 20),
                   TextSafeComponent(
-                    text: 'Name: ${snapshot.data.fullname}',
+                    text: '${snapshot.data.fullname}',
                     style: textStyleTitle,
                   ),
                   TextSafeComponent(

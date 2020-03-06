@@ -5,7 +5,8 @@ class IconTextComponent extends StatelessWidget {
   final String text;
   final IconData icon;
   final TextStyle style;
-  IconTextComponent({this.text, this.icon, this.style});
+  final double textBoxWidth;
+  IconTextComponent({this.text, this.icon, this.style, this.textBoxWidth});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class IconTextComponent extends StatelessWidget {
         TextSafeComponent(
           text: text,
           style: style,
+          textBoxWidth: textBoxWidth,
         ),
       ],
     );

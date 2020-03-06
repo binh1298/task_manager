@@ -22,3 +22,7 @@ Color colorBackground = Colors.white;
 Color colorInactive = Colors.grey;
 Color colorError = Colors.red;
 Color colorWarning = Colors.redAccent.shade400;
+
+// Textbox Width
+const double textboxWidthMedium = 220.0;
+const double textboxWidthLarge = 280.0;

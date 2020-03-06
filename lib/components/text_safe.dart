@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/style/style.dart';
 // In order to use this you have to always set maxwidth for the parent
 
 class TextSafeComponent extends StatelessWidget {
   final String text;
   final TextStyle style;
-
-  TextSafeComponent({this.text, this.style});
+  final double textBoxWidth;
+  TextSafeComponent({this.text, this.style, this.textBoxWidth = textboxWidthMedium});
   @override
   Widget build(BuildContext context) {
+    print('$text ${(text == null || text == 'null')}');
     return Container(
-      width: 220,
+      width: textBoxWidth,
       child: Text(
-        text == null ? 'Unknown' : text,
+        (text == null || text == 'null') ? 'Unknown' : text,
         overflow: TextOverflow.ellipsis,
         maxLines: 5,
         style: style,
