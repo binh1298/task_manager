@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:task_manager/models/user_details.dart';
+import 'package:task_manager/restart_app.dart';
 import 'package:task_manager/screens/admin/home.dart';
 import 'package:task_manager/screens/login.dart';
 import 'package:task_manager/utils/secure_storage.dart';
@@ -9,11 +10,13 @@ void main() async {
   await DotEnv().load('.env');
   UserDetails user = await getUserFromToken();
   if (user != null)
-    runApp(MyApp(
-      user: user,
+    runApp(RestartWidget(
+          child: MyApp(
+        user: user,
+      ),
     ));
   else
-    runApp(MyApp());
+    runApp(RestartWidget(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
