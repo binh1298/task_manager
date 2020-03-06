@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/components/text_safe.dart';
+import 'package:task_manager/components/user_image_safe.dart';
 import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/string_utils.dart';
@@ -36,9 +37,7 @@ class _ViewUserProfileScreenState extends State<ViewUserProfileScreen> {
               padding: const EdgeInsets.all(20.0),
               child: ListView(
                 children: <Widget>[
-                  Image(
-                    image: NetworkImage(snapshot.data.avatar),
-                  ),
+                  UserImageSafe(imgUrl: snapshot.data.avatar,),
                   SizedBox(height: 20),
                   TextSafeComponent(
                     text: 'Name: ${snapshot.data.fullname}',
