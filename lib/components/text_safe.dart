@@ -9,7 +9,6 @@ class TextSafeComponent extends StatelessWidget {
   TextSafeComponent({this.text, this.style, this.textBoxWidth = textboxWidthMedium});
   @override
   Widget build(BuildContext context) {
-    print('$text ${(text == null || text == 'null')}');
     return Container(
       width: textBoxWidth,
       child: Text(

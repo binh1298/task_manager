@@ -8,7 +8,8 @@ import 'package:task_manager/utils/snack_bar.dart';
 class ScanButton extends StatelessWidget {
   final BuildContext context;
   final Function onSuccessScan;
-  ScanButton({this.context, this.onSuccessScan});
+  final String title;
+  ScanButton({this.context, this.onSuccessScan, this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class ScanButton extends StatelessWidget {
               textColor: Colors.white,
               splashColor: Colors.blueGrey,
               onPressed: scan,
-              child: const Text('Scan QR to find Employee'),
+              child: Text(title),
             ),
           ),
         ],

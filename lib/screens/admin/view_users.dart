@@ -60,6 +60,7 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
                       Navigator.pushNamed(context, '/viewUserDetail',
                           arguments: barcode);
                     },
+                    title: 'Scan QR to find Employee',
                   ),
                   Expanded(
                     child: ListView(

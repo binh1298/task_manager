@@ -51,9 +51,9 @@ class _ViewGroupsScreenState extends State<ViewGroupsScreen> {
                 padding: const EdgeInsets.all(8),
                 children: snapshot.data
                     .map(
-                      (userDetail) => CardGroupDetail(
-                        managerName: userDetail.managerName,
-                        groupName: userDetail.groupName,
+                      (groupDetail) => CardGroupDetail(
+                        managerName: groupDetail.managerName,
+                        groupName: groupDetail.groupName,
                       ),
                     )
                     .toList(),
