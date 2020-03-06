@@ -56,7 +56,7 @@ class UserCreateCredentials {
 
   Future<bool> createUser(BuildContext context) async {
     final http.Response response = await apiCaller.post(
-      route: apiRoutes.createAdminRoute(apiRoutes.createUsers),
+      route: createAdminRoute(apiRoutes.createUsers),
       body: jsonEncode(
         <String, dynamic>{
           'username': username,

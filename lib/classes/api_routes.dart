@@ -5,10 +5,10 @@ class ApiRoutes {
 
   final String getGroups = 'groups';
   final String getUserProfile = 'show';
-  
-  createAdminRoute(route) {
-    return 'admin/$route';
-  }
+}
+
+createAdminRoute(route) {
+  return 'admin/$route';
 }
 
 final ApiRoutes apiRoutes = ApiRoutes();
