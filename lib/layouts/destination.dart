@@ -8,7 +8,8 @@ class DestinationLayout extends StatefulWidget {
   final Destination destination;
   final VoidCallback onNavigation;
 
-  DestinationLayout({Key key, this.destination, this.onNavigation}) : super(key: key);
+  DestinationLayout({Key key, this.destination, this.onNavigation})
+      : super(key: key);
 
   @override
   _DestinationLayoutState createState() => _DestinationLayoutState();
@@ -34,7 +35,11 @@ class _DestinationLayoutState extends State<DestinationLayout> {
             break;
           case '/viewUserDetail':
             title = 'View User Detail';
-            body = ViewUserProfileScreen(userId: settings.arguments); 
+            body = ViewUserProfileScreen(userId: settings.arguments);
+            break;
+          case 'viewGroupDetail':
+            title = 'View Group Detail';
+            body = ViewUserProfileScreen(userId: settings.arguments);
             break;
           default:
             body = CreateUserScreen();
@@ -45,7 +50,8 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           builder: (BuildContext context) {
             return Scaffold(
               appBar: AppBar(
-                title: Text(settings.name == '/' ? widget.destination.title : title),
+                title: Text(
+                    settings.name == '/' ? widget.destination.title : title),
               ),
               body: body,
             );

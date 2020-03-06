@@ -19,7 +19,7 @@ class TextFormFieldComponent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            '${title}:',
+            '$title:',
             style: textStyleTitle,
           ),
           TextFormField(
