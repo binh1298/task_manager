@@ -71,7 +71,12 @@ class _ViewUserProfileScreenState extends State<ViewUserProfileScreen> {
             ),
           );
         } else {
-          return Text('Can\'t find this user');
+          return Center(
+            child: Text(
+              'Can\'t find this user',
+              style: textStyleHeading,
+            ),
+          );
         }
       },
     );
