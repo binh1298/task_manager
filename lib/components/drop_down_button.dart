@@ -1,34 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/models/role_details.dart';
+import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/style/style.dart';
-import 'package:task_manager/utils/string_utils.dart';
 
-class DropdownButtonRole extends StatefulWidget {
+class DropdownFormFieldComponent extends StatefulWidget {
+  final String title;
   final Function updateState;
-  DropdownButtonRole({this.updateState});
+  final List<String> options;
+  DropdownFormFieldComponent({this.title, this.updateState, this.options});
 
   @override
-  _DropdownButtonRoleState createState() => _DropdownButtonRoleState();
+  _DropdownFormFieldComponentState createState() =>
+      _DropdownFormFieldComponentState();
 }
 
-class _DropdownButtonRoleState extends State<DropdownButtonRole> {
-  List<Role> rolesList;
-  Role dropDownRole;
+class _DropdownFormFieldComponentState extends State<DropdownFormFieldComponent> {
+  String dropDownOption;
 
   @override
   void initState() {
     super.initState();
-    rolesList = fetchRolesListSync();
-    dropDownRole = rolesList[0];
+    dropDownOption = widget.options[0];
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        DropdownButton<Role>(
-          
-          value: dropDownRole,
+        TextSafeComponent(
+          text: widget.title,
+          style: textStyleTitle,
+        ),
+        DropdownButton<String>(
+          value: dropDownOption,
           icon: Icon(Icons.arrow_downward),
           iconSize: 24,
           elevation: 16,
@@ -37,18 +41,18 @@ class _DropdownButtonRoleState extends State<DropdownButtonRole> {
             color: colorPrimary,
           ),
           isExpanded: true,
-          onChanged: (Role newRole) {
+          onChanged: (String newString) {
             setState(() {
-              dropDownRole = newRole;
+              dropDownOption = newString;
             });
-            widget.updateState(newRole.roleId);
+            widget.updateState(newString);
           },
-          items: rolesList
-              .map<DropdownMenuItem<Role>>(
-                (role) => DropdownMenuItem(
-                  value: role,
+          items: widget.options
+              .map<DropdownMenuItem<String>>(
+                (option) => DropdownMenuItem(
+                  value: option,
                   child: Text(
-                    capitalize(role.roleName),
+                    option,
                   ),
                 ),
               )
