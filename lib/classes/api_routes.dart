@@ -3,9 +3,12 @@ class ApiRoutes {
   final String getUsers = 'users';
   final String createUsers = 'create-user';
   final String deleteUser = 'delete-user';
-
+  
   final String getGroups = 'groups';
   final String createGroup = 'create-group';
+  
+  final String createTask = 'create-task';
+  
   final String getUserProfile = 'show';
 }
 

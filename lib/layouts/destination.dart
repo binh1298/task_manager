@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/classes/view_navigation_observer.dart';
 import 'package:task_manager/screens/admin/create_group.dart';
+import 'package:task_manager/screens/admin/create_task.dart';
 import 'package:task_manager/screens/admin/create_user.dart';
 import 'package:task_manager/screens/admin/view_group_details.dart';
 import 'package:task_manager/screens/admin/view_user_profile.dart';
@@ -47,6 +48,10 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           case '/viewGroupDetails':
             title = 'View Group Detail';
             body = ViewGroupDetailsScreen(groupId: settings.arguments);
+            break;
+          case '/createTask':
+            title = 'Create Task';
+            body = CreateTaskScreen();
             break;
           default:
             body = CreateUserScreen();

@@ -3,6 +3,7 @@ import 'package:task_manager/style/style.dart';
 
 class TextFormFieldComponent extends StatelessWidget {
   final bool obscureText;
+  final TextInputType textInputType;
   final String hintText, title;
   final Function onSaved, validator;
 
@@ -11,9 +12,11 @@ class TextFormFieldComponent extends StatelessWidget {
       this.title,
       this.obscureText = false,
       this.onSaved,
-      this.validator});
+      this.validator, this.textInputType});
   @override
   Widget build(BuildContext context) {
+    int maxLines = 1;
+    if(textInputType == TextInputType.multiline) maxLines = null;
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,6 +30,8 @@ class TextFormFieldComponent extends StatelessWidget {
             style: textStyleSubtitle,
             validator: validator,
             onSaved: onSaved,
+            keyboardType: textInputType,
+            maxLines: maxLines,
           ),
           SizedBox(
             height: 20.0,
