@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:task_manager/style/style.dart';
+import 'package:intl/intl.dart';
 
 String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
@@ -11,6 +10,7 @@ String getUserStatus(bool isDeleted) {
   return isDeleted ? 'Deleted' : 'Active';
 }
 
-Color getUserStatusColor(bool isDeleted) {
-  return isDeleted ? colorError : colorAccept;
+String formatDate(String strDate) {
+  DateTime date = DateTime.parse(strDate);
+  return DateFormat('yyyy-MM-dd').format(date);
 }

@@ -38,7 +38,7 @@ class _ViewTasksScreenState extends State<ViewTasksScreen> {
         child: Icon(Icons.add),
         onPressed: () async {
           final result = await Navigator.pushNamed(context, '/createTask');
-          if (result != null && result) {
+          if (result != null) {
             refreshList();
             showInfoSnackBar(context, 'Created Task Successfully!');
           }
@@ -60,7 +60,12 @@ class _ViewTasksScreenState extends State<ViewTasksScreen> {
                       children: snapshot.data
                           .map(
                             (taskDetails) => CardTask(
-                              userId: taskDetails.name,
+                              id: taskDetails.id,
+                              name: taskDetails.name,
+                              sourceTaskId: taskDetails.sourceTaskId,
+                              status: taskDetails.status,
+                              beginAt: taskDetails.beginAt,
+                              endAt: taskDetails.endAt,
                               refreshList: refreshList,
                             ),
                           )

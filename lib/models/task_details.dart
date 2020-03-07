@@ -17,7 +17,7 @@ class TaskDetails {
       creatorId,
       assigneeId,
       confirmationImg;
-  DateTime judgeCommentAt, beginAt, endAt, createdAt, updatedAt;
+  String judgeCommentAt, beginAt, endAt, createdAt, updatedAt;
 
   TaskDetails(
       {this.createdAt,
@@ -38,21 +38,27 @@ class TaskDetails {
       this.status,
       this.updatedAt});
 
+  factory TaskDetails.fromJson(dynamic json) {
+    return TaskDetails(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      sourceTaskId: json['null'] as int,
+      status: json['status'] as String,
+      beginAt: json['beginAt'] as String,
+      endAt: json['endAt'] as String,
+    );
+  }
   Future<bool> createTask(BuildContext context) async {
     final http.Response response = await apiCaller.post(
-      route: createAdminRoute(apiRoutes.createTask),
-      body: jsonEncode(
-        <String, String> {
+        route: createAdminRoute(apiRoutes.createTask),
+        body: jsonEncode(<String, String>{
           'name': name,
           'requirement': requirement,
           'judgeId': judgeId,
-          'assigneeId' : assigneeId,
+          'assigneeId': assigneeId,
           'beginAt': beginAt.toString(),
           'endAt': endAt.toString(),
-        }
-      )
-      
-    );
+        }));
     bool success = response.statusCode == 201;
     if (success) {
       print(json.decode(response.body)['task']);
@@ -60,11 +66,18 @@ class TaskDetails {
       showErrorSnackBar(context, json.decode(response.body)['message']);
     }
     return success;
-
   }
 }
 
-
-Future<List<TaskDetails>> fetchTasksList() {
-
+Future<List<TaskDetails>> fetchTasksList() async {
+  final http.Response response =
+      await apiCaller.get(route: createAdminRoute(apiRoutes.getTasks));
+  if (response.statusCode == 200) {
+    var userDetailsListJson = json.decode(response.body)['result'] as List;
+    return userDetailsListJson
+        .map((userDetails) => TaskDetails.fromJson(userDetails))
+        .toList();
+  } else {
+    return null;
+  }
 }
