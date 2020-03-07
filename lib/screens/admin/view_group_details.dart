@@ -4,7 +4,6 @@ import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/components/user_image_safe.dart';
 import 'package:task_manager/models/group_details.dart';
-import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
