@@ -7,16 +7,16 @@ class UserDetails {
   String userId, username, avatar, email, fullname, phoneNumber, roleName;
   bool isDeleted;
 
-  UserDetails(
-      {this.email = '',
-      this.fullname = '',
-      this.phoneNumber = '',
-      this.username = '',
-      this.avatar = '', 
-      this.roleName = '',
-      this.userId = '',
-      this.isDeleted = false,
-      });
+  UserDetails({
+    this.email = '',
+    this.fullname = '',
+    this.phoneNumber = '',
+    this.username = '',
+    this.avatar = '',
+    this.roleName = '',
+    this.userId = '',
+    this.isDeleted = false,
+  });
 
   factory UserDetails.fromJson(dynamic json) {
     return UserDetails(
@@ -34,19 +34,23 @@ class UserDetails {
 
 // GET
 Future<UserDetails> fetchUserDetails(String userId) async {
-  final http.Response response = await apiCaller.get(route: '${createAdminRoute(apiRoutes.getUserProfile)}/$userId');
-  if(response.statusCode == 200) {
+  final http.Response response = await apiCaller.get(
+      route: '${createAdminRoute(apiRoutes.getUserProfile)}/$userId');
+  if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['user'];
     return UserDetails.fromJson(userDetailsJson);
-  } else return null;
+  } else
+    return null;
 }
 
 Future<UserDetails> fetchUserProfile() async {
-  final http.Response response = await apiCaller.get(route: createAdminRoute(apiRoutes.getUserProfile));
-  if(response.statusCode == 200) {
+  final http.Response response =
+      await apiCaller.get(route: createAdminRoute(apiRoutes.getUserProfile));
+  if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['user'];
     return UserDetails.fromJson(userDetailsJson);
-  } else return null;
+  } else
+    return null;
 }
 
 Future<List<UserDetails>> fetchUsersDetailsList() async {
@@ -54,10 +58,24 @@ Future<List<UserDetails>> fetchUsersDetailsList() async {
       await apiCaller.get(route: createAdminRoute(apiRoutes.getUsers));
   if (response.statusCode == 200) {
     var userDetailsListJson = json.decode(response.body)['result'] as List;
-    return userDetailsListJson.map((userDetails) => UserDetails.fromJson(userDetails)).toList();
+    return userDetailsListJson
+        .map((userDetails) => UserDetails.fromJson(userDetails))
+        .toList();
   } else {
     return null;
   }
 }
 
-// DELETE 
+// PATCH
+Future<bool> deleteUser(String userId, bool newIsDeleted) async {
+  final http.Response response = await apiCaller.patch(
+    route: createAdminRoute(apiRoutes.deleteUser),
+    body: jsonEncode(
+      <String, dynamic>{
+        'userId': userId,
+        'isDeleted': newIsDeleted,
+      },
+    ),
+  );
+  return response.statusCode == 200;
+}

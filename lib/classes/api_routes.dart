@@ -2,6 +2,7 @@ class ApiRoutes {
   final String login = 'login';
   final String getUsers = 'users';
   final String createUsers = 'create-user';
+  final String deleteUser = 'delete-user';
 
   final String getGroups = 'groups';
   final String getUserProfile = 'show';

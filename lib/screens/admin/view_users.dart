@@ -76,6 +76,7 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
                               email: userDetail.email,
                               avatar: userDetail.avatar,
                               isDeleted: userDetail.isDeleted,
+                              refreshList: refreshList,
                             ),
                           )
                           .toList(),

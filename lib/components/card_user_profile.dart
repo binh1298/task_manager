@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/components/text_safe.dart';
+import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/resouces.dart';
 import 'package:task_manager/style/style.dart';
+import 'package:task_manager/utils/snack_bar.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
 class CardUserProfile extends StatelessWidget {
   final String userId, fullname, role, email, phoneNumber, avatar;
   final bool isDeleted;
-
+  final Function refreshList;
   CardUserProfile(
       {Key key,
       this.userId,
@@ -19,6 +21,7 @@ class CardUserProfile extends StatelessWidget {
       this.email,
       this.phoneNumber,
       this.isDeleted,
+      this.refreshList,
       this.avatar})
       : super(key: key);
 
@@ -79,20 +82,26 @@ class CardUserProfile extends StatelessWidget {
       ),
       secondaryActions: <Widget>[
         IconSlideAction(
-          caption: 'Detail',
+          caption: 'Details',
           color: colorPrimary,
-          icon: Icons.person,
+          icon: Icons.account_circle,
           onTap: () {
-            print(userId);
-            Navigator.pushNamed(context, '/viewUserDetail',
-                          arguments: userId);
+            Navigator.pushNamed(context, '/viewUserDetail', arguments: userId);
           },
         ),
         IconSlideAction(
-          caption: 'Delete',
-          color: colorWarning,
+          caption: isDeleted ? 'Undelete' : 'Delete',
+          color: isDeleted ? colorAccept : colorWarning,
           icon: Icons.delete,
-          onTap: () => print('Delete'),
+          onTap: () async {
+            bool success = await deleteUser(userId, !isDeleted);
+            if(success) {
+              showInfoSnackBar(context, '${isDeleted ? 'Undelete' : 'Delete'} user successfully');
+            } else {
+              showErrorSnackBar(context, 'Something went wrong while delete user');
+            }
+            refreshList();
+          },
         ),
       ],
     );

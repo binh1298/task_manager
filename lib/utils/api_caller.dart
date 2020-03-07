@@ -29,7 +29,17 @@ class ApiCaller {
     );
   }
   
-  patch(){}
+  patch({String route, dynamic body}) async {
+    String token = await getJwtToken();
+    return http.patch(
+      '$apiUrl$route',
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': 'Bearer $token',
+      },
+      body: body,
+    );
+  }
 }
 
 final apiCaller = ApiCaller();
