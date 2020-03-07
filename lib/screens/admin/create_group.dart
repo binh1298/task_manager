@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/button_confirm.dart';
-import 'package:task_manager/components/card_user_profile.dart';
-import 'package:task_manager/components/scan_button.dart';
+import 'package:task_manager/components/scan_button_to_build_user_card.dart';
 import 'package:task_manager/components/text_form_field.dart';
 import 'package:task_manager/models/group_details.dart';
 import 'package:task_manager/models/user_details.dart';
@@ -16,37 +15,8 @@ class CreateGroupScreen extends StatefulWidget {
 class _CreateGroupScreenState extends State<CreateGroupScreen> {
   final _createGroupFormKey = GlobalKey<FormState>();
   final _groupCreateDetails = GroupDetails();
-  String _userId;
   bool foundManager = false;
 
-  Widget buildManagerCard(userId) {
-    if (userId != null) {
-      return FutureBuilder<UserDetails>(
-        future: fetchUserDetails(userId),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            foundManager = true;
-            return CardUserProfile(
-              userId: snapshot.data.userId,
-              fullname: snapshot.data.fullname,
-              role: snapshot.data.roleName,
-              phoneNumber: snapshot.data.phoneNumber,
-              email: snapshot.data.email,
-              avatar: snapshot.data.avatar,
-              isDeleted: snapshot.data.isDeleted,
-            );
-          } else if (snapshot.hasError) {
-            return Text('User is either not found or not a manager!');
-          }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      );
-    } else {
-      return Text('Please scan QR to find manager');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,15 +61,17 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                         'Manager:',
                         style: textStyleTitle,
                       ),
-                      buildManagerCard(_userId),
-                      ScanButton(
-                        context: context,
-                        onSuccessScan: (barcode) {
+                      ScanButtonToBuildUserCard(
+                        roleName: 'Manager or Admin',
+                        onFoundUser: (userId) {
                           setState(() {
-                            _userId = barcode;
+                            foundManager = true;
+                            _groupCreateDetails.managerId = userId;
                           });
                         },
-                        title: 'Scan QR to find Manager',
+                        fetchDetail: (userId) {
+                          return fetchUserDetails(userId);
+                        }, 
                       ),
                       Container(
                         alignment: Alignment.bottomRight,
