@@ -61,8 +61,7 @@ class GroupDetails {
         },
       ),
     );
-    print(response.body);
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       var groupDetailsJson = json.decode(response.body)['group'];
       return GroupDetails.fromJson(groupDetailsJson);
     } else

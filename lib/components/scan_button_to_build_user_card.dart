@@ -4,10 +4,10 @@ import 'package:task_manager/components/scan_button.dart';
 import 'package:task_manager/models/user_details.dart';
 
 class ScanButtonToBuildUserCard extends StatefulWidget {
-  final Function onFoundUser;
   final String roleName;
   final Function fetchDetail;
-  ScanButtonToBuildUserCard({this.onFoundUser, this.roleName, this.fetchDetail});
+  final Function onSuccessBuild, onFailedBuild;
+  ScanButtonToBuildUserCard({this.onSuccessBuild, this.onFailedBuild, this.roleName, this.fetchDetail});
 
   @override
   _ScanButtonToBuildUserCardState createState() =>
@@ -23,6 +23,7 @@ class _ScanButtonToBuildUserCardState extends State<ScanButtonToBuildUserCard> {
         future: widget.fetchDetail(userId),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            widget.onSuccessBuild(userId);
             return CardUserProfile(
               userId: snapshot.data.userId,
               fullname: snapshot.data.fullname,
@@ -33,11 +34,18 @@ class _ScanButtonToBuildUserCardState extends State<ScanButtonToBuildUserCard> {
               isDeleted: snapshot.data.isDeleted,
             );
           } else if (snapshot.hasError) {
+            widget.onFailedBuild();
             return Text('User is not found!');
           }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          if (snapshot.connectionState == ConnectionState.done) {
+            widget.onFailedBuild();
+            return Text('User is not found');
+          } else {
+            widget.onFailedBuild();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
         },
       );
     } else {
@@ -56,7 +64,6 @@ class _ScanButtonToBuildUserCardState extends State<ScanButtonToBuildUserCard> {
             setState(() {
               userId = barcode;
             });
-            widget.onFoundUser(userId);
           },
           title: 'Scan QR to find ${widget.roleName}',
         ),
@@ -64,4 +71,3 @@ class _ScanButtonToBuildUserCardState extends State<ScanButtonToBuildUserCard> {
     );
   }
 }
-

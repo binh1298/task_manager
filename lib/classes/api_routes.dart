@@ -10,6 +10,7 @@ class ApiRoutes {
   final String createTask = 'create-task';
   
   final String getUserProfile = 'show';
+  final String getManagerOrAdminProfile = 'managers';
 }
 
 createAdminRoute(route) {

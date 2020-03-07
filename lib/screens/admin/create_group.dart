@@ -15,8 +15,6 @@ class CreateGroupScreen extends StatefulWidget {
 class _CreateGroupScreenState extends State<CreateGroupScreen> {
   final _createGroupFormKey = GlobalKey<FormState>();
   final _groupCreateDetails = GroupDetails();
-  bool foundManager = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -63,15 +61,15 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                       ),
                       ScanButtonToBuildUserCard(
                         roleName: 'Manager or Admin',
-                        onFoundUser: (userId) {
-                          setState(() {
-                            foundManager = true;
-                            _groupCreateDetails.managerId = userId;
-                          });
-                        },
                         fetchDetail: (userId) {
-                          return fetchUserDetails(userId);
-                        }, 
+                          return fetchManagerOrAdminDetails(userId);
+                        },
+                        onSuccessBuild: (userId) {
+                          _groupCreateDetails.managerId = userId;
+                        },
+                        onFailedBuild: () {
+                          _groupCreateDetails.managerId = null;
+                        },
                       ),
                       Container(
                         alignment: Alignment.bottomRight,
@@ -81,7 +79,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                             final form = _createGroupFormKey.currentState;
                             if (form.validate()) {
                               form.save();
-                              if (!foundManager) {
+                              if (_groupCreateDetails.managerId == null) {
                                 showErrorSnackBar(
                                     context, 'You have to set a manager!');
                               } else {

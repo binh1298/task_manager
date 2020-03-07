@@ -54,7 +54,7 @@ class CardUserProfile extends StatelessWidget {
                   style: textStyleTitle,
                 ),
                 TextSafeComponent(
-                  text: role,
+                  text: capitalize(role),
                   style: textStyleSubtitle,
                 ),
                 SizedBox(
