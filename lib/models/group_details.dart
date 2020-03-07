@@ -16,6 +16,24 @@ class GroupDetails {
       managerId: json['managerId'] as String,
     );
   }
+
+  Future<GroupDetails> createGroup() async {
+    final http.Response response = await apiCaller.post(
+      route: createAdminRoute(apiRoutes.createGroup),
+      body: jsonEncode(
+        <String, dynamic>{
+          'name': groupName,
+          'managerId': managerId,
+        },
+      ),
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      var groupDetailsJson = json.decode(response.body)['group'];
+      return GroupDetails.fromJson(groupDetailsJson);
+    } else
+      return null;
+  }
 }
 
 Future<GroupDetails> fetchGroupDetails(groupId) async {

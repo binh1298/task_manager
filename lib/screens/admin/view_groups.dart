@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/card_group_component.dart';
 import 'package:task_manager/models/group_details.dart';
+import 'package:task_manager/utils/snack_bar.dart';
 
 class ViewGroupsScreen extends StatefulWidget {
   @override
@@ -35,8 +36,12 @@ class _ViewGroupsScreenState extends State<ViewGroupsScreen> {
       floatingActionButton: FloatingActionButton(
         heroTag: 'CreateGroups',
         child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushNamed(context, '/createGroup');
+        onPressed: () async {
+          final result = await Navigator.pushNamed(context, '/createGroup');
+          if (result != null) {
+            refreshList();
+            showInfoSnackBar(context, 'Created Group Successfully!');
+          }
         },
       ),
       body: RefreshIndicator(

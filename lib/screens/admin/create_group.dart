@@ -33,6 +33,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
               phoneNumber: snapshot.data.phoneNumber,
               email: snapshot.data.email,
               avatar: snapshot.data.avatar,
+              isDeleted: snapshot.data.isDeleted,
             );
           } else if (snapshot.hasError) {
             return Text('User is either not found or not a manager!');
@@ -112,18 +113,11 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                 showErrorSnackBar(
                                     context, 'You have to set a manager!');
                               } else {
-                                // if (!_groupCreateDetails.comparePassword()) {
-                                //   showErrorSnackBar(context,
-                                //       'Password have to match Confirm Password');
-                                // } else {
-                                //   bool success = await _groupCreateDetails
-                                //       .createUser(context);
-                                //   if (success) {
-                                //     Navigator.pop(context, true);
-                                //   } else {
-
-                                //   }
-                                // }
+                                GroupDetails groupDetails =
+                                    await _groupCreateDetails.createGroup();
+                                if (groupDetails != null) {
+                                  Navigator.pop(context, groupDetails);
+                                } else {}
                               }
                             }
                           },

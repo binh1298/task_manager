@@ -5,6 +5,7 @@ class ApiRoutes {
   final String deleteUser = 'delete-user';
 
   final String getGroups = 'groups';
+  final String createGroup = 'create-group';
   final String getUserProfile = 'show';
 }
 
