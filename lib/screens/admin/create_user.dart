@@ -4,6 +4,7 @@ import 'package:task_manager/components/drop_down_button.dart';
 import 'package:task_manager/components/text_form_field.dart';
 import 'package:task_manager/models/user_credentials.dart';
 import 'package:task_manager/style/style.dart';
+import 'package:task_manager/utils/form_field_validator.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
@@ -38,33 +39,37 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       TextFormFieldComponent(
+                          title: 'Fullname',
+                          onSaved: (value) {
+                            setState(() {
+                              _userCreateCredentials.fullname = value;
+                            });
+                          },
+                          validator: (value) {
+                            return validateFormField(value, 'fullname', 5);
+                          }),
+                      TextFormFieldComponent(
                         title: 'Username',
-                        onSaved: (username) {
+                        onSaved: (value) {
                           setState(() {
-                            _userCreateCredentials.username = username;
+                            _userCreateCredentials.username = value;
                           });
                         },
                         validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter a username!';
-                          }
-                          if (value.length < 5) {
-                            return 'Username has to be longer than 5 characters without spaces';
-                          }
-                          return null;
+                          return validateFormField(value, 'username', 5);
                         },
                       ),
                       TextFormFieldComponent(
                         title: 'Email',
-                        onSaved: (email) {
+                        onSaved: (value) {
                           setState(() {
-                            _userCreateCredentials.email = email;
+                            _userCreateCredentials.email = value;
                           });
                         },
                         validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter an email!';
-                          }
+                          String validation =
+                              validateFormField(value, 'email', 5);
+                          if (validation != null) return validation;
                           if (!isEmail(value)) {
                             return 'Please enter a valid email';
                           }
@@ -74,29 +79,21 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                       TextFormFieldComponent(
                         obscureText: true,
                         title: 'Password',
-                        onSaved: (password) {
+                        onSaved: (value) {
                           setState(() {
-                            _userCreateCredentials.password = password;
+                            _userCreateCredentials.password = value;
                           });
                         },
                         validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter a valid password!';
-                          }
-
-                          if (value.length < 5) {
-                            return 'Password has to be longer than 5 characters';
-                          }
-                          return null;
+                          return validateFormField(value, 'password', 5);
                         },
                       ),
                       TextFormFieldComponent(
                         obscureText: true,
                         title: 'Confirm Password',
-                        onSaved: (confirmPassword) {
+                        onSaved: (value) {
                           setState(() {
-                            _userCreateCredentials.confirmPassword =
-                                confirmPassword;
+                            _userCreateCredentials.confirmPassword = value;
                           });
                         },
                         validator: (value) {
@@ -129,9 +126,7 @@ class _CreateUserScreenState extends State<CreateUserScreen> {
                                     .createUser(context);
                                 if (success) {
                                   Navigator.pop(context, true);
-                                } else {
-                                  
-                                }
+                                } else {}
                               }
                             }
                           },

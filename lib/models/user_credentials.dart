@@ -44,6 +44,7 @@ class UserLoginCredentials {
 }
 
 class UserCreateCredentials {
+  String fullname;
   String username;
   String password;
   String email;
@@ -59,6 +60,7 @@ class UserCreateCredentials {
       route: apiRoutes.createAdminRoute(apiRoutes.createUsers),
       body: jsonEncode(
         <String, dynamic>{
+          'fullname': fullname,
           'username': username,
           'email': email,
           'password': password,
