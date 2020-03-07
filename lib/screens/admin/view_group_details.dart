@@ -9,7 +9,7 @@ import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
 class ViewGroupDetailsScreen extends StatefulWidget {
-  final String groupId;
+  final int groupId;
 
   ViewGroupDetailsScreen({this.groupId});
   @override
@@ -38,40 +38,62 @@ class _ViewGroupDetailsScreenState extends State<ViewGroupDetailsScreen> {
               padding: const EdgeInsets.all(20.0),
               child: ListView(
                 children: <Widget>[
-                  // UserImageSafe(imgUrl: snapshot.data.avatar,),
-                  // SizedBox(height: 20),
-                  // TextSafeComponent(
-                  //   text: '${snapshot.data.fullname}',
-                  //   style: textStyleTitle,
-                  // ),
-                  // TextSafeComponent(
-                  //   text: 'Role: ${capitalize(snapshot.data.roleName)}',
-                  //   style: textStyleTitle,
-                  // ),
-                  // SizedBox(height: 10),
-                  // IconTextComponent(
-                  //   icon: Icons.email,
-                  //   text: '${snapshot.data.email}',
-                  //   style: textStyleSubtitle.copyWith(fontSize: 18),
-                  // ),
-                  // SizedBox(height: 5),
-                  // IconTextComponent(
-                  //   icon: Icons.phone,
-                  //   text: '${snapshot.data.phoneNumber}',
-                  //   style: textStyleSubtitle.copyWith(fontSize: 18),
-                  // ),
-                  // Center(
-                  //   child: QrImage(
-                  //     data: snapshot.data.userId,
-                  //     size: 200,
-                  //   ),
-                  // ),
+                  UserImageSafe(
+                    imgUrl: snapshot.data.avatar,
+                  ),
+                  SizedBox(height: 20),
+                  TextSafeComponent(
+                    text: 'Group: ',
+                    style: textStyleHeading,
+                  ),
+                  TextSafeComponent(
+                    text: '${snapshot.data.groupName}',
+                    style: textStyleTitle,
+                  ),
+                  SizedBox(height: 20),
+                  TextSafeComponent(
+                    text: 'Manager: ',
+                    style: textStyleHeading,
+                  ),
+                  TextSafeComponent(
+                    text: '${snapshot.data.fullname}',
+                    style: textStyleTitle,
+                  ),
+                  TextSafeComponent(
+                    text: 'Role: ${capitalize(snapshot.data.roleName)}',
+                    style: textStyleTitle,
+                  ),
+                  SizedBox(height: 10),
+                  IconTextComponent(
+                    icon: Icons.email,
+                    text: '${snapshot.data.email}',
+                    style: textStyleSubtitle.copyWith(fontSize: 18),
+                  ),
+                  SizedBox(height: 5),
+                  IconTextComponent(
+                    icon: Icons.phone,
+                    text: '${snapshot.data.phoneNumber}',
+                    style: textStyleSubtitle.copyWith(fontSize: 18),
+                  ),
+                  Center(
+                    child: QrImage(
+                      data: snapshot.data.managerId,
+                      size: 200,
+                    ),
+                  ),
                 ],
               ),
             ),
           );
+        } else if (snapshot.hasError) {
+          return Center(
+            child: Text(
+              'Can\'t find this Group ${snapshot.error}',
+              style: textStyleHeading,
+            ),
+          );
         } else {
-          return Text('Can\'t find this user');
+          return Center(child: CircularProgressIndicator(),);
         }
       },
     );

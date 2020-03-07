@@ -59,6 +59,7 @@ class _ViewGroupsScreenState extends State<ViewGroupsScreen> {
                       (groupDetail) => CardGroupDetail(
                         managerName: groupDetail.managerName,
                         groupName: groupDetail.groupName,
+                        groupId: groupDetail.groupId,
                       ),
                     )
                     .toList(),

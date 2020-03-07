@@ -44,7 +44,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
             title = 'Create Group';
             body = CreateGroupScreen();
             break;
-          case 'viewGroupDetail':
+          case '/viewGroupDetails':
             title = 'View Group Detail';
             body = ViewGroupDetailsScreen(groupId: settings.arguments);
             break;
