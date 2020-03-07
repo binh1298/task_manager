@@ -7,15 +7,15 @@ import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
-class ViewUserProfileScreen extends StatefulWidget {
+class ViewUserDetailsScreen extends StatefulWidget {
   final String userId;
 
-  ViewUserProfileScreen({this.userId});
+  ViewUserDetailsScreen({this.userId});
   @override
-  _ViewUserProfileScreenState createState() => _ViewUserProfileScreenState();
+  _ViewUserDetailsScreenState createState() => _ViewUserDetailsScreenState();
 }
 
-class _ViewUserProfileScreenState extends State<ViewUserProfileScreen> {
+class _ViewUserDetailsScreenState extends State<ViewUserDetailsScreen> {
   Future<UserDetails> userDetails;
 
   @override
