@@ -55,7 +55,7 @@ class CardTask extends StatelessWidget {
                 height: 8.0,
               ),
               IconTextComponent(
-                icon: Icons.featured_play_list,
+                icon: Icons.event_note,
                 text: name,
                 style: textStyleTitle,
               ),
@@ -69,12 +69,12 @@ class CardTask extends StatelessWidget {
               ),
               IconTextComponent(
                 icon: Icons.access_time,
-                text: 'Begin at: ${formatDate(beginAt)}',
+                text: 'Start Date: ${formatDate(beginAt)}',
                 style: textStyleSubtitle,
               ),
               IconTextComponent(
                 icon: Icons.access_alarm,
-                text: 'End at: ${formatDate(endAt)}',
+                text: 'End Date: ${formatDate(endAt)}',
                 style: textStyleSubtitle,
               ),
               SizedBox(

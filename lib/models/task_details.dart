@@ -56,10 +56,12 @@ class TaskDetails {
           'requirement': requirement,
           'judgeId': judgeId,
           'assigneeId': assigneeId,
-          'beginAt': beginAt.toString(),
-          'endAt': endAt.toString(),
+          'beginAt': beginAt,
+          'endAt': endAt,
+          'taskStatus': status,
         }));
     bool success = response.statusCode == 201;
+    print(response.body);
     if (success) {
       print(json.decode(response.body)['task']);
     } else {

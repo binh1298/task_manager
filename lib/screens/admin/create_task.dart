@@ -5,11 +5,10 @@ import 'package:task_manager/components/drop_down_button.dart';
 import 'package:task_manager/components/scan_button_to_build_user_card.dart';
 import 'package:task_manager/components/text_form_field.dart';
 import 'package:task_manager/models/task_details.dart';
-import 'package:task_manager/models/user_credentials.dart';
+import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/form_field_validator.dart';
 import 'package:task_manager/utils/snack_bar.dart';
-import 'package:task_manager/utils/string_utils.dart';
 
 class CreateTaskScreen extends StatefulWidget {
   @override
@@ -68,7 +67,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         onSaved: (value) {
                           setState(() {
                             print(value);
-                            _taskCreateDetails.beginAt = value;
+                            _taskCreateDetails.beginAt = value.toString();
                           });
                         },
                       ),
@@ -76,25 +75,71 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         label: 'End Date',
                         onSaved: (value) {
                           setState(() {
-                            _taskCreateDetails.endAt = value;
+                            _taskCreateDetails.endAt = value.toString();
                           });
                         },
                       ),
-                      // ScanButtonToBuildUserCard()
+                      DropdownFormFieldComponent(
+                        title: 'Status: ',
+                        updateState: (String value) {
+                          setState(() {
+                            _taskCreateDetails.status = value;
+                          });
+                        },
+                        options: ['PENDING', 'IN-PROGRESS'],
+                      ),
+                      ScanButtonToBuildUserCard(
+                        roleName: 'judge',
+                        fetchDetail: (userId) {
+                          return fetchManagerOrAdminDetails(userId);
+                        },
+                        onSuccessBuild: (userId) {
+                          _taskCreateDetails.judgeId = userId;
+                        },
+                        onFailedBuild: () {
+                          _taskCreateDetails.judgeId = null;
+                        },
+                      ),
+                      ScanButtonToBuildUserCard(
+                        roleName: 'assignee',
+                        fetchDetail: (userId) {
+                          return fetchManagerOrEmployeeDetails(userId);
+                        },
+                        onSuccessBuild: (userId) {
+                          _taskCreateDetails.assigneeId = userId;
+                        },
+                        onFailedBuild: () {
+                          _taskCreateDetails.assigneeId = null;
+                        },
+                      ),
                       Container(
                         alignment: Alignment.bottomRight,
                         child: ButtonConfirmComponent(
                           text: 'Create Task',
                           onPressed: () async {
                             final form = _createTaskFormKey.currentState;
-                            if (form.validate()) {
-                              form.save();
-                              // bool success =
-                              //     await _taskCreateDetails.createTask(context);
-                              // if (success) {
-                              //   Navigator.pop(context, true);
-                              // } else {}
+                            if (!form.validate()) return;
+
+                            if (_taskCreateDetails.judgeId == null) {
+                              showErrorSnackBar(context, 'Judge is mandatory!');
+                              return;
                             }
+
+                            form.save();
+                            DateTime beginAt =
+                                DateTime.parse(_taskCreateDetails.beginAt);
+                            DateTime endAt =
+                                DateTime.parse(_taskCreateDetails.endAt);
+                            if (beginAt.compareTo(endAt) > 0) {
+                              showErrorSnackBar(context,
+                                  'Start Date has to come before End Date');
+                              return;
+                            }
+                            bool success =
+                                await _taskCreateDetails.createTask(context);
+                            if (success) {
+                              Navigator.pop(context, true);
+                            } else {}
                           },
                         ),
                       ),

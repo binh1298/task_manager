@@ -4,7 +4,8 @@ import 'package:task_manager/screens/admin/create_group.dart';
 import 'package:task_manager/screens/admin/create_task.dart';
 import 'package:task_manager/screens/admin/create_user.dart';
 import 'package:task_manager/screens/admin/view_group_details.dart';
-import 'package:task_manager/screens/admin/view_user_profile.dart';
+import 'package:task_manager/screens/admin/view_task_details.dart';
+import 'package:task_manager/screens/admin/view_user_details.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 import '../classes/destination.dart';
 
@@ -39,7 +40,7 @@ class _DestinationLayoutState extends State<DestinationLayout> {
             break;
           case '/viewUserDetail':
             title = 'View User Detail';
-            body = ViewUserProfileScreen(userId: settings.arguments);
+            body = ViewUserDetailsScreen(userId: settings.arguments);
             break;
           case '/createGroup':
             title = 'Create Group';
@@ -52,6 +53,10 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           case '/createTask':
             title = 'Create Task';
             body = CreateTaskScreen();
+            break;
+          case '/viewTaskDetails':
+            title = 'View Task Detail';
+            body = ViewTaskDetailsScreen(taskId: settings.arguments);
             break;
           default:
             body = CreateUserScreen();
