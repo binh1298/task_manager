@@ -7,6 +7,7 @@ final apiUrl = DotEnv().env['API_URL'];
 
 class ApiCaller {
   post({String body, String route}) async {
+    print('POST $apiUrl$route');
     String token = await getJwtToken();
     return http.post(
       '$apiUrl$route',
@@ -19,6 +20,7 @@ class ApiCaller {
   }
 
   get({String route}) async {
+    print('GET $apiUrl$route');
     String token = await getJwtToken();
     return http.get(
       '$apiUrl$route',
@@ -30,6 +32,7 @@ class ApiCaller {
   }
   
   patch({String route, dynamic body}) async {
+    print('PATCH $apiUrl$route');
     String token = await getJwtToken();
     return http.patch(
       '$apiUrl$route',
