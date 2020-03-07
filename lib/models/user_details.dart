@@ -32,8 +32,9 @@ class UserDetails {
   }
 }
 
+// GET
 Future<UserDetails> fetchUserDetails(String userId) async {
-  final http.Response response = await apiCaller.get(route: '${apiRoutes.createAdminRoute(apiRoutes.getUserProfile)}/${userId}');
+  final http.Response response = await apiCaller.get(route: '${createAdminRoute(apiRoutes.getUserProfile)}/$userId');
   if(response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['user'];
     return UserDetails.fromJson(userDetailsJson);
@@ -41,7 +42,7 @@ Future<UserDetails> fetchUserDetails(String userId) async {
 }
 
 Future<UserDetails> fetchUserProfile() async {
-  final http.Response response = await apiCaller.get(route: '${apiRoutes.createAdminRoute(apiRoutes.getUserProfile)}');
+  final http.Response response = await apiCaller.get(route: createAdminRoute(apiRoutes.getUserProfile));
   if(response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['user'];
     return UserDetails.fromJson(userDetailsJson);
@@ -50,7 +51,7 @@ Future<UserDetails> fetchUserProfile() async {
 
 Future<List<UserDetails>> fetchUsersDetailsList() async {
   final http.Response response =
-      await apiCaller.get(route: apiRoutes.createAdminRoute(apiRoutes.getUsers));
+      await apiCaller.get(route: createAdminRoute(apiRoutes.getUsers));
   if (response.statusCode == 200) {
     var userDetailsListJson = json.decode(response.body)['result'] as List;
     return userDetailsListJson.map((userDetails) => UserDetails.fromJson(userDetails)).toList();
@@ -58,3 +59,5 @@ Future<List<UserDetails>> fetchUsersDetailsList() async {
     return null;
   }
 }
+
+// DELETE 

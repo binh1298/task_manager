@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/components/text_safe.dart';
+import 'package:task_manager/style/resouces.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
 class CardUserProfile extends StatelessWidget {
-  final String fullname, role, email, phoneNumber, avatar;
+  final String userId, fullname, role, email, phoneNumber, avatar;
   final bool isDeleted;
 
   CardUserProfile(
       {Key key,
+      this.userId,
       this.fullname,
       this.role,
       this.email,
@@ -35,7 +37,7 @@ class CardUserProfile extends StatelessWidget {
                 radius: 40.0,
                 backgroundImage: avatar != null
                     ? NetworkImage(avatar)
-                    : AssetImage('lib/assets/images/defaultAvatar.png'),
+                    : AssetImage(fallBackAvatarUrl),
               ),
             ),
             Column(
@@ -77,8 +79,18 @@ class CardUserProfile extends StatelessWidget {
       ),
       secondaryActions: <Widget>[
         IconSlideAction(
+          caption: 'Detail',
+          color: colorPrimary,
+          icon: Icons.person,
+          onTap: () {
+            print(userId);
+            Navigator.pushNamed(context, '/viewUserDetail',
+                          arguments: userId);
+          },
+        ),
+        IconSlideAction(
           caption: 'Delete',
-          color: Colors.red,
+          color: colorWarning,
           icon: Icons.delete,
           onTap: () => print('Delete'),
         ),

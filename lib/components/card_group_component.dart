@@ -5,14 +5,13 @@ import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/style/style.dart';
 
 class CardGroupDetail extends StatelessWidget {
-  final String groupName, managerName;
-  final int numberOfMembers;
+  final String groupId, groupName, managerName;
 
   CardGroupDetail({
     Key key,
+    this.groupId,
     this.groupName,
     this.managerName,
-    this.numberOfMembers,
   }) : super(key: key);
 
   @override
@@ -32,24 +31,21 @@ class CardGroupDetail extends StatelessWidget {
               ),
               IconTextComponent(
                 icon: Icons.list,
-                text: 'Group: ${groupName}',
+                text: 'Group: $groupName',
                 style: textStyleTitle,
+                textBoxWidth: textboxWidthLarge,
               ),
               SizedBox(
                 height: 8.0,
               ),
               IconTextComponent(
                 icon: Icons.person,
-                text: 'Manager: ${managerName}',
+                text: 'Manager: $managerName',
                 style: textStyleSubtitle,
+                textBoxWidth: textboxWidthLarge,
               ),
               SizedBox(
                 height: 8.0,
-              ),
-              IconTextComponent(
-                icon: Icons.people,
-                text: '${numberOfMembers.toString()} members',
-                style: textStyleSubtitle,
               ),
               SizedBox(
                 height: 8.0,
@@ -59,6 +55,15 @@ class CardGroupDetail extends StatelessWidget {
         ),
       ),
       secondaryActions: <Widget>[
+        IconSlideAction(
+          caption: 'Detail',
+          color: colorPrimary,
+          icon: Icons.person,
+          onTap: () {
+            Navigator.pushNamed(context, '/viewGroupDetails',
+                          arguments: groupId);
+          },
+        ),
         IconSlideAction(
           caption: 'Delete',
           color: Colors.red,

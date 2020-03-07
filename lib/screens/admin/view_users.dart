@@ -60,6 +60,7 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
                       Navigator.pushNamed(context, '/viewUserDetail',
                           arguments: barcode);
                     },
+                    title: 'Scan QR to find Employee',
                   ),
                   Expanded(
                     child: ListView(
@@ -68,6 +69,7 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
                       children: snapshot.data
                           .map(
                             (userDetail) => CardUserProfile(
+                              userId: userDetail.userId,
                               fullname: userDetail.fullname,
                               role: userDetail.roleName,
                               phoneNumber: userDetail.phoneNumber,

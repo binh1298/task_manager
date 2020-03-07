@@ -6,7 +6,8 @@ class IconTextComponent extends StatelessWidget {
   final IconData icon;
   final TextStyle style;
   final Color color;
-  IconTextComponent({this.text, this.icon, this.style, this.color});
+  final double textBoxWidth;
+  IconTextComponent({this.text, this.icon, this.style, this.textBoxWidth, this.color});
 
   @override
   Widget build(BuildContext context) { 
@@ -20,6 +21,7 @@ class IconTextComponent extends StatelessWidget {
           text: text,
           style: style,
           color: color,
+          textBoxWidth: textBoxWidth,
         ),
       ],
     );

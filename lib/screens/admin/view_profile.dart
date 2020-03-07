@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:task_manager/components/button_cancel.dart';
 import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/models/user_details.dart';
+import 'package:task_manager/restart_app.dart';
 import 'package:task_manager/style/style.dart';
+import 'package:task_manager/utils/secure_storage.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
 class ViewProfileScreen extends StatefulWidget {
@@ -62,6 +65,16 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                       size: 200,
                     ),
                   ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  ButtonCancelComponent(
+                    text: 'Log out',
+                    onPressed: () {
+                      removeJwtToken();
+                      RestartWidget.restartApp(context);
+                    },
+                  )
                 ],
               ),
             ),

@@ -19,7 +19,13 @@ TextStyle textStyleErrorMessage = TextStyle(color: colorError);
 // Color
 Color colorPrimary = Colors.blue;
 Color colorBackground = Colors.white;
+Color colorCancel = Colors.blueGrey[100];
 Color colorInactive = Colors.grey;
 Color colorError = Colors.red;
 const Color colorTextDefault = Colors.black;
 Color colorAccept = Colors.green;
+Color colorWarning = Colors.redAccent.shade400;
+
+// Textbox Width
+const double textboxWidthMedium = 220.0;
+const double textboxWidthLarge = 280.0;
