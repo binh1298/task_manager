@@ -44,10 +44,10 @@ class _HomeScreenState extends State<HomeScreen>
         final UserScrollNotification userScroll = notification;
         switch (userScroll.direction) {
           case ScrollDirection.forward:
-            _hide.forward();
+            // _hide.forward();
             break;
           case ScrollDirection.reverse:
-            _hide.reverse();
+            // _hide.reverse();
             break;
           case ScrollDirection.idle:
             break;
