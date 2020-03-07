@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Text
-TextStyle textStyleDefault = TextStyle(fontFamily: 'Montserrat', fontSize: 18.0);
+const TextStyle textStyleDefault = TextStyle(fontFamily: 'Montserrat', fontSize: 18.0);
 TextStyle textStyleHeading = textStyleDefault.copyWith(
   fontWeight: FontWeight.bold,
   fontSize: 30.0,
@@ -21,3 +21,5 @@ Color colorPrimary = Colors.blue;
 Color colorBackground = Colors.white;
 Color colorInactive = Colors.grey;
 Color colorError = Colors.red;
+const Color colorTextDefault = Colors.black;
+Color colorAccept = Colors.green;

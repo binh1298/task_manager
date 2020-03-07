@@ -5,10 +5,11 @@ class IconTextComponent extends StatelessWidget {
   final String text;
   final IconData icon;
   final TextStyle style;
-  IconTextComponent({this.text, this.icon, this.style});
+  final Color color;
+  IconTextComponent({this.text, this.icon, this.style, this.color});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return Row(
       children: <Widget>[
         Icon(icon),
@@ -18,6 +19,7 @@ class IconTextComponent extends StatelessWidget {
         TextSafeComponent(
           text: text,
           style: style,
+          color: color,
         ),
       ],
     );

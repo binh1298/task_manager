@@ -4,9 +4,11 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/style/style.dart';
+import 'package:task_manager/utils/string_utils.dart';
 
 class CardUserProfile extends StatelessWidget {
   final String fullname, role, email, phoneNumber, avatar;
+  final bool isDeleted;
 
   CardUserProfile(
       {Key key,
@@ -14,6 +16,7 @@ class CardUserProfile extends StatelessWidget {
       this.role,
       this.email,
       this.phoneNumber,
+      this.isDeleted,
       this.avatar})
       : super(key: key);
 
@@ -59,6 +62,10 @@ class CardUserProfile extends StatelessWidget {
                 IconTextComponent(
                   icon: Icons.phone,
                   text: phoneNumber,
+                ),IconTextComponent(
+                  icon: Icons.flash_on,
+                  text: getUserStatus(isDeleted),
+                  color: getUserStatusColor(isDeleted),
                 ),
                 SizedBox(
                   height: 8.0,

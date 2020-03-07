@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 class UserDetails {
   String userId, username, avatar, email, fullname, phoneNumber, roleName;
+  bool isDeleted;
 
   UserDetails(
       {this.email = '',
@@ -13,7 +14,8 @@ class UserDetails {
       this.username = '',
       this.avatar = '', 
       this.roleName = '',
-      this.userId = ''
+      this.userId = '',
+      this.isDeleted = false,
       });
 
   factory UserDetails.fromJson(dynamic json) {
@@ -25,6 +27,7 @@ class UserDetails {
       fullname: json['fullname'] as String,
       phoneNumber: json['phoneNumber'] as String,
       roleName: json['roleName'] as String,
+      isDeleted: json['isDeleted'] as bool,
     );
   }
 }
