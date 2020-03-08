@@ -71,6 +71,15 @@ class TaskDetails {
   }
 }
 
+Future<TaskDetails> fetchTaskDetails(int taskId) async {
+  final http.Response response =
+      await apiCaller.get(route: createAdminRoute('${apiRoutes.getTasks}/$taskId'));
+  if (response.statusCode == 200) {
+    var taskDetailsJson = json.decode(response.body)['task'];
+    return TaskDetails.fromJson(taskDetailsJson);
+  } else
+    return null;
+}
 Future<List<TaskDetails>> fetchTasksList() async {
   final http.Response response =
       await apiCaller.get(route: createAdminRoute(apiRoutes.getTasks));

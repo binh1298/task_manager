@@ -14,3 +14,5 @@ String formatDate(String strDate) {
   DateTime date = DateTime.parse(strDate);
   return DateFormat('yyyy-MM-dd').format(date);
 }
+
+List<String> creatableTaskStatuses = ['PENDING', 'IN-PROGRESS']; 

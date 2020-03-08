@@ -80,14 +80,6 @@ class CardTask extends StatelessWidget {
               SizedBox(
                 height: 8.0,
               ),
-              // IconTextComponent(
-              //   icon: Icons.flash_on,
-              //   text: getUserStatus(isDeleted),
-              //   color: getUserStatusColor(isDeleted),
-              // ),
-              SizedBox(
-                height: 8.0,
-              ),
             ],
           ),
         ),
@@ -98,7 +90,7 @@ class CardTask extends StatelessWidget {
           color: colorPrimary,
           icon: Icons.account_circle,
           onTap: () {
-            Navigator.pushNamed(context, '/viewTaskDetail', arguments: id);
+            Navigator.pushNamed(context, '/viewTaskDetails', arguments: id);
           },
         ),
         // IconSlideAction(

@@ -39,7 +39,7 @@ class _ScanButtonToBuildUserCardState extends State<ScanButtonToBuildUserCard> {
           }
           if (snapshot.connectionState == ConnectionState.done) {
             widget.onFailedBuild();
-            return Text('User is not found');
+            return Text('User is not found or unavailable');
           } else {
             widget.onFailedBuild();
             return Center(

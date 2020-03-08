@@ -6,9 +6,12 @@ import 'package:task_manager/components/scan_button_to_build_user_card.dart';
 import 'package:task_manager/components/text_form_field.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/models/user_details.dart';
+import 'package:task_manager/restart_app.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/form_field_validator.dart';
+import 'package:task_manager/utils/secure_storage.dart';
 import 'package:task_manager/utils/snack_bar.dart';
+import 'package:task_manager/utils/string_utils.dart';
 
 class CreateTaskScreen extends StatefulWidget {
   @override
@@ -18,6 +21,22 @@ class CreateTaskScreen extends StatefulWidget {
 class _CreateTaskScreenState extends State<CreateTaskScreen> {
   final _createTaskFormKey = GlobalKey<FormState>();
   final _taskCreateDetails = TaskDetails();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _taskCreateDetails.status = creatableTaskStatuses[0];
+
+    getUserFromToken().then((user){
+      _taskCreateDetails.judgeId = user.userId;
+    }).catchError((onError){
+      removeJwtToken();
+      RestartWidget.restartApp(context);
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,19 +105,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                             _taskCreateDetails.status = value;
                           });
                         },
-                        options: ['PENDING', 'IN-PROGRESS'],
-                      ),
-                      ScanButtonToBuildUserCard(
-                        roleName: 'judge',
-                        fetchDetail: (userId) {
-                          return fetchManagerOrAdminDetails(userId);
-                        },
-                        onSuccessBuild: (userId) {
-                          _taskCreateDetails.judgeId = userId;
-                        },
-                        onFailedBuild: () {
-                          _taskCreateDetails.judgeId = null;
-                        },
+                        options: creatableTaskStatuses,
                       ),
                       ScanButtonToBuildUserCard(
                         roleName: 'assignee',
@@ -120,8 +127,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                             final form = _createTaskFormKey.currentState;
                             if (!form.validate()) return;
 
-                            if (_taskCreateDetails.judgeId == null) {
-                              showErrorSnackBar(context, 'Judge is mandatory!');
+                            if (_taskCreateDetails.assigneeId == null) {
+                              showErrorSnackBar(context, 'Assignee is mandatory!');
                               return;
                             }
 
