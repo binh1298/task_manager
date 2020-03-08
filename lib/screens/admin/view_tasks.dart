@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/components/card_task.dart';
+import 'package:task_manager/components/cards/card_task.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/components/card_group_component.dart';
+import 'package:task_manager/components/cards/card_group_component.dart';
 import 'package:task_manager/models/group_details.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 
