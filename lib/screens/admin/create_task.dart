@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/buttons/button_confirm.dart';
-import 'package:task_manager/components/date_form_field.dart';
 import 'package:task_manager/components/dropdowns/drop_down_button.dart';
+import 'package:task_manager/components/form_fields/date_form_field.dart';
+import 'package:task_manager/components/form_fields/text_form_field.dart';
 import 'package:task_manager/components/scan_button_to_build_user_card.dart';
-import 'package:task_manager/components/text_form_field.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/restart_app.dart';

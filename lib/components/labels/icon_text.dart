@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/components/text_safe.dart';
+import 'package:task_manager/components/labels/text_safe.dart';
 
 class IconTextComponent extends StatelessWidget {
   final String text;

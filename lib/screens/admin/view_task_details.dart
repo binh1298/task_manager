@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:task_manager/components/icon_text.dart';
-import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/components/user_image_safe.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/style/style.dart';
