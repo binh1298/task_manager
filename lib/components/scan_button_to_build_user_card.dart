@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/components/cards/card_user_profile.dart';
+import 'package:task_manager/components/cards/card_user_list_item.dart';
 import 'package:task_manager/components/scan_button.dart';
 import 'package:task_manager/models/user_details.dart';
 
@@ -24,7 +24,7 @@ class _ScanButtonToBuildUserCardState extends State<ScanButtonToBuildUserCard> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             widget.onSuccessBuild(userId);
-            return CardUserProfile(
+            return CardUserListItem(
               userId: snapshot.data.userId,
               fullname: snapshot.data.fullname,
               role: snapshot.data.roleName,
