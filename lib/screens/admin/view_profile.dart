@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:task_manager/components/button_cancel.dart';
+import 'package:task_manager/components/buttons/button_cancel.dart';
 import 'package:task_manager/components/icon_text.dart';
 import 'package:task_manager/components/text_safe.dart';
 import 'package:task_manager/models/user_details.dart';
