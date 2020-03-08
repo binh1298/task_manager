@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../style/style.dart';
+import 'package:task_manager/style/style.dart';
 
 class ButtonNavigation extends StatelessWidget {
   final String title;
