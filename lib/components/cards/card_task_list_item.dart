@@ -5,7 +5,7 @@ import 'package:task_manager/components/labels/icon_text.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
-class CardTask extends StatelessWidget {
+class CardTaskListItem extends StatelessWidget {
   final int id, sourceTaskId, judgeScore;
   final String name,
       requirement,
@@ -18,7 +18,7 @@ class CardTask extends StatelessWidget {
       confirmationImg;
   final String judgeCommentAt, beginAt, endAt, createdAt, updatedAt;
   final Function refreshList;
-  CardTask(
+  CardTaskListItem(
       {this.createdAt,
       this.assigneeId,
       this.beginAt,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/components/cards/card_task.dart';
+import 'package:task_manager/components/cards/card_task_list_item.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 
@@ -59,7 +59,7 @@ class _ViewTasksScreenState extends State<ViewTasksScreen> {
                       padding: const EdgeInsets.all(8),
                       children: snapshot.data
                           .map(
-                            (taskDetails) => CardTask(
+                            (taskDetails) => CardTaskListItem(
                               id: taskDetails.id,
                               name: taskDetails.name,
                               sourceTaskId: taskDetails.sourceTaskId,

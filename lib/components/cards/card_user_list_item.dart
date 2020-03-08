@@ -9,11 +9,11 @@ import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
-class CardUserProfile extends StatelessWidget {
+class CardUserListItem extends StatelessWidget {
   final String userId, fullname, role, email, phoneNumber, avatar;
   final bool isDeleted;
   final Function refreshList;
-  CardUserProfile(
+  CardUserListItem(
       {Key key,
       this.userId,
       this.fullname,

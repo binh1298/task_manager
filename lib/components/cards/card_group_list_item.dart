@@ -4,10 +4,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:task_manager/components/labels/icon_text.dart';
 import 'package:task_manager/style/style.dart';
 
-class CardGroupDetail extends StatelessWidget {
+class CardGroupListItem extends StatelessWidget {
   final String groupName, managerName;
   final int groupId;
-  CardGroupDetail({
+  CardGroupListItem({
     Key key,
     this.groupId,
     this.groupName,

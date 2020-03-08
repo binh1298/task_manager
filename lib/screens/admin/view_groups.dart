@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/components/cards/card_group_component.dart';
+import 'package:task_manager/components/cards/card_group_list_item.dart';
 import 'package:task_manager/models/group_details.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 
@@ -56,7 +56,7 @@ class _ViewGroupsScreenState extends State<ViewGroupsScreen> {
                 padding: const EdgeInsets.all(8),
                 children: snapshot.data
                     .map(
-                      (groupDetail) => CardGroupDetail(
+                      (groupDetail) => CardGroupListItem(
                         managerName: groupDetail.managerName,
                         groupName: groupDetail.groupName,
                         groupId: groupDetail.groupId,
