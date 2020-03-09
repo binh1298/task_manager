@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/classes/view_navigation_observer.dart';
 import 'package:task_manager/screens/admin/create_task.dart';
 import 'package:task_manager/screens/admin/create_user.dart';
-import 'package:task_manager/screens/admin/view_group_details.dart';
 import 'package:task_manager/screens/admin/view_task_details.dart';
-import 'package:task_manager/screens/admin/view_user_details.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 import '../classes/destination.dart';
 
@@ -32,14 +30,6 @@ class _DestinationLayoutManagerState extends State<DestinationLayoutManager> {
         switch (settings.name) {
           case '/':
             body = widget.destination.component;
-            break;
-          case '/viewUserDetail':
-            title = 'View User Detail';
-            body = ViewUserDetailsScreen(userId: settings.arguments);
-            break;
-          case '/viewGroupDetails':
-            title = 'View Group Detail';
-            body = ViewGroupDetailsScreen(groupId: settings.arguments);
             break;
           case '/createTask':
             title = 'Create Task';
