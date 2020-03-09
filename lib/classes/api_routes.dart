@@ -15,6 +15,7 @@ class ApiRoutes {
   
   final String getTasks = 'tasks';
   final String createTask = 'create-task';
+  final String updateTask = 'update-task';
   
   final String getUserProfile = 'show';
   

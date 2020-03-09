@@ -6,20 +6,24 @@ class DropdownFormFieldComponent extends StatefulWidget {
   final String title;
   final Function updateState;
   final List<String> options;
-  DropdownFormFieldComponent({this.title, this.updateState, this.options});
+  final TextStyle style;
+  final String initialValue;
+  DropdownFormFieldComponent(
+      {this.initialValue, this.title, this.updateState, this.options, this.style});
 
   @override
   _DropdownFormFieldComponentState createState() =>
       _DropdownFormFieldComponentState();
 }
 
-class _DropdownFormFieldComponentState extends State<DropdownFormFieldComponent> {
+class _DropdownFormFieldComponentState
+    extends State<DropdownFormFieldComponent> {
   String dropDownOption;
 
   @override
   void initState() {
     super.initState();
-    dropDownOption = widget.options[0];
+    dropDownOption = widget.initialValue == null? widget.options[0] : widget.initialValue;
   }
 
   @override
@@ -41,6 +45,7 @@ class _DropdownFormFieldComponentState extends State<DropdownFormFieldComponent>
             color: colorPrimary,
           ),
           isExpanded: true,
+          style: widget.style,
           onChanged: (String newString) {
             setState(() {
               dropDownOption = newString;
@@ -53,6 +58,8 @@ class _DropdownFormFieldComponentState extends State<DropdownFormFieldComponent>
                   value: option,
                   child: Text(
                     option,
+                    style: textStyleDefault.copyWith(
+                        color: getTaskStatusColor(option)),
                   ),
                 ),
               )

@@ -18,6 +18,7 @@ class TaskDetails {
       assigneeId,
       confirmationImg;
   String judgeCommentAt, beginAt, endAt, createdAt, updatedAt;
+  String creatorFullname, judgeFullname, assigneeFullname;
 
   TaskDetails(
       {this.createdAt,
@@ -36,7 +37,11 @@ class TaskDetails {
       this.requirement,
       this.sourceTaskId,
       this.status,
-      this.updatedAt});
+      this.updatedAt,
+      this.creatorFullname,
+      this.assigneeFullname,
+      this.judgeFullname,
+      });
 
   factory TaskDetails.fromJson(dynamic json) {
     return TaskDetails(
@@ -46,11 +51,44 @@ class TaskDetails {
       status: json['status'] as String,
       beginAt: json['beginAt'] as String,
       endAt: json['endAt'] as String,
+      requirement: json['requirement'] as String,
+      handleProcess: json['handleProcess'] as String,
+      judgeComment: json['judgeComment'] as String,
+      judgeId: json['judgeId'] as String,
+      creatorId: json['creatorId'] as String,
+      assigneeId: json['assigneeId'] as String,
+      confirmationImg: json['confirmationImg'] as String,
+      //Addons
+      creatorFullname: json['creatorFullname'] as String,
+      assigneeFullname: json['assigneeFullname'] as String,
+      judgeFullname: json['judgeFullname'] as String,
     );
   }
   Future<bool> createTask(BuildContext context) async {
     final http.Response response = await apiCaller.post(
         route: await createRoleRoute(apiRoutes.createTask),
+        body: jsonEncode(<String, String>{
+          'name': name,
+          'requirement': requirement,
+          'judgeId': judgeId,
+          'assigneeId': assigneeId,
+          'beginAt': beginAt,
+          'endAt': endAt,
+          'taskStatus': status,
+        }));
+    bool success = response.statusCode == 201;
+    print(response.body);
+    if (success) {
+      print(json.decode(response.body)['task']);
+    } else {
+      showErrorSnackBar(context, json.decode(response.body)['message']);
+    }
+    return success;
+  }
+
+  Future<bool> updateTask(BuildContext context) async {
+    final http.Response response = await apiCaller.post(
+        route: await createRoleRoute(apiRoutes.updateTask),
         body: jsonEncode(<String, String>{
           'name': name,
           'requirement': requirement,

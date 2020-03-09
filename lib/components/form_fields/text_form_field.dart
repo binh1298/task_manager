@@ -6,9 +6,10 @@ class TextFormFieldComponent extends StatelessWidget {
   final TextInputType textInputType;
   final String hintText, title;
   final Function onSaved, validator;
-
+  final String initialValue;
   TextFormFieldComponent(
       {this.hintText,
+      this.initialValue,
       this.title,
       this.obscureText = false,
       this.onSaved,
@@ -26,6 +27,7 @@ class TextFormFieldComponent extends StatelessWidget {
             style: textStyleTitle,
           ),
           TextFormField(
+            initialValue: initialValue,
             obscureText: obscureText,
             style: textStyleSubtitle,
             validator: validator,

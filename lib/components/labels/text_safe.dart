@@ -7,16 +7,41 @@ class TextSafeComponent extends StatelessWidget {
   final TextStyle style;
   final Color color;
   final double textBoxWidth;
-  TextSafeComponent({this.text, this.style, this.color, this.textBoxWidth = textboxWidthMedium});
+  final Function onTap;
+  final String fallbackText;
+  final String label;
+  TextSafeComponent(
+      {this.label,
+      this.fallbackText = 'Unknown',
+      this.onTap,
+      this.text,
+      this.style,
+      this.color,
+      this.textBoxWidth = textboxWidthMedium});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: textBoxWidth,
-      child: Text(
-        (text == null || text == 'null') ? 'Unknown' : text,
-        overflow: TextOverflow.ellipsis,
-        maxLines: 5,
-        style: style != null ? style.copyWith(color: color) : textStyleDefault.copyWith(color: color),
+    String finalLabel = '';
+    if (label != null) finalLabel = label + ': ';
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: textBoxWidth,
+        child: Row(
+          children: <Widget>[
+            Text(
+              finalLabel,
+              style: style != null ? style : textStyleDefault,
+            ),
+            Text(
+              (text == null || text == 'null') ? fallbackText : text,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 5,
+              style: style != null
+                  ? style.copyWith(color: color)
+                  : textStyleDefault.copyWith(color: color),
+            ),
+          ],
+        ),
       ),
     );
   }
