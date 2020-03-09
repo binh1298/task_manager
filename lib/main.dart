@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
     if (user != null) {
       initialRoute = '/${user.roleName}';
     }
+    print(initialRoute);
     return MaterialApp(
       title: 'Task Manager',
       theme: ThemeData(
