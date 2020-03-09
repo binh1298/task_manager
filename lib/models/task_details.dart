@@ -50,7 +50,7 @@ class TaskDetails {
   }
   Future<bool> createTask(BuildContext context) async {
     final http.Response response = await apiCaller.post(
-        route: createAdminRoute(apiRoutes.createTask),
+        route: await createRoleRoute(apiRoutes.createTask),
         body: jsonEncode(<String, String>{
           'name': name,
           'requirement': requirement,
@@ -73,7 +73,7 @@ class TaskDetails {
 
 Future<TaskDetails> fetchTaskDetails(int taskId) async {
   final http.Response response =
-      await apiCaller.get(route: createAdminRoute('${apiRoutes.getTasks}/$taskId'));
+      await apiCaller.get(route: await createRoleRoute('${apiRoutes.getTasks}/$taskId'));
   if (response.statusCode == 200) {
     var taskDetailsJson = json.decode(response.body)['task'];
     return TaskDetails.fromJson(taskDetailsJson);
@@ -82,7 +82,7 @@ Future<TaskDetails> fetchTaskDetails(int taskId) async {
 }
 Future<List<TaskDetails>> fetchTasksList() async {
   final http.Response response =
-      await apiCaller.get(route: createAdminRoute(apiRoutes.getTasks));
+      await apiCaller.get(route: await createRoleRoute(apiRoutes.getTasks));
   if (response.statusCode == 200) {
     var userDetailsListJson = json.decode(response.body)['result'] as List;
     return userDetailsListJson

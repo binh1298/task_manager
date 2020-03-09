@@ -16,13 +16,13 @@ List<Destination> adminDestinations = <Destination>[
   Destination('Profile', Icons.person, ViewProfileScreen()),
 ];
 
-class AdminHomeScreen extends StatefulWidget {
+class ManagerHomeScreen extends StatefulWidget {
   @override
-  _AdminHomeScreenState createState() => _AdminHomeScreenState();
+  _ManagerHomeScreenState createState() => _ManagerHomeScreenState();
 }
 
-class _AdminHomeScreenState extends State<AdminHomeScreen>
-    with TickerProviderStateMixin<AdminHomeScreen> {
+class _ManagerHomeScreenState extends State<ManagerHomeScreen>
+    with TickerProviderStateMixin<ManagerHomeScreen> {
   int _currentIndex = 2;
   AnimationController _hide;
 

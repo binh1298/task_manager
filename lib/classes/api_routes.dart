@@ -1,3 +1,6 @@
+import 'package:task_manager/models/user_details.dart';
+import 'package:task_manager/utils/secure_storage.dart';
+
 class ApiRoutes {
   final String login = 'login';
   final String getUsers = 'users';
@@ -17,8 +20,9 @@ class ApiRoutes {
   final String getManagerOrEmployeeDetails = 'employees';
 }
 
-createAdminRoute(route) {
-  return 'admin/$route';
+createRoleRoute(route) async {
+  UserDetails user = await getUserFromToken();
+  return '${user.roleName}/$route';
 }
 
 final ApiRoutes apiRoutes = ApiRoutes();

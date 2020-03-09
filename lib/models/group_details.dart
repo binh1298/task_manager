@@ -53,7 +53,7 @@ class GroupDetails {
 
   Future<GroupDetails> createGroup() async {
     final http.Response response = await apiCaller.post(
-      route: createAdminRoute(apiRoutes.createGroup),
+      route: await createRoleRoute(apiRoutes.createGroup),
       body: jsonEncode(
         <String, dynamic>{
           'name': groupName,
@@ -71,7 +71,7 @@ class GroupDetails {
 
 Future<GroupDetails> fetchGroupDetails(groupId) async {
   final http.Response response = await apiCaller.get(
-      route: createAdminRoute('${apiRoutes.getGroups}/$groupId'));
+      route: await createRoleRoute('${apiRoutes.getGroups}/$groupId'));
   if (response.statusCode == 200) {
     var groupDetailsJson = json.decode(response.body)['result'];
     return GroupDetails.fromJson(groupDetailsJson);
@@ -81,7 +81,7 @@ Future<GroupDetails> fetchGroupDetails(groupId) async {
 
 Future<List<GroupDetails>> fetchGroupDetailsList() async {
   final http.Response response =
-      await apiCaller.get(route: createAdminRoute(apiRoutes.getGroups));
+      await apiCaller.get(route: await createRoleRoute(apiRoutes.getGroups));
 
   // GroupDetails test1 = GroupDetails(groupName: 'test', numberOfMembers: 10, managerName: 'test manager');
   // GroupDetails test2 = GroupDetails(groupName: 'test', numberOfMembers: 10, managerName: 'test manager');
