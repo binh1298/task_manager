@@ -28,12 +28,11 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
 
     _taskCreateDetails.status = creatableTaskStatuses[0];
 
-    getUserFromToken().then((user){
+    getUserFromToken().then((user) {
       _taskCreateDetails.judgeId = user.userId;
     }).catchError((onError) async {
       await logout(context);
     });
-
   }
 
   @override
@@ -118,37 +117,36 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                           _taskCreateDetails.assigneeId = null;
                         },
                       ),
-                      Container(
-                        alignment: Alignment.bottomRight,
-                        child: ButtonConfirmComponent(
-                          text: 'Create Task',
-                          onPressed: () async {
-                            final form = _createTaskFormKey.currentState;
-                            if (!form.validate()) return;
+                      ButtonConfirmComponent(
+                        text: 'Create Task',
+                        onPressed: () async {
+                          final form = _createTaskFormKey.currentState;
+                          if (!form.validate()) return;
 
-                            if (_taskCreateDetails.assigneeId == null) {
-                              showErrorSnackBar(context, 'Assignee is mandatory!');
-                              return;
-                            }
+                          if (_taskCreateDetails.assigneeId == null) {
+                            showErrorSnackBar(
+                                context, 'Assignee is mandatory!');
+                            return;
+                          }
 
-                            form.save();
-                            DateTime beginAt =
-                                DateTime.parse(_taskCreateDetails.beginAt);
-                            DateTime endAt =
-                                DateTime.parse(_taskCreateDetails.endAt);
-                            if (beginAt.compareTo(endAt) > 0) {
-                              showErrorSnackBar(context,
-                                  'Start Date has to come before End Date');
-                              return;
-                            }
-                            bool success =
-                                await _taskCreateDetails.createTask(context);
-                            if (success) {
-                              Navigator.pop(context, true);
-                            } else {}
-                          },
-                        ),
+                          form.save();
+                          DateTime beginAt =
+                              DateTime.parse(_taskCreateDetails.beginAt);
+                          DateTime endAt =
+                              DateTime.parse(_taskCreateDetails.endAt);
+                          if (beginAt.compareTo(endAt) > 0) {
+                            showErrorSnackBar(context,
+                                'Start Date has to come before End Date');
+                            return;
+                          }
+                          bool success =
+                              await _taskCreateDetails.createTask(context);
+                          if (success) {
+                            Navigator.pop(context, true);
+                          } else {}
+                        },
                       ),
+                      SizedBox(height: 20,),
                     ],
                   ),
                 ),
