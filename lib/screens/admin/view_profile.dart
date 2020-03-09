@@ -69,8 +69,8 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                   ),
                   ButtonCancelComponent(
                     text: 'Log out',
-                    onPressed: () async {
-                      await logout(context);
+                    onPressed: () {
+                      logout(context);
                     },
                   )
                 ],

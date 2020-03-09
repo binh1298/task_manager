@@ -30,8 +30,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
 
     getUserFromToken().then((user) {
       _taskCreateDetails.judgeId = user.userId;
-    }).catchError((onError) async {
-      await logout(context);
+    }).catchError((onError) {
+      logout(context);
     });
   }
 
