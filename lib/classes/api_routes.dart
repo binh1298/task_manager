@@ -9,8 +9,10 @@ class ApiRoutes {
   
   final String getGroups = 'groups';
   final String createGroup = 'create-group';
-  final String getGroupMembers = 'group-members';
 
+  final String getGroupMembers = 'group-members';
+  final String addGroupMember = 'add-group-member';
+  
   final String getTasks = 'tasks';
   final String createTask = 'create-task';
   

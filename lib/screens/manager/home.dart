@@ -4,12 +4,10 @@ import 'package:task_manager/layouts/destinationsManager.dart';
 import 'package:task_manager/screens/admin/view_groups.dart';
 import 'package:task_manager/screens/admin/view_profile.dart';
 import 'package:task_manager/screens/admin/view_tasks.dart';
-import 'package:task_manager/screens/admin/view_users.dart';
 import 'package:task_manager/style/style.dart';
 import '../../classes/destination.dart';
 
 List<Destination> adminDestinations = <Destination>[
-  Destination('Users', Icons.person, ViewUsersScreen()),
   Destination('Groups', Icons.group, ViewGroupsScreen()),
   Destination('Tasks', Icons.event_note, ViewTasksScreen()),
   Destination('History', Icons.library_books, ViewTasksScreen()),

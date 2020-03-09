@@ -16,3 +16,9 @@ String formatDate(String strDate) {
 }
 
 List<String> creatableTaskStatuses = ['PENDING', 'IN-PROGRESS']; 
+
+class RoleNames {
+  String admin = 'admin', manager = 'manager', employee = 'employee';
+}
+
+RoleNames roleNames = RoleNames();
