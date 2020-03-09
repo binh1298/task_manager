@@ -11,12 +11,14 @@ String getUserStatus(bool isDeleted) {
 }
 
 String formatDate(String strDate) {
+  if(strDate == null) return null;
   DateTime date = DateTime.parse(strDate);
   return DateFormat('yyyy-MM-dd').format(date);
 }
 
 List<String> creatableTaskStatuses = ['PENDING', 'IN-PROGRESS']; 
-
+List<String> updatatableTaskStatusesForManager = ['PENDING', 'IN-PROGRESS', 'ACCEPT', 'DECLINE', 'FINISHED', 'FAILED'];
+List<String> updatatableTaskStatusesForUser = ['PENDING', 'IN-PROGRESS', 'FINISHED', 'FAILED'];
 class RoleNames {
   String admin = 'admin', manager = 'manager', employee = 'employee';
 }
