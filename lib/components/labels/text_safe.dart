@@ -22,18 +22,19 @@ class TextSafeComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     String finalLabel = '';
     if (label != null) finalLabel = label + ': ';
+    String finalFallBackText = fallbackText != null ? fallbackText : 'Unknown';
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: textBoxWidth,
-        child: Row(
+        child: Wrap(
           children: <Widget>[
             Text(
               finalLabel,
               style: style != null ? style : textStyleDefault,
             ),
             Text(
-              (text == null || text == 'null') ? fallbackText : text,
+              (text == null || text == 'null') ? finalFallBackText : text,
               overflow: TextOverflow.ellipsis,
               maxLines: 5,
               style: style != null

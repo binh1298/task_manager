@@ -38,7 +38,7 @@ class CardGroupListItem extends StatelessWidget {
                     ),
                     IconTextComponent(
                       icon: Icons.list,
-                      text: 'Group: $groupName',
+                      text: '$groupName',
                       style: textStyleTitle,
                       textBoxWidth: textboxWidthLarge,
                     ),
