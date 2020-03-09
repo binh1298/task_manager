@@ -38,16 +38,17 @@ class GroupDetails {
     return GroupDetails(
       groupId: json['id'] as int,
       groupName: json['name'] as String,
-      managerName: json['fullname'] as String,
       managerId: json['managerId'] as String,
       isDeleted: json['isDeleted'] as bool,
-      avatar: json['avatar'] as String,
       email: json['email'] as String,
       fullname: json['fullname'] as String,
       phoneNumber: json['phoneNumber'] as String,
       roleId: json['roleId'] as int,
       roleName: json['roleName'] as String,
+      //Add ons
       username: json['username'] as String,
+      managerName: json['fullname'] as String,
+      avatar: json['avatar'] as String,
     );
   }
 
