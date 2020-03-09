@@ -70,8 +70,8 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                   ),
                   ButtonCancelComponent(
                     text: 'Log out',
-                    onPressed: () {
-                      removeJwtToken();
+                    onPressed: () async {
+                      await removeJwtToken();
                       RestartWidget.restartApp(context);
                     },
                   )
