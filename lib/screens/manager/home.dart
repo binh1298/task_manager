@@ -7,7 +7,7 @@ import 'package:task_manager/screens/admin/view_tasks.dart';
 import 'package:task_manager/style/style.dart';
 import '../../classes/destination.dart';
 
-List<Destination> adminDestinations = <Destination>[
+List<Destination> managerDestinations = <Destination>[
   Destination('Groups', Icons.group, ViewGroupsScreen()),
   Destination('Tasks', Icons.event_note, ViewTasksScreen()),
   Destination('History', Icons.library_books, ViewTasksScreen()),
@@ -64,8 +64,8 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen>
           top: false,
           child: IndexedStack(
             index: _currentIndex,
-            children: adminDestinations.map<Widget>((Destination destination) {
-              return DestinationLayout(
+            children: managerDestinations.map<Widget>((Destination destination) {
+              return DestinationLayoutManager(
                 destination: destination,
                 onNavigation: () {
                   _hide.forward();
@@ -86,7 +86,7 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen>
               });
             },
             selectedItemColor: Colors.black,
-            items: adminDestinations.map((Destination destination) {
+            items: managerDestinations.map((Destination destination) {
               return BottomNavigationBarItem(
                 backgroundColor: colorPrimary,
                 icon: Icon(destination.iconData),

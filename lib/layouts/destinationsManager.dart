@@ -9,18 +9,18 @@ import 'package:task_manager/screens/admin/view_user_details.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 import '../classes/destination.dart';
 
-class DestinationLayout extends StatefulWidget {
+class DestinationLayoutManager extends StatefulWidget {
   final Destination destination;
   final VoidCallback onNavigation;
 
-  DestinationLayout({Key key, this.destination, this.onNavigation})
+  DestinationLayoutManager({Key key, this.destination, this.onNavigation})
       : super(key: key);
 
   @override
-  _DestinationLayoutState createState() => _DestinationLayoutState();
+  _DestinationLayoutManagerState createState() => _DestinationLayoutManagerState();
 }
 
-class _DestinationLayoutState extends State<DestinationLayout> {
+class _DestinationLayoutManagerState extends State<DestinationLayoutManager> {
   String title = '';
   @override
   Widget build(BuildContext context) {
@@ -34,17 +34,9 @@ class _DestinationLayoutState extends State<DestinationLayout> {
           case '/':
             body = widget.destination.component;
             break;
-          case '/createUser':
-            title = 'Create User';
-            body = CreateUserScreen();
-            break;
           case '/viewUserDetail':
             title = 'View User Detail';
             body = ViewUserDetailsScreen(userId: settings.arguments);
-            break;
-          case '/createGroup':
-            title = 'Create Group';
-            body = CreateGroupScreen();
             break;
           case '/viewGroupDetails':
             title = 'View Group Detail';

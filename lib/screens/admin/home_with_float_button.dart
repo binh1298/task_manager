@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: IndexedStack(
           index: _currentIndex,
           children: adminDestinations.map<Widget>((Destination destination) {
-            return DestinationLayout(destination: destination);
+            return DestinationLayoutAdmin(destination: destination);
           }).toList(),
         ),
       ),

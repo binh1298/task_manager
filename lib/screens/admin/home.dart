@@ -67,7 +67,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>
           child: IndexedStack(
             index: _currentIndex,
             children: adminDestinations.map<Widget>((Destination destination) {
-              return DestinationLayout(
+              return DestinationLayoutAdmin(
                 destination: destination,
                 onNavigation: () {
                   _hide.forward();
