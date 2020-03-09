@@ -6,8 +6,8 @@ import 'package:task_manager/components/form_fields/text_form_field.dart';
 import 'package:task_manager/components/scan_button_to_build_user_card.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/models/user_details.dart';
-import 'package:task_manager/restart_app.dart';
 import 'package:task_manager/style/style.dart';
+import 'package:task_manager/utils/authorization.dart';
 import 'package:task_manager/utils/form_field_validator.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 import 'package:task_manager/utils/snack_bar.dart';
@@ -30,9 +30,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
 
     getUserFromToken().then((user){
       _taskCreateDetails.judgeId = user.userId;
-    }).catchError((onError){
-      removeJwtToken();
-      RestartWidget.restartApp(context);
+    }).catchError((onError) async {
+      await logout(context);
     });
 
   }

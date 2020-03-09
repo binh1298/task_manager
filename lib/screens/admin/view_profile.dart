@@ -4,9 +4,8 @@ import 'package:task_manager/components/buttons/button_cancel.dart';
 import 'package:task_manager/components/labels/icon_text.dart';
 import 'package:task_manager/components/labels/text_safe.dart';
 import 'package:task_manager/models/user_details.dart';
-import 'package:task_manager/restart_app.dart';
 import 'package:task_manager/style/style.dart';
-import 'package:task_manager/utils/secure_storage.dart';
+import 'package:task_manager/utils/authorization.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
 class ViewProfileScreen extends StatefulWidget {
@@ -71,8 +70,7 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                   ButtonCancelComponent(
                     text: 'Log out',
                     onPressed: () async {
-                      await removeJwtToken();
-                      RestartWidget.restartApp(context);
+                      await logout(context);
                     },
                   )
                 ],
