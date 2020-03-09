@@ -27,7 +27,7 @@ Color colorAccept = Colors.green;
 Color colorWarning = Colors.redAccent.shade400;
 
 Color colorTaskPending = Colors.cyan;
-Color colorTaskInProgress = Colors.yellow;
+Color colorTaskInProgress = Colors.blue;
 Color colorTaskFinished = Colors.green;
 Color colorTaskOverdue = Colors.red;
 Color colorTaskFailed = Colors.red;
@@ -51,8 +51,10 @@ List<TaskStatus> taskStatuses = <TaskStatus>[
   TaskStatus(status: 'PENDING', color: colorTaskPending),
   TaskStatus(status: 'IN-PROGRESS', color: colorTaskInProgress),
   TaskStatus(status: 'FINISHED', color: colorTaskFinished),
+  TaskStatus(status: 'ACCEPT', color: colorTaskFinished),
   TaskStatus(status: 'OVERDUE', color: colorTaskOverdue),
   TaskStatus(status: 'FAILED', color: colorTaskFailed),
+  TaskStatus(status: 'DECLINE', color: colorTaskFailed),
 ];
 Color getTaskStatusColor(String status) {
   for (var task in taskStatuses) {
