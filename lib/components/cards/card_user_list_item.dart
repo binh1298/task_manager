@@ -54,7 +54,7 @@ class CardUserListItem extends StatelessWidget {
                   style: textStyleTitle,
                 ),
                 TextSafeComponent(
-                  text: capitalize(role),
+                  text: role != null ? capitalize(role) : 'Unknown',
                   style: textStyleSubtitle,
                 ),
                 SizedBox(
