@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/cards/card_group_details.dart';
+import 'package:task_manager/components/cards/card_list_container.dart';
+import 'package:task_manager/components/labels/text_safe.dart';
+import 'package:task_manager/components/list/user_list.dart';
 import 'package:task_manager/models/group_details.dart';
+import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
 
 class ViewGroupDetailsScreen extends StatefulWidget {
@@ -13,11 +17,12 @@ class ViewGroupDetailsScreen extends StatefulWidget {
 
 class _ViewGroupDetailsScreenState extends State<ViewGroupDetailsScreen> {
   Future<GroupDetails> groupDetails;
-
+  Future<List<UserDetails>> groupMembers;
   @override
   void initState() {
     super.initState();
     groupDetails = fetchGroupDetails(widget.groupId);
+    groupMembers = fetchGroupMembersDetailsList(widget.groupId);
   }
 
   @override
@@ -50,6 +55,23 @@ class _ViewGroupDetailsScreenState extends State<ViewGroupDetailsScreen> {
               );
             }
           },
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        CardListContainer(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextSafeComponent(
+                text: 'Members:',
+                style: textStyleTitle,
+              ),
+            ],
+          ),
+        ),
+        ListOfUsers(
+          usersDetailsList: groupMembers,
         ),
       ],
     );

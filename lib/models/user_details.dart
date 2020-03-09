@@ -86,6 +86,20 @@ Future<List<UserDetails>> fetchUsersDetailsList() async {
   }
 }
 
+Future<List<UserDetails>> fetchGroupMembersDetailsList(int groupId) async {
+  final http.Response response =
+      await apiCaller.get(route: createAdminRoute('${apiRoutes.getGroupMembers}/$groupId'));
+  if (response.statusCode == 200) {
+    var userDetailsListJson = json.decode(response.body)['result'] as List;
+    var userDetailsList = userDetailsListJson
+        .map((userDetails) => UserDetails.fromJson(userDetails))
+        .toList();
+    return userDetailsList;
+  } else {
+    return null;
+  }
+}
+
 // PATCH
 Future<bool> deleteUser(String userId, bool newIsDeleted) async {
   final http.Response response = await apiCaller.patch(
