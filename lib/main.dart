@@ -11,6 +11,7 @@ import 'package:task_manager/utils/secure_storage.dart';
 void main() async {
   await DotEnv().load('.env');
   UserDetails user = await getUserFromToken();
+  print('user: $user');
   if (user != null)
     runApp(RestartWidget(
       child: MyApp(

@@ -2,6 +2,8 @@ import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 
 class ApiRoutes {
+  final String dashboard = 'dashboard';
+  
   final String login = 'login';
   final String getUsers = 'users';
   final String createUsers = 'create-user';
