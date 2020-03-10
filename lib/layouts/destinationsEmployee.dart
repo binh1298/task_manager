@@ -6,18 +6,18 @@ import 'package:task_manager/screens/admin/view_task_details.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 import '../classes/destination.dart';
 
-class DestinationLayoutManager extends StatefulWidget {
+class DestinationLayoutEmployee extends StatefulWidget {
   final Destination destination;
   final VoidCallback onNavigation;
 
-  DestinationLayoutManager({Key key, this.destination, this.onNavigation})
+  DestinationLayoutEmployee({Key key, this.destination, this.onNavigation})
       : super(key: key);
 
   @override
-  _DestinationLayoutManagerState createState() => _DestinationLayoutManagerState();
+  _DestinationLayoutEmployeeState createState() => _DestinationLayoutEmployeeState();
 }
 
-class _DestinationLayoutManagerState extends State<DestinationLayoutManager> {
+class _DestinationLayoutEmployeeState extends State<DestinationLayoutEmployee> {
   String title = '';
   @override
   Widget build(BuildContext context) {

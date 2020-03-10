@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:task_manager/layouts/destinationsManager.dart';
+import 'package:task_manager/layouts/destinationsEmployee.dart';
 import 'package:task_manager/screens/admin/view_profile.dart';
 import 'package:task_manager/screens/admin/view_tasks.dart';
 import 'package:task_manager/style/style.dart';
@@ -63,7 +63,7 @@ class _EmployeeHomeScreenState extends State<EmployeeHomeScreen>
           child: IndexedStack(
             index: _currentIndex,
             children: employeeDestinations.map<Widget>((Destination destination) {
-              return DestinationLayoutManager(
+              return DestinationLayoutEmployee(
                 destination: destination,
                 onNavigation: () {
                   _hide.forward();

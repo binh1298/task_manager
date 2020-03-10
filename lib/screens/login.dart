@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/components/buttons/button_confirm.dart';
 import 'package:task_manager/components/form_fields/text_form_field_rounded.dart';
 import 'package:task_manager/models/user_credentials.dart';
+import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
+import 'package:task_manager/utils/secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -74,8 +76,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (form.validate()) {
                           form.save();
                           bool success = await _userCredentials.login(context);
+                          UserDetails user = await getUserFromToken();
+                          String roleName = user.roleName;
+
                           if (success) {
-                            Navigator.pushReplacementNamed(context, '/admin');
+                            Navigator.pushReplacementNamed(context, '/$roleName');
                           }
                         }
                       },
