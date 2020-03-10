@@ -76,11 +76,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (form.validate()) {
                           form.save();
                           bool success = await _userCredentials.login(context);
-                          UserDetails user = await getUserFromToken();
-                          String roleName = user.roleName;
-
                           if (success) {
-                            Navigator.pushReplacementNamed(context, '/$roleName');
+                            UserDetails user = await getUserFromToken();
+                            String roleName = user.roleName;
+                            Navigator.pushReplacementNamed(
+                                context, '/$roleName');
                           }
                         }
                       },

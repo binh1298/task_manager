@@ -23,7 +23,7 @@ class UserLoginCredentials {
   String username = '';
   String password = '';
 
-  login(BuildContext context) async {
+  Future<bool> login(BuildContext context) async {
     final http.Response response = await apiCaller.post(
       body: jsonEncode(
         <String, String>{
@@ -33,13 +33,12 @@ class UserLoginCredentials {
       ),
       route: apiRoutes.login,
     );
-    bool success = response.statusCode == 200;
-    if (success) {
-      setJwtToken(json.decode(response.body)['token']);
-    } else {
+    if (response.statusCode != 200) {
       showErrorSnackBar(context, json.decode(response.body)['message']);
+      return false;
     }
-    return success;
+    setJwtToken(json.decode(response.body)['token']);
+    return true;
   }
 }
 
