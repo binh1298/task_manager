@@ -19,7 +19,7 @@ TextStyle textStyleErrorMessage = TextStyle(color: colorError);
 // Color
 Color colorPrimary = Colors.blue;
 Color colorBackground = Colors.white;
-Color colorCancel = Colors.blueGrey[100];
+Color colorCancel = Colors.blueGrey[300];
 Color colorInactive = Colors.grey;
 Color colorError = Colors.red;
 const Color colorTextDefault = Colors.black;
