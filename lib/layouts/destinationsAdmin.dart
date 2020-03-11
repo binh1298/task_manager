@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/classes/view_navigation_observer.dart';
+import 'package:task_manager/components/change_avatar_component.dart';
 import 'package:task_manager/screens/admin/create_group.dart';
 import 'package:task_manager/screens/admin/create_task.dart';
 import 'package:task_manager/screens/admin/create_user.dart';
@@ -33,6 +34,10 @@ class _DestinationLayoutAdminState extends State<DestinationLayoutAdmin> {
         switch (settings.name) {
           case '/':
             body = widget.destination.component;
+            break;
+          case '/changeAvatar':
+            title = 'Change Avatar';
+            body = ChangeAvatarComponent();
             break;
           case '/createUser':
             title = 'Create User';

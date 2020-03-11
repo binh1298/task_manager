@@ -4,12 +4,15 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:task_manager/screens/uploader.dart';
 
-class ImageCapture extends StatefulWidget {
+class ImageCaptureScreen extends StatefulWidget {
+  final Function onSuccess, onFailed;
+  final String label;
+  ImageCaptureScreen({this.onSuccess, this.onFailed, this.label});
   @override
-  _ImageCaptureState createState() => _ImageCaptureState();
+  _ImageCaptureScreenState createState() => _ImageCaptureScreenState();
 }
 
-class _ImageCaptureState extends State<ImageCapture> {
+class _ImageCaptureScreenState extends State<ImageCaptureScreen> {
   File _imageFile;
 
   Future<void> _pickImage(ImageSource source) async {
@@ -40,12 +43,18 @@ class _ImageCaptureState extends State<ImageCapture> {
                 ),
               ],
             ),
-            Uploader(file: _imageFile),
+            Uploader(
+              file: _imageFile,
+              onSuccess: widget.onSuccess,
+              onFailed: widget.onFailed,
+              label: widget.label,
+            ),
           ]
         ],
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.photo_camera),

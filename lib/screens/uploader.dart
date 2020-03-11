@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class Uploader extends StatefulWidget {
   final File file;
-
-  Uploader({Key key, this.file}) : super(key: key);
+  final Function onSuccess, onFailed;
+  final String label;
+  Uploader({Key key, this.file, this.onSuccess, this.onFailed, this.label}) : super(key: key);
   @override
   _UploaderState createState() => _UploaderState();
 }
@@ -16,12 +17,17 @@ class _UploaderState extends State<Uploader> {
       FirebaseStorage(storageBucket: 'gs://task-manager-c8562.appspot.com');
 
   StorageUploadTask _uploadTask;
-
-  void _startUpload() {
+  void _startUpload() async {
     String filePath = 'images/${DateTime.now()}.png';
 
-    setState(() {
+    setState(() async {
       _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
+      var dowurl = await (await _uploadTask.onComplete).ref.getDownloadURL();
+      if(_uploadTask.isSuccessful) {
+        widget.onSuccess(dowurl.toString());
+      } else {
+        widget.onFailed();
+      }
     });
   }
 
@@ -56,7 +62,7 @@ class _UploaderState extends State<Uploader> {
         },
       );
     } else {
-      return FlatButton.icon(onPressed: _startUpload, icon: Icon(Icons.cloud_upload), label: Text('Upload To Firebase'));
+      return FlatButton.icon(onPressed: _startUpload, icon: Icon(Icons.cloud_upload), label: Text(widget.label));
     }
   }
 }

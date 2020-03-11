@@ -117,3 +117,16 @@ Future<bool> deleteUser(String userId, bool newIsDeleted) async {
   );
   return response.statusCode == 200;
 }
+
+Future<bool> patchAvatarUser(String userId, String avatarUrl) async {
+  final http.Response response = await apiCaller.patch(
+    route: await createRoleRoute(apiRoutes.changeAvatar),
+    body: jsonEncode(
+      <String, dynamic>{
+        'userId': userId,
+        'avatarUrl': avatarUrl,
+      },
+    ),
+  );
+  return response.statusCode == 200;
+}

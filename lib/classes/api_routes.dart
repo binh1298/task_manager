@@ -8,7 +8,7 @@ class ApiRoutes {
   final String getUsers = 'users';
   final String createUsers = 'create-user';
   final String deleteUser = 'delete-user';
-  
+
   final String getGroups = 'groups';
   final String createGroup = 'create-group';
 
@@ -20,6 +20,7 @@ class ApiRoutes {
   final String updateTask = 'update-task';
   
   final String getUserProfile = 'show';
+  final String changeAvatar = 'update-avatar-user';
   
   final String getManagerOrAdminDetails = 'managers';
   final String getManagerOrEmployeeDetails = 'employees';
