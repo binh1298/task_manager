@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/restart_app.dart';
-import 'package:task_manager/screens/admin/home.dart';
-import 'package:task_manager/screens/employee/home.dart';
+import 'package:task_manager/screens/homes/admin_home.dart';
+import 'package:task_manager/screens/homes/employee_home.dart';
+import 'package:task_manager/screens/homes/manager_home.dart';
 import 'package:task_manager/screens/login.dart';
-import 'package:task_manager/screens/manager/home.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 
 void main() async {

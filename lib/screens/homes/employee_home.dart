@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:task_manager/layouts/destinationsEmployee.dart';
 import 'package:task_manager/screens/admin/view_personal_tasks.dart';
 import 'package:task_manager/screens/admin/view_profile.dart';
-import 'package:task_manager/screens/manager/view_assigned_tasks.dart';
+import 'package:task_manager/screens/view_assigned_tasks.dart';
 import 'package:task_manager/style/style.dart';
 import '../../classes/destination.dart';
 
