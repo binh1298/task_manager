@@ -6,7 +6,7 @@ class CardListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+      margin: EdgeInsets.fromLTRB(12, 0, 12, 0),
       elevation: 5.0,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
