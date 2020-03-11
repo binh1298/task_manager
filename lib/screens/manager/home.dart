@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:task_manager/layouts/destinationsManager.dart';
+import 'package:task_manager/screens/admin/review_tasks.dart';
 import 'package:task_manager/screens/admin/view_groups.dart';
+import 'package:task_manager/screens/admin/view_personal_tasks.dart';
 import 'package:task_manager/screens/admin/view_profile.dart';
-import 'package:task_manager/screens/admin/view_tasks.dart';
+import 'package:task_manager/screens/manager/view_assigned_tasks.dart';
 import 'package:task_manager/style/style.dart';
 import '../../classes/destination.dart';
 
 List<Destination> managerDestinations = <Destination>[
   Destination('Groups', Icons.group, ViewGroupsScreen()),
-  Destination('Tasks', Icons.event_note, ViewTasksScreen()),
-  Destination('History', Icons.library_books, ViewTasksScreen()),
+  Destination('Assigned Tasks', Icons.event_note, AssignedTasksScreen()),
+  Destination('My Tasks', Icons.event_note, PersonalTasksScreen()),
+  Destination('Review Tasks', Icons.library_books, ReviewTasksScreen()),
   Destination('Profile', Icons.person, ViewProfileScreen()),
 ];
 
@@ -92,7 +95,7 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen>
                 icon: Icon(destination.iconData),
                 title: Text(
                   destination.title,
-                  style: textStyleSubtitle,
+                  style: textStyleSmall,
                 ),
               );
             }).toList(),

@@ -14,6 +14,8 @@ TextStyle textStyleSubtitle = textStyleDefault.copyWith(
   fontSize: 20.0,
 );
 
+TextStyle textStyleSmall = textStyleDefault.copyWith(fontSize: 14.0);
+
 TextStyle textStyleErrorMessage = TextStyle(color: colorError); 
 
 // Color
@@ -33,7 +35,7 @@ Color colorTaskOverdue = Colors.red;
 Color colorTaskFailed = Colors.red;
 
 // Textbox Width
-const double textboxWidthMedium = 220.0;
+const double textboxWidthMedium = 210.0;
 const double textboxWidthLarge = 280.0;
 
 // Functions

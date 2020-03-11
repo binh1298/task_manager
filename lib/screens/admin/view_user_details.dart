@@ -54,11 +54,11 @@ class _ViewUserDetailsScreenState extends State<ViewUserDetailsScreen> {
                     style: textStyleSubtitle.copyWith(fontSize: 18),
                   ),
                   SizedBox(height: 5),
-                  IconTextComponent(
-                    icon: Icons.phone,
-                    text: '${snapshot.data.phoneNumber}',
-                    style: textStyleSubtitle.copyWith(fontSize: 18),
-                  ),
+                  // IconTextComponent(
+                  //   icon: Icons.phone,
+                  //   text: '${snapshot.data.phoneNumber}',
+                  //   style: textStyleSubtitle.copyWith(fontSize: 18),
+                  // ),
                   Center(
                     child: QrImage(
                       data: snapshot.data.userId,

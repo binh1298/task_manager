@@ -58,7 +58,7 @@ class _ViewGroupDetailsScreenState extends State<ViewGroupDetailsScreen> {
                 fullname: snapshot.data.fullname,
                 groupName: snapshot.data.groupName,
                 managerId: snapshot.data.managerId,
-                phoneNumber: snapshot.data.phoneNumber,
+                // phoneNumber: snapshot.data.phoneNumber,
                 roleName: snapshot.data.roleName,
               );
             } else if (snapshot.hasError) {

@@ -60,6 +60,10 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                       label: 'Creator',
                       text: snapshot.data.creatorFullname,
                     ),
+                    TextSafeComponent(
+                      label: 'Assignee',
+                      text: snapshot.data.assigneeFullname,
+                    ),
                     SizedBox(height: 10),
                     DropdownFormFieldComponent(
                       options: updatatableTaskStatusesForManager,

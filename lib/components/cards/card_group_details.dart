@@ -62,11 +62,11 @@ class CardGroupDetails extends StatelessWidget {
             style: textStyleSubtitle.copyWith(fontSize: 18),
           ),
           SizedBox(height: 5),
-          IconTextComponent(
-            icon: Icons.phone,
-            text: '$phoneNumber',
-            style: textStyleSubtitle.copyWith(fontSize: 18),
-          ),
+          // IconTextComponent(
+          //   icon: Icons.phone,
+          //   text: '$phoneNumber',
+          //   style: textStyleSubtitle.copyWith(fontSize: 18),
+          // ),
           Center(
             child: QrImage(
               data: managerId,

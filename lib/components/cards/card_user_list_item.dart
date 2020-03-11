@@ -63,11 +63,13 @@ class CardUserListItem extends StatelessWidget {
                 IconTextComponent(
                   icon: Icons.email,
                   text: email,
+                  textBoxWidth: textboxWidthMedium,
                 ),
+                // IconTextComponent(
+                //   icon: Icons.phone,
+                //   text: phoneNumber,
+                // ),
                 IconTextComponent(
-                  icon: Icons.phone,
-                  text: phoneNumber,
-                ),IconTextComponent(
                   icon: Icons.flash_on,
                   text: getUserStatus(isDeleted),
                   color: getUserStatusColor(isDeleted),

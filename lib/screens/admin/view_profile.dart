@@ -18,7 +18,7 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
   @override
   void initState() {
     super.initState();
-    userDetails = fetchUserProfile();
+    userDetails = fetchUserProfile(context);
   }
 
   @override
@@ -53,11 +53,11 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                     style: textStyleSubtitle.copyWith(fontSize: 18),
                   ),
                   SizedBox(height: 5),
-                  IconTextComponent(
-                    icon: Icons.phone,
-                    text: '${snapshot.data.phoneNumber}',
-                    style: textStyleSubtitle.copyWith(fontSize: 18),
-                  ),
+                  // IconTextComponent(
+                  //   icon: Icons.phone,
+                  //   text: '${snapshot.data.phoneNumber}',
+                  //   style: textStyleSubtitle.copyWith(fontSize: 18),
+                  // ),
                   Center(
                     child: QrImage(
                       data: snapshot.data.userId,

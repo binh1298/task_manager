@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:task_manager/layouts/destinationsAdmin.dart';
+import 'package:task_manager/screens/admin/review_tasks.dart';
 import 'package:task_manager/screens/admin/view_dashboard.dart';
 import 'package:task_manager/screens/admin/view_groups.dart';
+import 'package:task_manager/screens/admin/view_personal_tasks.dart';
 import 'package:task_manager/screens/admin/view_profile.dart';
-import 'package:task_manager/screens/admin/view_tasks.dart';
-import 'package:task_manager/screens/admin/view_users.dart';
 import 'package:task_manager/style/style.dart';
 import '../../classes/destination.dart';
 
@@ -13,8 +13,8 @@ List<Destination> adminDestinations = <Destination>[
   // Destination('Users', Icons.person, ViewUsersScreen()),
   Destination('Dashboard', Icons.dashboard, ViewDashboard()),
   Destination('Groups', Icons.group, ViewGroupsScreen()),
-  Destination('Tasks', Icons.event_note, ViewTasksScreen()),
-  Destination('History', Icons.library_books, ViewTasksScreen()),
+  Destination('My Tasks', Icons.event_note, PersonalTasksScreen()),
+  Destination('Review Tasks', Icons.library_books, ReviewTasksScreen()),
   Destination('Profile', Icons.person, ViewProfileScreen()),
 ];
 
@@ -84,6 +84,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>
           child: BottomNavigationBar(
             currentIndex: _currentIndex,
             showUnselectedLabels: true,
+            // showSelectedLabels: false,
             onTap: (int index) {
               setState(() {
                 _currentIndex = index;
@@ -96,7 +97,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen>
                 icon: Icon(destination.iconData),
                 title: Text(
                   destination.title,
-                  style: textStyleSubtitle,
+                  style: textStyleSmall,
                 ),
               );
             }).toList(),

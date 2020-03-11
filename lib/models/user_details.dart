@@ -1,16 +1,18 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:task_manager/classes/api_routes.dart';
 import 'package:task_manager/utils/api_caller.dart';
 import 'package:http/http.dart' as http;
+import 'package:task_manager/utils/authorization.dart';
 
 class UserDetails {
-  String userId, username, avatar, email, fullname, phoneNumber, roleName;
+  String userId, username, avatar, email, fullname, roleName;
   bool isDeleted;
 
   UserDetails({
     this.email = '',
     this.fullname = '',
-    this.phoneNumber = '',
+    // this.phoneNumber = '',
     this.username = '',
     this.avatar = '',
     this.roleName = '',
@@ -25,7 +27,7 @@ class UserDetails {
       username: json['username'] as String,
       email: json['email'] as String,
       fullname: json['fullname'] as String,
-      phoneNumber: json['phoneNumber'] as String,
+      // phoneNumber: json['phoneNumber'] as String,
       roleName: json['roleName'] as String,
       isDeleted: json['isDeleted'] as bool,
     );
@@ -63,14 +65,16 @@ Future<UserDetails> fetchManagerOrEmployeeDetails(String userId) async {
     return null;
 }
 
-Future<UserDetails> fetchUserProfile() async {
+Future<UserDetails> fetchUserProfile(BuildContext context) async {
   final http.Response response =
       await apiCaller.get(route: await createRoleRoute(apiRoutes.getUserProfile));
   if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['user'];
     return UserDetails.fromJson(userDetailsJson);
-  } else
+  } else {
+    logout(context);
     return null;
+  }
 }
 
 Future<List<UserDetails>> fetchUsersDetailsList() async {

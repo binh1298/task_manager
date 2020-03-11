@@ -28,9 +28,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
 
     _taskCreateDetails.status = creatableTaskStatuses[0];
 
-    getUserFromToken().then((user) {
-      _taskCreateDetails.judgeId = user.userId;
-    }).catchError((onError) {
+    getUserFromToken().then((user) {}).catchError((onError) {
       logout(context);
     });
   }
@@ -125,17 +123,47 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         options: creatableTaskStatuses,
                       ),
                       ScanButtonToBuildUserCard(
-                        roleName: 'assignee',
+                        roleName: 'judge',
                         fetchDetail: (userId) {
-                          return fetchManagerOrEmployeeDetails(userId);
+                          return fetchManagerOrAdminDetails(userId);
                         },
                         onSuccessBuild: (userId) {
-                          _taskCreateDetails.assigneeId = userId;
+                          _taskCreateDetails.judgeId = userId;
                         },
                         onFailedBuild: () {
-                          _taskCreateDetails.assigneeId = null;
+                          _taskCreateDetails.judgeId = null;
                         },
                       ),
+                      FutureBuilder<UserDetails>(
+                          future: getUserFromToken(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              if (snapshot.data?.roleName ==
+                                  roleNames.employee) {
+                                _taskCreateDetails.assigneeId =
+                                    snapshot.data.userId;
+                                return SizedBox(
+                                  height: 0,
+                                );
+                              } else {
+                                return ScanButtonToBuildUserCard(
+                                  roleName: 'assignee',
+                                  fetchDetail: (userId) {
+                                    return fetchManagerOrEmployeeDetails(
+                                        userId);
+                                  },
+                                  onSuccessBuild: (userId) {
+                                    _taskCreateDetails.assigneeId = userId;
+                                  },
+                                  onFailedBuild: () {
+                                    _taskCreateDetails.assigneeId = null;
+                                  },
+                                );
+                              }
+                            } else {
+                              return CircularProgressIndicator();
+                            }
+                          }),
                       ButtonConfirmComponent(
                         text: 'Create Task',
                         onPressed: () async {

@@ -23,7 +23,7 @@ class ListOfUsers extends StatelessWidget {
                       userId: userDetail.userId,
                       fullname: userDetail.fullname,
                       role: userDetail.roleName,
-                      phoneNumber: userDetail.phoneNumber,
+                      // phoneNumber: userDetail.phoneNumber,
                       email: userDetail.email,
                       avatar: userDetail.avatar,
                       isDeleted: userDetail.isDeleted,

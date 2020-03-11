@@ -28,7 +28,7 @@ class _ScanButtonToBuildUserCardState extends State<ScanButtonToBuildUserCard> {
               userId: snapshot.data.userId,
               fullname: snapshot.data.fullname,
               role: snapshot.data.roleName,
-              phoneNumber: snapshot.data.phoneNumber,
+              // phoneNumber: snapshot.data.phoneNumber,
               email: snapshot.data.email,
               avatar: snapshot.data.avatar,
               isDeleted: snapshot.data.isDeleted,

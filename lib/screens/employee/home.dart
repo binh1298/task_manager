@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:task_manager/layouts/destinationsEmployee.dart';
+import 'package:task_manager/screens/admin/view_personal_tasks.dart';
 import 'package:task_manager/screens/admin/view_profile.dart';
-import 'package:task_manager/screens/admin/view_tasks.dart';
+import 'package:task_manager/screens/manager/view_assigned_tasks.dart';
 import 'package:task_manager/style/style.dart';
 import '../../classes/destination.dart';
 
 List<Destination> employeeDestinations = <Destination>[
-  Destination('History', Icons.library_books, ViewTasksScreen()),
-  Destination('Tasks', Icons.event_note, ViewTasksScreen()),
+  Destination('Assigned Tasks', Icons.library_books, AssignedTasksScreen()),
+  Destination('My Tasks', Icons.event_note, PersonalTasksScreen()),
   Destination('Profile', Icons.person, ViewProfileScreen()),
 ];
 
@@ -90,7 +91,7 @@ class _EmployeeHomeScreenState extends State<EmployeeHomeScreen>
                 icon: Icon(destination.iconData),
                 title: Text(
                   destination.title,
-                  style: textStyleSubtitle,
+                  style: textStyleSmall,
                 ),
               );
             }).toList(),

@@ -72,7 +72,7 @@ class _ViewUsersScreenState extends State<ViewUsersScreen> {
                               userId: userDetail.userId,
                               fullname: userDetail.fullname,
                               role: userDetail.roleName,
-                              phoneNumber: userDetail.phoneNumber,
+                              // phoneNumber: userDetail.phoneNumber,
                               email: userDetail.email,
                               avatar: userDetail.avatar,
                               isDeleted: userDetail.isDeleted,

@@ -15,7 +15,7 @@ class GroupDetails {
       avatar,
       email,
       fullname,
-      phoneNumber,
+      // phoneNumber,
       roleName;
   int roleId;
 
@@ -29,7 +29,7 @@ class GroupDetails {
       this.createdAt, // TODO
       this.email,
       this.fullname,
-      this.phoneNumber,
+      // this.phoneNumber,
       this.roleId,
       this.roleName,
       this.username});
@@ -42,7 +42,7 @@ class GroupDetails {
       isDeleted: json['isDeleted'] as bool,
       email: json['email'] as String,
       fullname: json['fullname'] as String,
-      phoneNumber: json['phoneNumber'] as String,
+      // phoneNumber: json['phoneNumber'] as String,
       roleId: json['roleId'] as int,
       roleName: json['roleName'] as String,
       //Add ons
