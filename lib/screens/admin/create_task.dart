@@ -79,22 +79,41 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         },
                         textInputType: TextInputType.multiline,
                       ),
-                      DateFormField(
-                        label: 'Start Date',
-                        onSaved: (value) {
-                          setState(() {
-                            print(value);
-                            _taskCreateDetails.beginAt = value.toString();
-                          });
-                        },
-                      ),
-                      DateFormField(
-                        label: 'End Date',
-                        onSaved: (value) {
-                          setState(() {
-                            _taskCreateDetails.endAt = value.toString();
-                          });
-                        },
+                      Row(
+                        children: <Widget>[
+                          DateFormField(
+                            label: 'Start Date',
+                            onSaved: (value) {
+                              setState(() {
+                                print(value);
+                                _taskCreateDetails.beginAt = value.toString();
+                              });
+                            },
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Please choose a date';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          DateFormField(
+                            label: 'End Date',
+                            onSaved: (value) {
+                              setState(() {
+                                _taskCreateDetails.endAt = value.toString();
+                              });
+                            },
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Please choose a date';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
                       ),
                       DropdownFormFieldComponent(
                         title: 'Status: ',
@@ -146,7 +165,9 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                           } else {}
                         },
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                     ],
                   ),
                 ),

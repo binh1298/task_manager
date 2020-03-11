@@ -15,7 +15,7 @@ String formatDate(String strDate) {
   DateTime date = DateTime.parse(strDate);
   return DateFormat('yyyy-MM-dd').format(date);
 }
-
+List<String> taskStatuses = ['PENDING', 'IN-PROGRESS', 'ACCEPT', 'DECLINE', 'FINISHED', 'FAILED', 'OVERDUED'];
 List<String> creatableTaskStatuses = ['PENDING', 'IN-PROGRESS']; 
 List<String> updatatableTaskStatusesForManager = ['PENDING', 'IN-PROGRESS', 'ACCEPT', 'DECLINE', 'FINISHED', 'FAILED'];
 List<String> updatatableTaskStatusesForUser = ['PENDING', 'IN-PROGRESS', 'FINISHED', 'FAILED'];

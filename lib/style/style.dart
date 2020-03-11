@@ -47,7 +47,7 @@ class TaskStatus {
   TaskStatus({this.status, this.color});
 }
 
-List<TaskStatus> taskStatuses = <TaskStatus>[
+List<TaskStatus> taskStatusesWithColor = <TaskStatus>[
   TaskStatus(status: 'PENDING', color: colorTaskPending),
   TaskStatus(status: 'IN-PROGRESS', color: colorTaskInProgress),
   TaskStatus(status: 'FINISHED', color: colorTaskFinished),
@@ -57,7 +57,7 @@ List<TaskStatus> taskStatuses = <TaskStatus>[
   TaskStatus(status: 'DECLINE', color: colorTaskFailed),
 ];
 Color getTaskStatusColor(String status) {
-  for (var task in taskStatuses) {
+  for (var task in taskStatusesWithColor) {
     if(task.status == status) return task.color;
   }
   return colorTextDefault;

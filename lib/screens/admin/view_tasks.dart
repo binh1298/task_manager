@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/cards/card_task_list_item.dart';
+import 'package:task_manager/components/form_query_tasks.dart';
 import 'package:task_manager/models/task_details.dart';
+import 'package:task_manager/models/task_query_params.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 
 class ViewTasksScreen extends StatefulWidget {
@@ -19,12 +21,12 @@ class _ViewTasksScreenState extends State<ViewTasksScreen> {
     refreshList();
   }
 
-  Future<Null> refreshList() async {
+  Future<Null> refreshList({TaskQueryParams taskQueryParams}) async {
     refreshKey.currentState?.show(atTop: true);
     await Future.delayed(Duration(seconds: 1));
 
     setState(() {
-      tasksDetailsList = fetchTasksList();
+      tasksDetailsList = fetchTasksList(taskQueryParams);
     });
 
     return null;
@@ -53,6 +55,9 @@ class _ViewTasksScreenState extends State<ViewTasksScreen> {
             if (snapshot.hasData) {
               return Column(
                 children: <Widget>[
+                  FormQueryTasks((TaskQueryParams taskQueryParams) { 
+                    refreshList(taskQueryParams: taskQueryParams);
+                  }),
                   Expanded(
                     child: ListView(
                       physics: const AlwaysScrollableScrollPhysics(),
