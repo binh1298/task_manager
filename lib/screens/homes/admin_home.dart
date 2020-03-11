@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:task_manager/layouts/destinationsAdmin.dart';
-import 'package:task_manager/screens/admin/review_tasks.dart';
-import 'package:task_manager/screens/admin/view_dashboard.dart';
-import 'package:task_manager/screens/admin/view_groups.dart';
-import 'package:task_manager/screens/admin/view_personal_tasks.dart';
-import 'package:task_manager/screens/admin/view_profile.dart';
+import 'package:task_manager/screens/group/view_groups.dart';
+import 'package:task_manager/screens/task/review_tasks.dart';
+import 'package:task_manager/screens/task/view_personal_tasks.dart';
+import 'package:task_manager/screens/user/view_profile.dart';
+import 'package:task_manager/screens/utils/view_dashboard.dart';
 import 'package:task_manager/style/style.dart';
 import '../../classes/destination.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/models/user_details.dart';
-import 'package:task_manager/screens/image_capture.dart';
+import 'package:task_manager/screens/utils/image_capture.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 
 class ChangeAvatarComponent extends StatelessWidget {

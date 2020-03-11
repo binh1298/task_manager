@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:task_manager/screens/uploader.dart';
+import 'package:task_manager/screens/utils/uploader.dart';
 
 class ImageCaptureScreen extends StatefulWidget {
   final Function onSuccess, onFailed;

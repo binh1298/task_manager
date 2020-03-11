@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:task_manager/layouts/destinationsEmployee.dart';
-import 'package:task_manager/screens/admin/view_personal_tasks.dart';
-import 'package:task_manager/screens/admin/view_profile.dart';
-import 'package:task_manager/screens/view_assigned_tasks.dart';
+import 'package:task_manager/screens/task/view_assigned_tasks.dart';
+import 'package:task_manager/screens/task/view_personal_tasks.dart';
+import 'package:task_manager/screens/user/view_profile.dart';
 import 'package:task_manager/style/style.dart';
 import '../../classes/destination.dart';
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/classes/view_navigation_observer.dart';
 import 'package:task_manager/components/change_avatar_component.dart';
-import 'package:task_manager/screens/admin/create_group.dart';
-import 'package:task_manager/screens/admin/create_task.dart';
-import 'package:task_manager/screens/admin/create_user.dart';
-import 'package:task_manager/screens/admin/view_group_details.dart';
-import 'package:task_manager/screens/admin/view_task_details.dart';
-import 'package:task_manager/screens/admin/view_user_details.dart';
+import 'package:task_manager/screens/group/create_group.dart';
+import 'package:task_manager/screens/group/view_group_details.dart';
+import 'package:task_manager/screens/task/create_task.dart';
+import 'package:task_manager/screens/task/view_task_details.dart';
+import 'package:task_manager/screens/user/create_user.dart';
+import 'package:task_manager/screens/user/view_user_details.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 import '../classes/destination.dart';
 

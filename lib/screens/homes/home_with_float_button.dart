@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/buttons/button_navigation.dart';
 import 'package:task_manager/layouts/destinationsAdmin.dart';
-import 'package:task_manager/screens/admin/review_tasks.dart';
-import 'package:task_manager/screens/admin/view_groups.dart';
-import 'package:task_manager/screens/admin/view_profile.dart';
-import 'package:task_manager/screens/admin/view_users.dart';
+import 'package:task_manager/screens/group/view_groups.dart';
+import 'package:task_manager/screens/task/review_tasks.dart';
+import 'package:task_manager/screens/user/view_profile.dart';
+import 'package:task_manager/screens/user/view_users.dart';
 import '../../classes/destination.dart';
 
 List<Destination> adminDestinations = <Destination>[
