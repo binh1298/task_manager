@@ -22,5 +22,4 @@ List<String> updatatableTaskStatusesForUser = ['PENDING', 'IN-PROGRESS', 'FINISH
 class RoleNames {
   String admin = 'admin', manager = 'manager', employee = 'employee';
 }
-
 RoleNames roleNames = RoleNames();

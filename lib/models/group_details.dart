@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:task_manager/classes/api_routes.dart';
+import 'package:task_manager/utils/api_routes.dart';
 import 'package:task_manager/utils/api_caller.dart';
 
 class GroupDetails {
