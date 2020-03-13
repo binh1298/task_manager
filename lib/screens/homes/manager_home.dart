@@ -3,8 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:task_manager/layouts/destinationsManager.dart';
 import 'package:task_manager/screens/group/view_groups.dart';
 import 'package:task_manager/screens/task/view_assigned_tasks.dart';
-import 'package:task_manager/screens/task/view_personal_tasks.dart';
 import 'package:task_manager/screens/task/view_review_tasks.dart';
+import 'package:task_manager/screens/task/view_task_history.dart';
 import 'package:task_manager/screens/user/view_profile.dart';
 import 'package:task_manager/style/style.dart';
 import '../../classes/destination.dart';
@@ -12,7 +12,7 @@ import '../../classes/destination.dart';
 List<Destination> managerDestinations = <Destination>[
   Destination('Groups', Icons.group, ViewGroupsScreen()),
   Destination('Assigned Tasks', Icons.event_note, AssignedTasksScreen()),
-  Destination('My Tasks', Icons.event_note, PersonalTasksScreen()),
+  Destination('My Tasks', Icons.event_note, ViewTaskHistoryScreen()),
   Destination('Review Tasks', Icons.library_books, ViewReviewTasksScreen()),
   Destination('Profile', Icons.person, ViewProfileScreen()),
 ];

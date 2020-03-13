@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:task_manager/layouts/destinationsEmployee.dart';
 import 'package:task_manager/screens/task/view_assigned_tasks.dart';
-import 'package:task_manager/screens/task/view_personal_tasks.dart';
+import 'package:task_manager/screens/task/view_task_history.dart';
 import 'package:task_manager/screens/user/view_profile.dart';
 import 'package:task_manager/style/style.dart';
 import '../../classes/destination.dart';
 
 List<Destination> employeeDestinations = <Destination>[
+  Destination('History', Icons.event_note, ViewTaskHistoryScreen()),
   Destination('Assigned Tasks', Icons.library_books, AssignedTasksScreen()),
-  Destination('My Tasks', Icons.event_note, PersonalTasksScreen()),
   Destination('Profile', Icons.person, ViewProfileScreen()),
 ];
 
