@@ -19,6 +19,8 @@ List<String> taskStatuses = ['PENDING', 'IN-PROGRESS', 'ACCEPT', 'DECLINE', 'FIN
 List<String> creatableTaskStatuses = ['PENDING', 'IN-PROGRESS']; 
 List<String> updatatableTaskStatusesForManager = ['PENDING', 'IN-PROGRESS', 'ACCEPT', 'DECLINE', 'FINISHED', 'FAILED'];
 List<String> updatatableTaskStatusesForUser = ['PENDING', 'IN-PROGRESS', 'FINISHED', 'FAILED'];
+
+List<String> reviewStatuses = ['NOT-REVIEWED', 'REVIEWED'];
 class RoleNames {
   String admin = 'admin', manager = 'manager', employee = 'employee';
 }

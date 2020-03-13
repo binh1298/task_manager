@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/classes/view_navigation_observer.dart';
 import 'package:task_manager/components/change_avatar_component.dart';
+import 'package:task_manager/components/change_confirmation_img.dart';
+import 'package:task_manager/screens/not_found_screen.dart';
 import 'package:task_manager/screens/task/create_task.dart';
 import 'package:task_manager/screens/task/view_task_details.dart';
-import 'package:task_manager/screens/user/create_user.dart';
 import 'package:task_manager/utils/secure_storage.dart';
 import '../classes/destination.dart';
 
@@ -45,8 +46,12 @@ class _DestinationLayoutEmployeeState extends State<DestinationLayoutEmployee> {
             title = 'View Task Detail';
             body = ViewTaskDetailsScreen(taskId: settings.arguments);
             break;
+          case '/updateConfirmationImg':
+            title = 'Update Confirmation Img';
+            body = ChangeConfirmationImageComponent();
+            break;
           default:
-            body = CreateUserScreen();
+            body = NotFoundScreen();
             break;
         }
         return MaterialPageRoute(

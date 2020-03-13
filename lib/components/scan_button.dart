@@ -4,6 +4,7 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:task_manager/utils/snack_bar.dart';
+import 'package:task_manager/style/style.dart';
 
 class ScanButton extends StatelessWidget {
   final BuildContext context;
@@ -21,8 +22,8 @@ class ScanButton extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: RaisedButton(
-              color: Colors.blue,
-              textColor: Colors.white,
+              color: colorPrimary,
+              textColor: colorTextButton,
               splashColor: Colors.blueGrey,
               onPressed: scan,
               child: Text(title),

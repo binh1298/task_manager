@@ -15,9 +15,11 @@ class TaskDetails {
       judgeId,
       judgeComment,
       status,
+      reviewStatus,
       creatorId,
       assigneeId,
-      confirmationImg;
+      confirmationImg,
+      submitDescription;
   String judgeCommentAt, beginAt, endAt, createdAt, updatedAt;
   String creatorFullname, judgeFullname, assigneeFullname;
 
@@ -29,6 +31,7 @@ class TaskDetails {
       this.creatorId,
       this.endAt,
       this.handleProcess,
+      this.submitDescription,
       this.id,
       this.judgeComment,
       this.judgeCommentAt,
@@ -38,6 +41,7 @@ class TaskDetails {
       this.requirement,
       this.sourceTaskId,
       this.status,
+      this.reviewStatus,
       this.updatedAt,
       this.creatorFullname,
       this.assigneeFullname,
@@ -50,10 +54,12 @@ class TaskDetails {
       name: json['name'] as String,
       sourceTaskId: json['null'] as int,
       status: json['status'] as String,
+      reviewStatus: json['reviewStatus'] as String,
       beginAt: json['beginAt'] as String,
       endAt: json['endAt'] as String,
       requirement: json['requirement'] as String,
       handleProcess: json['handleProcess'] as String,
+      submitDescription: json['submitDescription'] as String,
       judgeComment: json['judgeComment'] as String,
       judgeId: json['judgeId'] as String,
       creatorId: json['creatorId'] as String,
@@ -93,11 +99,16 @@ class TaskDetails {
         body: jsonEncode(<String, String>{
           'name': name,
           'requirement': requirement,
+          'handleProcess': handleProcess,
           'judgeId': judgeId,
+          'judgeComment': judgeComment,
+          'judgeScore': judgeScore.toString(),
           'assigneeId': assigneeId,
           'beginAt': beginAt,
           'endAt': endAt,
           'taskStatus': status,
+          'confirmationImg': confirmationImg,
+          'submitDescription': submitDescription,
         }));
     bool success = response.statusCode == 201;
     print(response.body);
@@ -113,6 +124,7 @@ class TaskDetails {
 Future<TaskDetails> fetchTaskDetails(int taskId) async {
   final http.Response response =
       await apiCaller.get(route: await createRoleRoute('${apiRoutes.getTasks}/$taskId'));
+      print(response.body);
   if (response.statusCode == 200) {
     var taskDetailsJson = json.decode(response.body)['task'];
     return TaskDetails.fromJson(taskDetailsJson);
