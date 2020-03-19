@@ -89,7 +89,7 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                               (snapshotUser.data.userId ==
                                       snapshot.data.judgeId ||
                                   snapshotUser.data.roleName ==
-                                      roleNames.admin)) {
+                                      RoleNames.admin)) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -192,7 +192,7 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                           if (snapshotUser.hasData &&
                                   snapshotUser.data.userId ==
                                       snapshot.data.assigneeId ||
-                              snapshotUser.data.roleName == roleNames.admin) {
+                              snapshotUser.data.roleName == RoleNames.admin) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
