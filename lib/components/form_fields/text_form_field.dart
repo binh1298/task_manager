@@ -27,7 +27,7 @@ class TextFormFieldComponent extends StatelessWidget {
             style: textStyleTitle,
           ),
           TextFormField(
-            initialValue: initialValue,
+            initialValue: initialValue == null ? '' : initialValue,
             obscureText: obscureText,
             style: textStyleSubtitle,
             validator: validator,

@@ -25,6 +25,7 @@ Color colorCancel = Colors.blueGrey[300];
 Color colorInactive = Colors.grey;
 Color colorError = Colors.red;
 const Color colorTextDefault = Colors.black;
+Color colorTextButton = Colors.white;
 Color colorAccept = Colors.green;
 Color colorWarning = Colors.redAccent.shade400;
 

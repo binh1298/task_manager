@@ -43,6 +43,8 @@ List<String> updatatableTaskStatusesForUser = [
   'FAILED'
 ];
 
+List<String> reviewStatuses = ['NOT-REVIEWED', 'REVIEWED'];
+
 class RoleNames {
   static String admin = 'admin', manager = 'manager', employee = 'employee';
 }

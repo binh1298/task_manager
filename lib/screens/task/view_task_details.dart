@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/components/buttons/button_confirm.dart';
 import 'package:task_manager/components/dropdowns/drop_down_button.dart';
 import 'package:task_manager/components/form_fields/text_form_field.dart';
+import 'package:task_manager/components/image_task_safe.dart';
 import 'package:task_manager/components/labels/icon_text.dart';
 import 'package:task_manager/components/labels/text_safe.dart';
 import 'package:task_manager/models/task_details.dart';
+import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/form_field_validator.dart';
+import 'package:task_manager/utils/secure_storage.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
@@ -61,6 +64,10 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                       text: snapshot.data.creatorFullname,
                     ),
                     TextSafeComponent(
+                      label: 'Judge',
+                      text: snapshot.data.judgeFullname,
+                    ),
+                    TextSafeComponent(
                       label: 'Assignee',
                       text: snapshot.data.assigneeFullname,
                     ),
@@ -75,96 +82,194 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                         });
                       },
                     ),
-                    TextFormFieldComponent(
-                      initialValue: snapshot.data.requirement,
-                      title: 'Requirement',
-                      textInputType: TextInputType.multiline,
-                      onSaved: (value) {
-                        setState(() {
-                          _taskUpdateDetails.requirement = value;
-                        });
-                      },
-                      validator: (value) {
-                        return validateFormField(value, 'requirement', 5);
-                      },
+                    FutureBuilder<UserDetails>(
+                        future: getUserFromToken(),
+                        builder: (context, snapshotUser) {
+                          if (snapshotUser.hasData &&
+                              (snapshotUser.data.userId ==
+                                      snapshot.data.judgeId ||
+                                  snapshotUser.data.roleName ==
+                                      roleNames.admin)) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                DropdownFormFieldComponent(
+                                  options: reviewStatuses,
+                                  title: 'Review Status:',
+                                  style: textStyleTitle,
+                                  updateState: (String value) {
+                                    setState(() {
+                                      _taskUpdateDetails.reviewStatus = value;
+                                    });
+                                  },
+                                ),
+                                TextFormFieldComponent(
+                                  initialValue: snapshot.data.requirement,
+                                  title: 'Requirement',
+                                  textInputType: TextInputType.multiline,
+                                  onSaved: (value) {
+                                    setState(() {
+                                      _taskUpdateDetails.requirement = value;
+                                    });
+                                  },
+                                  validator: (value) {
+                                    return validateFormField(
+                                        value, 'requirement', 5);
+                                  },
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    IconTextComponent(
+                                      icon: Icons.notifications,
+                                      text: formatDate(snapshot.data.beginAt),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    IconTextComponent(
+                                      icon: Icons.notifications_off,
+                                      text: formatDate(snapshot.data.endAt),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                TextFormFieldComponent(
+                                  initialValue: snapshot.data.judgeComment,
+                                  title: 'Judge\'s comment',
+                                  textInputType: TextInputType.multiline,
+                                  onSaved: (value) {
+                                    setState(() {
+                                      _taskUpdateDetails.requirement = value;
+                                    });
+                                  },
+                                ),
+                                IconTextComponent(
+                                  icon: Icons.access_alarm,
+                                  text:
+                                      formatDate(snapshot.data.judgeCommentAt),
+                                  fallbackText: 'Not commented yet',
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                TextFormFieldComponent(
+                                  initialValue: snapshot.data.judgeScore != null
+                                      ? snapshot.data.judgeScore.toString()
+                                      : null,
+                                  title: 'Score',
+                                  textInputType: TextInputType.number,
+                                  onSaved: (value) {
+                                    setState(() {
+                                      _taskUpdateDetails.judgeScore = value;
+                                    });
+                                  },
+                                  validator: (value) {
+                                    return validateFormField(value, 'score', 0);
+                                  },
+                                ),
+                              ],
+                            );
+                          } else {
+                            return CircularProgressIndicator();
+                          }
+                        }),
+                    SizedBox(
+                      height: 20,
                     ),
-                    Row(
-                      children: <Widget>[
-                        IconTextComponent(
-                          icon: Icons.notifications,
-                          text: formatDate(snapshot.data.beginAt),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        IconTextComponent(
-                          icon: Icons.notifications_off,
-                          text: formatDate(snapshot.data.endAt),
-                        ),
-                      ],
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide()),
+                      ),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    TextFormFieldComponent(
-                      initialValue: snapshot.data.handleProcess,
-                      title: 'Handle Process',
-                      textInputType: TextInputType.multiline,
-                      onSaved: (value) {
-                        setState(() {
-                          _taskUpdateDetails.requirement = value;
-                        });
-                      },
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormFieldComponent(
-                      initialValue: snapshot.data.judgeComment,
-                      title: 'Judge\'s comment',
-                      textInputType: TextInputType.multiline,
-                      onSaved: (value) {
-                        setState(() {
-                          _taskUpdateDetails.requirement = value;
-                        });
-                      },
-                    ),
-                    Row(
-                      children: <Widget>[
-                        IconTextComponent(
-                          icon: Icons.access_alarm,
-                          text: formatDate(snapshot.data.judgeCommentAt),
-                          fallbackText: 'Not yet',
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        IconTextComponent(
-                          icon: Icons.assignment_turned_in,
-                          text: snapshot.data.judgeScore.toString(),
-                          fallbackText: 'Not yet',
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    ButtonConfirmComponent(
-                      text: 'Update Task',
-                      onPressed: () async {
-                        final form = _updateTaskFormKey.currentState;
-                          if (!form.validate()) return;
-                          form.save();
-                          bool success =
-                              await _taskUpdateDetails.updateTask(context);
-                          if (success) {
-                            Navigator.pop(context, true);
-                          } else {}
-                      },
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    FutureBuilder<UserDetails>(
+                        future: getUserFromToken(),
+                        builder: (context, snapshotUser) {
+                          if (snapshotUser.hasData &&
+                                  snapshotUser.data.userId ==
+                                      snapshot.data.assigneeId ||
+                              snapshotUser.data.roleName == roleNames.admin) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                TextFormFieldComponent(
+                                  initialValue: snapshot.data.handleProcess,
+                                  title: 'Handle Process',
+                                  textInputType: TextInputType.multiline,
+                                  onSaved: (value) {
+                                    setState(() {
+                                      _taskUpdateDetails.handleProcess = value;
+                                    });
+                                  },
+                                ),
+                                TextSafeComponent(
+                                  text: 'Confirmation Image:',
+                                  style: textStyleTitle,
+                                ),
+                                ImageTaskSafe(
+                                  imgUrl: _taskUpdateDetails.confirmationImg,
+                                ),
+                                RaisedButton(
+                                  color: colorPrimary,
+                                  textColor: colorTextButton,
+                                  splashColor: Colors.blueGrey,
+                                  onPressed: () async {
+                                    final result = await Navigator.pushNamed(
+                                        context, '/updateConfirmationImg');
+                                    if (result) {
+                                      setState(() {
+                                        _taskUpdateDetails.confirmationImg =
+                                            result;
+                                      });
+                                    }
+                                    ;
+                                  },
+                                  child: Text('Submit Image'),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                TextFormFieldComponent(
+                                  initialValue: snapshot.data.submitDescription,
+                                  title: 'Submit Description',
+                                  textInputType: TextInputType.multiline,
+                                  onSaved: (value) {
+                                    setState(() {
+                                      _taskUpdateDetails.submitDescription =
+                                          value;
+                                    });
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                ButtonConfirmComponent(
+                                  text: 'Update Task',
+                                  onPressed: () async {
+                                    final form =
+                                        _updateTaskFormKey.currentState;
+                                    if (!form.validate()) return;
+                                    form.save();
+                                    bool success = await _taskUpdateDetails
+                                        .updateTask(context);
+                                    if (success) {
+                                      Navigator.pop(context, true);
+                                    } else {}
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                              ],
+                            );
+                          } else {
+                            return CircularProgressIndicator();
+                          }
+                        }),
                   ],
                 ),
               ),
