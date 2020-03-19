@@ -40,7 +40,7 @@ class _ViewGroupsScreenState extends State<ViewGroupsScreen> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Scaffold(
-            floatingActionButton: snapshot.data.roleName == roleNames.admin
+            floatingActionButton: snapshot.data.roleName == RoleNames.admin
                 ? FloatingActionButton(
                     heroTag: 'CreateGroups',
                     child: Icon(Icons.add),

@@ -139,7 +139,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               if (snapshot.data?.roleName ==
-                                  roleNames.employee) {
+                                  RoleNames.employee) {
                                 _taskCreateDetails.assigneeId =
                                     snapshot.data.userId;
                                 return SizedBox(

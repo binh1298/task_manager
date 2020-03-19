@@ -96,7 +96,7 @@ class _ViewGroupDetailsScreenState extends State<ViewGroupDetailsScreen> {
           future: getUserFromToken(),
           builder: (context, snapshot) {
             if(snapshot.hasData) {
-              return snapshot.data.roleName == roleNames.admin 
+              return snapshot.data.roleName == RoleNames.admin 
               ? ScanButton(
                 context: context,
                 onSuccessScan: (userId) async {
