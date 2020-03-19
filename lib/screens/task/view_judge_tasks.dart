@@ -5,12 +5,12 @@ import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/models/task_query_params.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 
-class ViewReviewTasksScreen extends StatefulWidget {
+class ViewJudgeTasksScreen extends StatefulWidget {
   @override
-  _ViewReviewTasksScreenState createState() => _ViewReviewTasksScreenState();
+  _ViewJudgeTasksScreenState createState() => _ViewJudgeTasksScreenState();
 }
 
-class _ViewReviewTasksScreenState extends State<ViewReviewTasksScreen> {
+class _ViewJudgeTasksScreenState extends State<ViewJudgeTasksScreen> {
   Future<List<TaskDetails>> tasksDetailsList;
   GlobalKey<RefreshIndicatorState> refreshKey =
       GlobalKey<RefreshIndicatorState>();
@@ -26,7 +26,7 @@ class _ViewReviewTasksScreenState extends State<ViewReviewTasksScreen> {
     await Future.delayed(Duration(seconds: 1));
 
     setState(() {
-      tasksDetailsList = fetchTasksToReview(taskQueryParams);
+      tasksDetailsList = fetchTasksToJudge(taskQueryParams);
     });
 
     return null;

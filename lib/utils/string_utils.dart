@@ -43,13 +43,13 @@ List<String> updatatableTaskStatusesForUser = [
   'FAILED'
 ];
 
-List<String> reviewStatuses = ['NOT-REVIEWED', 'REVIEWED'];
+List<String> judgeStatuses = ['NOT-JUDGED', 'JUDGED'];
 
 class RoleNames {
   static String admin = 'admin', manager = 'manager', employee = 'employee';
 }
 
 class TaskTypes {
-  static String review = 'review', submit = 'submit';
+  static String judge = 'judge', submit = 'submit';
 }
 

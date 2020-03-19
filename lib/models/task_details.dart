@@ -15,7 +15,7 @@ class TaskDetails {
       judgeId,
       judgeComment,
       status,
-      reviewStatus,
+      judgeStatus,
       creatorId,
       assigneeId,
       confirmationImg,
@@ -41,7 +41,7 @@ class TaskDetails {
       this.requirement,
       this.sourceTaskId,
       this.status,
-      this.reviewStatus,
+      this.judgeStatus,
       this.updatedAt,
       this.creatorFullname,
       this.assigneeFullname,
@@ -54,7 +54,7 @@ class TaskDetails {
       name: json['name'] as String,
       sourceTaskId: json['null'] as int,
       status: json['status'] as String,
-      reviewStatus: json['reviewStatus'] as String,
+      judgeStatus: json['judgeStatus'] as String,
       beginAt: json['beginAt'] as String,
       endAt: json['endAt'] as String,
       requirement: json['requirement'] as String,
@@ -146,10 +146,10 @@ Future<List<TaskDetails>> fetchTasksList(TaskQueryParams taskQueryParams) async 
   }
 }
 
-Future<List<TaskDetails>> fetchTasksToReview(TaskQueryParams taskQueryParams) async {
+Future<List<TaskDetails>> fetchTasksToJudge(TaskQueryParams taskQueryParams) async {
   print(taskQueryParams);
   final http.Response response =
-      await apiCaller.get(route: await createRoleRoute(apiRoutes.getTasksToReview));
+      await apiCaller.get(route: await createRoleRoute(apiRoutes.getTasksToJudge));
   if (response.statusCode == 200) {
     var userDetailsListJson = json.decode(response.body)['result'] as List;
     return userDetailsListJson

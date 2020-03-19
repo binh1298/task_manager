@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/components/buttons/button_navigation.dart';
 import 'package:task_manager/layouts/destinationsAdmin.dart';
 import 'package:task_manager/screens/group/view_groups.dart';
-import 'package:task_manager/screens/task/view_review_tasks.dart';
+import 'package:task_manager/screens/task/view_judge_tasks.dart';
 import 'package:task_manager/screens/user/view_profile.dart';
 import 'package:task_manager/screens/user/view_users.dart';
 import '../../classes/destination.dart';
@@ -10,7 +10,7 @@ import '../../classes/destination.dart';
 List<Destination> adminDestinations = <Destination>[
   Destination('Users', Icons.person, ViewUsersScreen()),
   Destination('Groups', Icons.group, ViewGroupsScreen()),
-  Destination('Tasks', Icons.event_note, ViewReviewTasksScreen()),
+  Destination('Tasks', Icons.event_note, ViewJudgeTasksScreen()),
   Destination('Profile', Icons.person, ViewProfileScreen()),
 ];
 

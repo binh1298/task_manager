@@ -94,12 +94,12 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 DropdownFormFieldComponent(
-                                  options: reviewStatuses,
-                                  title: 'Review Status:',
+                                  options: judgeStatuses,
+                                  title: 'Judge Status:',
                                   style: textStyleTitle,
                                   updateState: (String value) {
                                     setState(() {
-                                      _taskUpdateDetails.reviewStatus = value;
+                                      _taskUpdateDetails.judgeStatus = value;
                                     });
                                   },
                                 ),

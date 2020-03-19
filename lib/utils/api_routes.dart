@@ -16,7 +16,7 @@ class ApiRoutes {
   final String addGroupMember = 'add-group-member';
   
   final String getTasks = 'tasks';
-  final String getTasksToReview = 'tasks-review';
+  final String getTasksToJudge = 'tasks-judge';
   final String createTask = 'create-task';
   final String updateTask = 'update-task';
   
