@@ -45,7 +45,7 @@ class CardGroupListItem extends StatelessWidget {
                     SizedBox(
                       height: 8.0,
                     ),
-                    (snapshot.data.roleName != roleNames.manager)
+                    (snapshot.data.roleName != RoleNames.manager)
                         ? IconTextComponent(
                             icon: Icons.person,
                             text: 'Manager: $managerName',
