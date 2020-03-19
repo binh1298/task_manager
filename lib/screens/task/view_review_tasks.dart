@@ -26,7 +26,7 @@ class _ViewReviewTasksScreenState extends State<ViewReviewTasksScreen> {
     await Future.delayed(Duration(seconds: 1));
 
     setState(() {
-      tasksDetailsList = fetchTasksList(taskQueryParams);
+      tasksDetailsList = fetchTasksToReview(taskQueryParams);
     });
 
     return null;

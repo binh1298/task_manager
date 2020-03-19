@@ -131,10 +131,25 @@ Future<TaskDetails> fetchTaskDetails(int taskId) async {
   } else
     return null;
 }
+
 Future<List<TaskDetails>> fetchTasksList(TaskQueryParams taskQueryParams) async {
   print(taskQueryParams);
   final http.Response response =
       await apiCaller.get(route: await createRoleRoute(apiRoutes.getTasks));
+  if (response.statusCode == 200) {
+    var userDetailsListJson = json.decode(response.body)['result'] as List;
+    return userDetailsListJson
+        .map((userDetails) => TaskDetails.fromJson(userDetails))
+        .toList();
+  } else {
+    return null;
+  }
+}
+
+Future<List<TaskDetails>> fetchTasksToReview(TaskQueryParams taskQueryParams) async {
+  print(taskQueryParams);
+  final http.Response response =
+      await apiCaller.get(route: await createRoleRoute(apiRoutes.getTasksToReview));
   if (response.statusCode == 200) {
     var userDetailsListJson = json.decode(response.body)['result'] as List;
     return userDetailsListJson
