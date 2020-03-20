@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:task_manager/utils/secure_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -6,46 +8,49 @@ final apiUrl = DotEnv().env['API_URL'];
 
 class ApiCaller {
   post({String body, String route}) async {
-    print('POST $apiUrl$route');
     String token = await getJwtToken();
+    var uri = Uri.http(apiUrl, route);
+    print('POST $uri');
     http.Response response = await http.post(
-      '$apiUrl$route',
+      uri,
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token',
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       },
       body: body,
     );
-    // print('POST $apiUrl$route ${response.body}');
+    // print('POST $uri ${response.body}');
     return response;
   }
 
-  get({String route}) async {
-    print('GET $apiUrl$route');
+  get({String route, Map<String, String> queryParams}) async {
     String token = await getJwtToken();
+    var uri = Uri.http(apiUrl, route, queryParams);
+    print('GET $uri');
     http.Response response = await http.get(
-      '$apiUrl$route',
+      uri,
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token',
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
-    // print('GET $apiUrl$route ${response.body}');
+    // print('GET $uri ${response.body}');
     return response;
   }
 
   patch({String route, dynamic body}) async {
-    print('PATCH $apiUrl$route');
     String token = await getJwtToken();
+    var uri = Uri.http(apiUrl, route);
+    print('PATCH $uri');
     http.Response response = await http.patch(
-      '$apiUrl$route',
+      uri,
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': 'Bearer $token',
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       },
       body: body,
     );
-    // print('PATCH $apiUrl$route ${response.body}');
+    // print('PATCH $uri ${response.body}');
     return response;
   }
 }

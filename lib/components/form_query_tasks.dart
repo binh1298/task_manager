@@ -19,7 +19,7 @@ class FormQueryTasks extends StatefulWidget {
 
 class _FormQueryTasksState extends State<FormQueryTasks> {
   final _formKeyQueryTasks = GlobalKey<FormState>();
-  final TaskQueryParams _taskQueryParams = TaskQueryParams();
+  final TaskQueryParams _taskQueryParams = TaskQueryParams(status: taskStatuses[0]);
   @override
   Widget build(BuildContext context) {
     return CardListContainer(
@@ -40,7 +40,7 @@ class _FormQueryTasksState extends State<FormQueryTasks> {
                       onSaved: (value) {
                         setState(() {
                           print(value);
-                          _taskQueryParams.from = value?.toString();
+                          _taskQueryParams.from = formatDate(value?.toString());
                         });
                       },
                     ),
@@ -52,13 +52,14 @@ class _FormQueryTasksState extends State<FormQueryTasks> {
                       onSaved: (value) {
                         setState(() {
                           print(value);
-                          _taskQueryParams.to = value?.toString();
+                          _taskQueryParams.to = formatDate(value?.toString());
                         });
                       },
                     ),
                   ],
                 ),
                 DropdownFormFieldComponent(
+                  initialValue: taskStatuses[0],
                   title: 'Status: ',
                   updateState: (String value) {
                     setState(() {
@@ -80,6 +81,7 @@ class _FormQueryTasksState extends State<FormQueryTasks> {
                     final form = _formKeyQueryTasks.currentState;
                     if (!form.validate()) return;
                     form.save();
+                    print('gaga $_taskQueryParams');
                     if (_taskQueryParams.from != null &&
                         _taskQueryParams.to != null) {
                       DateTime beginAt = DateTime.parse(_taskQueryParams.from);
@@ -90,10 +92,7 @@ class _FormQueryTasksState extends State<FormQueryTasks> {
                         return;
                       }
                     }
-                    bool success = await widget.onSearch(_taskQueryParams);
-                    if (success) {
-                      showInfoSnackBar(context, 'Search successfully');
-                    } else {}
+                    widget.onSearch(_taskQueryParams);
                   },
                 ),
               ],

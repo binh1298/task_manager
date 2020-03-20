@@ -23,30 +23,30 @@ class TaskDetails {
   String judgeCommentAt, beginAt, endAt, createdAt, updatedAt;
   String creatorFullname, judgeFullname, assigneeFullname;
 
-  TaskDetails(
-      {this.createdAt,
-      this.assigneeId,
-      this.beginAt,
-      this.confirmationImg,
-      this.creatorId,
-      this.endAt,
-      this.handleProcess,
-      this.submitDescription,
-      this.id,
-      this.judgeComment,
-      this.judgeCommentAt,
-      this.judgeId,
-      this.judgeScore,
-      this.name,
-      this.requirement,
-      this.sourceTaskId,
-      this.status,
-      this.judgeStatus,
-      this.updatedAt,
-      this.creatorFullname,
-      this.assigneeFullname,
-      this.judgeFullname,
-      });
+  TaskDetails({
+    this.createdAt,
+    this.assigneeId,
+    this.beginAt,
+    this.confirmationImg,
+    this.creatorId,
+    this.endAt,
+    this.handleProcess,
+    this.submitDescription,
+    this.id,
+    this.judgeComment,
+    this.judgeCommentAt,
+    this.judgeId,
+    this.judgeScore,
+    this.name,
+    this.requirement,
+    this.sourceTaskId,
+    this.status,
+    this.judgeStatus,
+    this.updatedAt,
+    this.creatorFullname,
+    this.assigneeFullname,
+    this.judgeFullname,
+  });
 
   factory TaskDetails.fromJson(dynamic json) {
     return TaskDetails(
@@ -122,9 +122,9 @@ class TaskDetails {
 }
 
 Future<TaskDetails> fetchTaskDetails(int taskId) async {
-  final http.Response response =
-      await apiCaller.get(route: await createRoleRoute('${apiRoutes.getTasks}/$taskId'));
-      print(response.body);
+  final http.Response response = await apiCaller.get(
+      route: await createRoleRoute('${apiRoutes.getTasks}/$taskId'));
+  print(response.body);
   if (response.statusCode == 200) {
     var taskDetailsJson = json.decode(response.body)['task'];
     return TaskDetails.fromJson(taskDetailsJson);
@@ -132,7 +132,8 @@ Future<TaskDetails> fetchTaskDetails(int taskId) async {
     return null;
 }
 
-Future<List<TaskDetails>> fetchTasksList(TaskQueryParams taskQueryParams) async {
+Future<List<TaskDetails>> fetchTasksList(
+    TaskQueryParams taskQueryParams) async {
   print(taskQueryParams);
   final http.Response response =
       await apiCaller.get(route: await createRoleRoute(apiRoutes.getTasks));
@@ -146,10 +147,12 @@ Future<List<TaskDetails>> fetchTasksList(TaskQueryParams taskQueryParams) async 
   }
 }
 
-Future<List<TaskDetails>> fetchTasksToJudge(TaskQueryParams taskQueryParams) async {
+Future<List<TaskDetails>> fetchTasksToJudge(
+    TaskQueryParams taskQueryParams) async {
   print(taskQueryParams);
-  final http.Response response =
-      await apiCaller.get(route: await createRoleRoute(apiRoutes.getTasksToJudge));
+  final http.Response response = await apiCaller.get(
+      route: await createRoleRoute(apiRoutes.getTasksToJudge),
+      queryParams: taskQueryParams?.toMap());
   if (response.statusCode == 200) {
     var userDetailsListJson = json.decode(response.body)['result'] as List;
     return userDetailsListJson
