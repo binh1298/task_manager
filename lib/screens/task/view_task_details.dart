@@ -75,7 +75,8 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                     ),
                     SizedBox(height: 10),
                     DropdownFormFieldComponent(
-                      options: updatatableTaskStatusesForManager,
+                      initialValue: snapshot.data.status,
+                      options: updatatableTaskStatusesForJudge,
                       title: 'Status:',
                       style: textStyleTitle,
                       updateState: (String value) {
@@ -267,6 +268,8 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                       onPressed: () async {
                         final form = _updateTaskFormKey.currentState;
                         if (!form.validate()) return;
+
+                        // TODO: Validate for roles
                         form.save();
                         bool success =
                             await _taskUpdateDetails.updateTask(context);
