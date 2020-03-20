@@ -53,15 +53,12 @@ class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
           future: tasksDetailsList,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Column(
+              return ListView(
                 children: <Widget>[
                   FormQueryTasks((TaskQueryParams taskQueryParams) { 
                     refreshList(taskQueryParams: taskQueryParams);
                   }),
-                  Expanded(
-                    child: ListView(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      padding: const EdgeInsets.all(8),
+                    Column(
                       children: snapshot.data
                           .map(
                             (taskDetails) => CardTaskListItem(
@@ -76,7 +73,6 @@ class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
                           )
                           .toList(),
                     ),
-                  ),
                 ],
               );
             } else if (snapshot.hasError) {
