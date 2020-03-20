@@ -26,6 +26,7 @@ class SectionTaskDetailsOfJudgeNotEditable extends StatelessWidget {
           label: 'Requirement',
           text: taskDetails.requirement,
           labelStyle: textStyleTitle,
+          textBoxWidth: textboxWidthLarge,
         ),
         SizedBox(
           height: 20,
@@ -49,10 +50,12 @@ class SectionTaskDetailsOfJudgeNotEditable extends StatelessWidget {
           height: 20,
         ),
         TextSafeComponent(
-            label: 'Judge\'s comment',
-            text: taskDetails.judgeComment,
-            fallbackText: 'Judge has not commented yet',
-            labelStyle: textStyleTitle),
+          label: 'Judge\'s comment',
+          text: taskDetails.judgeComment,
+          fallbackText: 'Judge has not commented yet',
+          labelStyle: textStyleTitle,
+          textBoxWidth: textboxWidthLarge,
+        ),
         SizedBox(
           height: 20,
         ),

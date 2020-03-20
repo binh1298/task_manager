@@ -16,6 +16,7 @@ class SectionTaskDetailsOfAssigneeNotEditable extends StatelessWidget {
         TextSafeComponent(
           text: 'Handle Process:',
           style: textStyleTitle,
+          textBoxWidth: textboxWidthLarge,
         ),
         TextSafeComponent(
           text: taskDetails.handleProcess,
@@ -42,6 +43,7 @@ class SectionTaskDetailsOfAssigneeNotEditable extends StatelessWidget {
         TextSafeComponent(
           text: 'Submit Description',
           style: textStyleTitle,
+          textBoxWidth: textboxWidthLarge,
         ),
         TextSafeComponent(
           text: taskDetails.submitDescription,
