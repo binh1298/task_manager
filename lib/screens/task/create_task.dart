@@ -73,7 +73,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                           });
                         },
                         validator: (value) {
-                          return validateFormField(value, 'requirement', 5);
+                          return validateFormField(value, 'requirement', 5, maxLength: 200);
                         },
                         textInputType: TextInputType.multiline,
                       ),
