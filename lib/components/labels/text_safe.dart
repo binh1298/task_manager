@@ -5,6 +5,7 @@ import 'package:task_manager/style/style.dart';
 class TextSafeComponent extends StatelessWidget {
   final String text;
   final TextStyle style;
+  final TextStyle labelStyle;
   final Color color;
   final double textBoxWidth;
   final Function onTap;
@@ -16,6 +17,7 @@ class TextSafeComponent extends StatelessWidget {
       this.onTap,
       this.text,
       this.style,
+      this.labelStyle,
       this.color,
       this.textBoxWidth = textboxWidthMedium});
   @override
@@ -31,7 +33,7 @@ class TextSafeComponent extends StatelessWidget {
           children: <Widget>[
             Text(
               finalLabel,
-              style: style != null ? style : textStyleDefault,
+              style: labelStyle != null ? labelStyle : style != null ? style : textStyleDefault,
             ),
             Text(
               (text == null || text == 'null') ? finalFallBackText : text,

@@ -5,6 +5,8 @@ import 'package:task_manager/components/form_fields/text_form_field.dart';
 import 'package:task_manager/components/image_task_safe.dart';
 import 'package:task_manager/components/labels/icon_text.dart';
 import 'package:task_manager/components/labels/text_safe.dart';
+import 'package:task_manager/components/sections/section_task_details_of_assignee_not_editable.dart';
+import 'package:task_manager/components/sections/section_task_details_of_judge_not_editable.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
@@ -85,92 +87,96 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                     FutureBuilder<UserDetails>(
                         future: getUserFromToken(),
                         builder: (context, snapshotUser) {
-                          if (snapshotUser.hasData &&
-                              (snapshotUser.data.userId ==
-                                      snapshot.data.judgeId ||
-                                  snapshotUser.data.roleName ==
-                                      RoleNames.admin)) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                DropdownFormFieldComponent(
-                                  options: judgeStatuses,
-                                  title: 'Judge Status:',
-                                  style: textStyleTitle,
-                                  updateState: (String value) {
-                                    setState(() {
-                                      _taskUpdateDetails.judgeStatus = value;
-                                    });
-                                  },
-                                ),
-                                TextFormFieldComponent(
-                                  initialValue: snapshot.data.requirement,
-                                  title: 'Requirement',
-                                  textInputType: TextInputType.multiline,
-                                  onSaved: (value) {
-                                    setState(() {
-                                      _taskUpdateDetails.requirement = value;
-                                    });
-                                  },
-                                  validator: (value) {
-                                    return validateFormField(
-                                        value, 'requirement', 5);
-                                  },
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    IconTextComponent(
-                                      icon: Icons.notifications,
-                                      text: formatDate(snapshot.data.beginAt),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    IconTextComponent(
-                                      icon: Icons.notifications_off,
-                                      text: formatDate(snapshot.data.endAt),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                TextFormFieldComponent(
-                                  initialValue: snapshot.data.judgeComment,
-                                  title: 'Judge\'s comment',
-                                  textInputType: TextInputType.multiline,
-                                  onSaved: (value) {
-                                    setState(() {
-                                      _taskUpdateDetails.requirement = value;
-                                    });
-                                  },
-                                ),
-                                IconTextComponent(
-                                  icon: Icons.access_alarm,
-                                  text:
-                                      formatDate(snapshot.data.judgeCommentAt),
-                                  fallbackText: 'Not commented yet',
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                TextFormFieldComponent(
-                                  initialValue: snapshot.data.judgeScore != null
-                                      ? snapshot.data.judgeScore.toString()
-                                      : null,
-                                  title: 'Score',
-                                  textInputType: TextInputType.number,
-                                  onSaved: (value) {
-                                    setState(() {
-                                      _taskUpdateDetails.judgeScore = value;
-                                    });
-                                  },
-                                  validator: (value) {
-                                    return validateFormField(value, 'score', 0);
-                                  },
-                                ),
-                              ],
-                            );
+                          if (snapshotUser.hasData) {
+                            if (snapshotUser.data.userId ==
+                                snapshot.data.judgeId) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  DropdownFormFieldComponent(
+                                    options: judgeStatuses,
+                                    title: 'Judge Status:',
+                                    style: textStyleTitle,
+                                    updateState: (String value) {
+                                      setState(() {
+                                        _taskUpdateDetails.judgeStatus = value;
+                                      });
+                                    },
+                                  ),
+                                  TextFormFieldComponent(
+                                    initialValue: snapshot.data.requirement,
+                                    title: 'Requirement',
+                                    textInputType: TextInputType.multiline,
+                                    onSaved: (value) {
+                                      setState(() {
+                                        _taskUpdateDetails.requirement = value;
+                                      });
+                                    },
+                                    validator: (value) {
+                                      return validateFormField(
+                                          value, 'requirement', 5);
+                                    },
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      IconTextComponent(
+                                        icon: Icons.notifications,
+                                        text: formatDate(snapshot.data.beginAt),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      IconTextComponent(
+                                        icon: Icons.notifications_off,
+                                        text: formatDate(snapshot.data.endAt),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  TextFormFieldComponent(
+                                    initialValue: snapshot.data.judgeComment,
+                                    title: 'Judge\'s comment',
+                                    textInputType: TextInputType.multiline,
+                                    onSaved: (value) {
+                                      setState(() {
+                                        _taskUpdateDetails.requirement = value;
+                                      });
+                                    },
+                                  ),
+                                  IconTextComponent(
+                                    icon: Icons.access_alarm,
+                                    text: formatDate(
+                                        snapshot.data.judgeCommentAt),
+                                    fallbackText: 'Not commented yet',
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  TextFormFieldComponent(
+                                    initialValue: snapshot.data.judgeScore !=
+                                            null
+                                        ? snapshot.data.judgeScore.toString()
+                                        : null,
+                                    title: 'Score',
+                                    textInputType: TextInputType.number,
+                                    onSaved: (value) {
+                                      setState(() {
+                                        _taskUpdateDetails.judgeScore = value;
+                                      });
+                                    },
+                                    validator: (value) {
+                                      return validateFormField(
+                                          value, 'score', 0);
+                                    },
+                                  ),
+                                ],
+                              );
+                            } else {
+                              return SectionTaskDetailsOfJudgeNotEditable(
+                                  _taskUpdateDetails);
+                            }
                           } else {
                             return CircularProgressIndicator();
                           }
@@ -187,12 +193,11 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                       height: 20,
                     ),
                     FutureBuilder<UserDetails>(
-                        future: getUserFromToken(),
-                        builder: (context, snapshotUser) {
-                          if (snapshotUser.hasData &&
-                                  snapshotUser.data.userId ==
-                                      snapshot.data.assigneeId ||
-                              snapshotUser.data.roleName == RoleNames.admin) {
+                      future: getUserFromToken(),
+                      builder: (context, snapshotUser) {
+                        if (snapshotUser.hasData) {
+                          if (snapshotUser.data.userId ==
+                              snapshot.data.assigneeId) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -226,7 +231,6 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                             result;
                                       });
                                     }
-                                    ;
                                   },
                                   child: Text('Submit Image'),
                                 ),
@@ -247,29 +251,33 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                ButtonConfirmComponent(
-                                  text: 'Update Task',
-                                  onPressed: () async {
-                                    final form =
-                                        _updateTaskFormKey.currentState;
-                                    if (!form.validate()) return;
-                                    form.save();
-                                    bool success = await _taskUpdateDetails
-                                        .updateTask(context);
-                                    if (success) {
-                                      Navigator.pop(context, true);
-                                    } else {}
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
                               ],
                             );
                           } else {
-                            return CircularProgressIndicator();
+                            return SectionTaskDetailsOfAssigneeNotEditable(
+                                _taskUpdateDetails);
                           }
-                        }),
+                        } else {
+                          return CircularProgressIndicator();
+                        }
+                      },
+                    ),
+                    ButtonConfirmComponent(
+                      text: 'Update Task',
+                      onPressed: () async {
+                        final form = _updateTaskFormKey.currentState;
+                        if (!form.validate()) return;
+                        form.save();
+                        bool success =
+                            await _taskUpdateDetails.updateTask(context);
+                        if (success) {
+                          Navigator.pop(context, true);
+                        } else {}
+                      },
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
