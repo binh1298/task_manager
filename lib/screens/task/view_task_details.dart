@@ -224,12 +224,14 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                   textColor: colorTextButton,
                                   splashColor: Colors.blueGrey,
                                   onPressed: () async {
-                                    final result = await Navigator.pushNamed(
-                                        context, '/updateConfirmationImg');
-                                    if (result) {
+                                    final url = await Navigator.pushNamed(
+                                      context,
+                                      '/updateConfirmationImg',
+                                    );
+                                    if (url != null) {
                                       setState(() {
                                         _taskUpdateDetails.confirmationImg =
-                                            result;
+                                            url;
                                       });
                                     }
                                   },
@@ -268,7 +270,6 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                       onPressed: () async {
                         final form = _updateTaskFormKey.currentState;
                         if (!form.validate()) return;
-
                         // TODO: Validate for roles
                         form.save();
                         bool success =

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/screens/utils/image_capture.dart';
-import 'package:task_manager/utils/secure_storage.dart';
 
 class ChangeConfirmationImageComponent extends StatelessWidget {
   @override
@@ -12,8 +10,6 @@ class ChangeConfirmationImageComponent extends StatelessWidget {
           label: 'Update Confirmation Image',
           onSuccess: (url) async {
             print('url: $url');
-            final UserDetails user = await getUserFromToken();
-            await patchAvatarUser(user.userId, url);
             Navigator.pop(context, url);
           },
           onFailed: () {
