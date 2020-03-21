@@ -4,6 +4,8 @@ import 'package:task_manager/utils/api_routes.dart';
 import 'package:task_manager/utils/api_caller.dart';
 import 'package:http/http.dart' as http;
 import 'package:task_manager/utils/authorization.dart';
+import 'package:task_manager/utils/secure_storage.dart';
+import 'package:task_manager/utils/string_utils.dart';
 
 class UserDetails {
   String userId, username, avatar, email, fullname, roleName;
@@ -35,9 +37,11 @@ class UserDetails {
 }
 
 // GET
-Future<UserDetails> fetchUserDetails(String userId) async {
+
+
+Future<UserDetails> fetchUserDetails(String route, String userId) async {
   final http.Response response = await apiCaller.get(
-      route: '${await createRoleRoute(apiRoutes.getUserProfile)}/$userId');
+      route: '$route/$userId');
   if (response.statusCode == 200) {
     var userDetailsJson = json.decode(response.body)['user'];
     return UserDetails.fromJson(userDetailsJson);
@@ -45,25 +49,39 @@ Future<UserDetails> fetchUserDetails(String userId) async {
     return null;
 }
 
-Future<UserDetails> fetchManagerOrAdminDetails(String userId) async {
-  final http.Response response = await apiCaller.get(
-      route: '${await createRoleRoute(apiRoutes.getManagerOrAdminDetails)}/$userId');
-  if (response.statusCode == 200) {
-    var userDetailsJson = json.decode(response.body)['user'];
-    return UserDetails.fromJson(userDetailsJson);
-  } else
-    return null;
+Future<UserDetails> fetchUserDetailsToShow(String userId) async {
+  return fetchUserDetails(await createRoleRoute(apiRoutes.getUserProfile), userId);
 }
 
-Future<UserDetails> fetchManagerOrEmployeeDetails(String userId) async {
-  final http.Response response = await apiCaller.get(
-      route: '${await createRoleRoute(apiRoutes.getManagerOrEmployeeDetails)}/$userId');
-  if (response.statusCode == 200) {
-    var userDetailsJson = json.decode(response.body)['user'];
-    return UserDetails.fromJson(userDetailsJson);
-  } else
-    return null;
+Future<UserDetails> fetchJudge(String userId) async {
+  return fetchUserDetails(await createRoleRoute(apiRoutes.findJudge), userId);
 }
+
+Future<UserDetails> fetchAssignee(String userId) async {
+  return fetchUserDetails(await createRoleRoute(apiRoutes.findAssignee), userId);
+}
+
+Future<UserDetails> fetchJudgeOrAssignee(String userId) async {
+  return fetchUserDetails(await createRoleRoute(apiRoutes.findJudgeOrAssignee), userId);
+}
+
+Future<UserDetails> fetchUserForQueryHistory(String userId) async { // For managers
+  UserDetails user = await getUserFromToken();
+  switch (user.roleName) {
+    case RoleNames.admin:
+      return fetchAssignee(userId);
+      break;
+    case RoleNames.employee:
+      return fetchJudge(userId);
+      break;
+      case RoleNames.manager:
+      return fetchJudgeOrAssignee(userId);
+      break;
+    default:
+      return null;
+  }
+}
+
 
 Future<UserDetails> fetchUserProfile(BuildContext context) async {
   final http.Response response =

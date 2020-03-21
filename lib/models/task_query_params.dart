@@ -1,16 +1,16 @@
 
 
 class TaskQueryParams {
-  String from, to, status, fullname;
+  String from, to, status, userId;
 
-  TaskQueryParams({this.from, this. to, this.status, this.fullname});
+  TaskQueryParams({this.from, this. to, this.status, this.userId});
 
   Map<String, String> toMap() {
     return {
       'from': from,
       'to': to,
       'status': status,
-      'fullname': fullname,
+      'userId': userId,
     };
   }
 
@@ -19,7 +19,7 @@ class TaskQueryParams {
       from: json['from'],
       to: json['to'],
       status: json['status'],
-      fullname: json['fullname'],
+      userId: json['userId'],
     );
   }
 }

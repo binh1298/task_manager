@@ -21,7 +21,7 @@ class _ViewUserDetailsScreenState extends State<ViewUserDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    userDetails = fetchUserDetails(widget.userId);
+    userDetails = fetchUserDetailsToShow(widget.userId);
   }
 
   @override

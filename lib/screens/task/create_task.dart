@@ -125,7 +125,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                       ScanButtonToBuildUserCard(
                         roleName: 'judge',
                         fetchDetail: (userId) {
-                          return fetchManagerOrAdminDetails(userId);
+                          return fetchJudge(userId);
                         },
                         onSuccessBuild: (userId) {
                           _taskCreateDetails.judgeId = userId;
@@ -149,7 +149,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                                 return ScanButtonToBuildUserCard(
                                   roleName: 'assignee',
                                   fetchDetail: (userId) {
-                                    return fetchManagerOrEmployeeDetails(
+                                    return fetchAssignee(
                                         userId);
                                   },
                                   onSuccessBuild: (userId) {

@@ -62,7 +62,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                       ScanButtonToBuildUserCard(
                         roleName: 'Manager or Admin',
                         fetchDetail: (userId) {
-                          return fetchManagerOrAdminDetails(userId);
+                          return fetchJudge(userId);
                         },
                         onSuccessBuild: (userId) {
                           _groupCreateDetails.managerId = userId;

@@ -48,10 +48,12 @@ List<String> updatatableTaskStatusesForAssignee = [
 List<String> judgeStatuses = ['NOT-JUDGED', 'JUDGED'];
 
 class RoleNames {
-  static String admin = 'admin', manager = 'manager', employee = 'employee';
+  static const String admin = 'admin', manager = 'manager', employee = 'employee';
 }
 
-class TaskTypes {
-  static String judge = 'judge', submit = 'submit';
+class TaskTypesForQuery {
+  static const String 
+  judge = 'judge', 
+  assignee = 'assignee',
+  history = 'history';
 }
-

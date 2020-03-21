@@ -25,8 +25,9 @@ class ApiRoutes {
   final String getUserProfile = 'show';
   final String changeAvatar = 'update-avatar-user';
   
-  final String getManagerOrAdminDetails = 'managers';
-  final String getManagerOrEmployeeDetails = 'employees';
+  final String findJudge = 'find-judge';
+  final String findAssignee = 'find-assignee';
+  final String findJudgeOrAssignee = 'find-judge-or-assignee';
 }
 
 createRoleRoute(route) async {

@@ -4,6 +4,7 @@ import 'package:task_manager/components/form_query_tasks.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/models/task_query_params.dart';
 import 'package:task_manager/utils/snack_bar.dart';
+import 'package:task_manager/utils/string_utils.dart';
 
 class ViewJudgeTasksScreen extends StatefulWidget {
   @override
@@ -57,7 +58,7 @@ class _ViewJudgeTasksScreenState extends State<ViewJudgeTasksScreen> {
                 children: <Widget>[
                   FormQueryTasks((TaskQueryParams taskQueryParams) { 
                     refreshList(taskQueryParams: taskQueryParams);
-                  }),
+                  }, TaskTypesForQuery.assignee),
                     Column(
                       children: snapshot.data
                           .map(
