@@ -164,7 +164,10 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                     textInputType: TextInputType.number,
                                     onSaved: (value) {
                                       setState(() {
-                                        _taskUpdateDetails.judgeScore = value;
+                                        int result = int.parse(value);
+                                        if (result != null)
+                                          _taskUpdateDetails.judgeScore =
+                                              result;
                                       });
                                     },
                                     validator: (value) {
@@ -251,9 +254,6 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                     });
                                   },
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
                               ],
                             );
                           } else {
@@ -265,6 +265,9 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                         }
                       },
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     ButtonConfirmComponent(
                       text: 'Update Task',
                       onPressed: () async {
@@ -272,8 +275,8 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                         if (!form.validate()) return;
                         // TODO: Validate for roles
                         form.save();
-                        bool success =
-                            await _taskUpdateDetails.updateTask(context);
+                        bool success = await _taskUpdateDetails.updateTask(
+                            context, _taskUpdateDetails.id);
                         if (success) {
                           Navigator.pop(context, true);
                         } else {}
