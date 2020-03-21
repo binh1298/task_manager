@@ -57,29 +57,40 @@ class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
             if (snapshot.hasData) {
               return ListView(
                 children: <Widget>[
-                  FormQueryTasks((TaskQueryParams taskQueryParams) { 
+                  FormQueryTasks((TaskQueryParams taskQueryParams) {
                     refreshList(taskQueryParams: taskQueryParams);
                   }, TaskTypesForQuery.history),
-                  (snapshot.data.length > 0) ? Column(
-                      children: snapshot.data
-                          .map(
-                            (taskDetails) => CardTaskListItem(
-                              id: taskDetails.id,
-                              name: taskDetails.name,
-                              sourceTaskId: taskDetails.sourceTaskId,
-                              status: taskDetails.status,
-                              beginAt: taskDetails.beginAt,
-                              endAt: taskDetails.endAt,
-                              refreshList: refreshList,
+                  (snapshot.data.length > 0)
+                      ? Column(
+                          children: snapshot.data
+                              .map(
+                                (taskDetails) => CardTaskListItem(
+                                  id: taskDetails.id,
+                                  name: taskDetails.name,
+                                  sourceTaskId: taskDetails.sourceTaskId,
+                                  judgeFullname: taskDetails.judgeFullname,
+                                  creatorFullname: taskDetails.creatorFullname,
+                                  assigneeFullname: taskDetails.assigneeFullname,
+                                  status: taskDetails.status,
+                                  beginAt: taskDetails.beginAt,
+                                  endAt: taskDetails.endAt,
+                                  refreshList: refreshList,
+                                ),
+                              )
+                              .toList(),
+                        )
+                      : Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 20,
                             ),
-                          )
-                          .toList(),
-                    ) : Column(
-                      children: <Widget>[
-                        SizedBox(height: 20,),
-                        Center(child: Text('No Task Found', style: textStyleTitle,)),
-                      ],
-                    ),
+                            Center(
+                                child: Text(
+                              'No Task Found',
+                              style: textStyleTitle,
+                            )),
+                          ],
+                        ),
                 ],
               );
             } else if (snapshot.hasError) {
