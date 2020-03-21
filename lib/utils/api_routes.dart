@@ -17,6 +17,8 @@ class ApiRoutes {
   
   final String getTasks = 'tasks';
   final String getTasksToJudge = 'tasks-judge';
+  final String getTasksHistory = 'tasks-history';
+  final String getTasksToSubmit = 'tasks-submit';
   final String createTask = 'create-task';
   final String updateTask = 'update-task';
   

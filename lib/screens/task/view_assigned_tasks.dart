@@ -26,7 +26,7 @@ class _AssignedTasksScreenState extends State<AssignedTasksScreen> {
     await Future.delayed(Duration(seconds: 1));
 
     setState(() {
-      tasksDetailsList = fetchTasksList(taskQueryParams);
+      tasksDetailsList = fetchTasksToSubmit(taskQueryParams);
     });
 
     return null;

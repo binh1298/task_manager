@@ -26,7 +26,7 @@ class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
     await Future.delayed(Duration(seconds: 1));
 
     setState(() {
-      tasksDetailsList = fetchTasksList(taskQueryParams);
+      tasksDetailsList = fetchTaskHistory(taskQueryParams);
     });
 
     return null;
