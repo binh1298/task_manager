@@ -142,7 +142,7 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                     textInputType: TextInputType.multiline,
                                     onSaved: (value) {
                                       setState(() {
-                                        _taskUpdateDetails.requirement = value;
+                                        _taskUpdateDetails.judgeComment = value;
                                       });
                                     },
                                   ),
