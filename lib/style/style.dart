@@ -45,6 +45,14 @@ Color getUserStatusColor(bool isDeleted) {
 }
 
 class TaskStatus {
+  static const String 
+    pending = 'PENDING',
+    inProgress = 'IN-PROGRESS',
+    accepted = 'ACCEPTED',
+    decline = 'DECLINE',
+    finished = 'FINISHED',
+    failed = 'FAILED',
+    overdue = 'OVERDUED';
   final String status;
   final Color color;
   TaskStatus({this.status, this.color});

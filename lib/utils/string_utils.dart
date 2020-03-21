@@ -21,7 +21,7 @@ String formatDate(String strDate) {
 List<String> taskStatuses = [
   'PENDING',
   'IN-PROGRESS',
-  'ACCEPT',
+  'ACCEPTED',
   'DECLINE',
   'FINISHED',
   'FAILED',
@@ -45,6 +45,11 @@ List<String> updatatableTaskStatusesForAssignee = [
   'FAILED'
 ];
 
+class JudgeStatus {
+  static const String 
+    judged = 'JUDGED',
+    notJudged = 'NOT-JUDGED';
+}
 List<String> judgeStatuses = ['NOT-JUDGED', 'JUDGED'];
 
 class RoleNames {
