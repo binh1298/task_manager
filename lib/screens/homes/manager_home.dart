@@ -12,8 +12,8 @@ import '../../classes/destination.dart';
 List<Destination> managerDestinations = <Destination>[
   Destination('Groups', Icons.group, ViewGroupsScreen()),
   Destination('Assigned Tasks', Icons.event_note, AssignedTasksScreen()),
-  Destination('My Tasks', Icons.event_note, ViewTaskHistoryScreen()),
   Destination('Judge Tasks', Icons.library_books, ViewJudgeTasksScreen()),
+  Destination('History', Icons.event_note, ViewTaskHistoryScreen()),
   Destination('Profile', Icons.person, ViewProfileScreen()),
 ];
 
