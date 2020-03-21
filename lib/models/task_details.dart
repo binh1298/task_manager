@@ -93,9 +93,9 @@ class TaskDetails {
     return success;
   }
 
-  Future<bool> updateTask(BuildContext context) async {
-    final http.Response response = await apiCaller.post(
-        route: await createRoleRoute(apiRoutes.updateTask),
+  Future<bool> updateTask(BuildContext context, int taskId) async {
+    final http.Response response = await apiCaller.put(
+        route: '${await createRoleRoute(apiRoutes.updateTask)}/$taskId',
         body: jsonEncode(<String, String>{
           'name': name,
           'requirement': requirement,
@@ -107,6 +107,7 @@ class TaskDetails {
           'beginAt': beginAt,
           'endAt': endAt,
           'taskStatus': status,
+          'judgeStatus': judgeStatus,
           'confirmationImg': confirmationImg,
           'submitDescription': submitDescription,
         }));
@@ -136,11 +137,10 @@ Future<List<TaskDetails>> fetchTasksList(
   String route,
   TaskQueryParams taskQueryParams,
 ) async {
-  print(taskQueryParams);
   final http.Response response =
       await apiCaller.get(route: route);
   if (response.statusCode == 200) {
-    var userDetailsListJson = json.decode(response.body)['result'] as List;
+    var userDetailsListJson = json.decode(response.body)['tasks'] as List;
     return userDetailsListJson
         .map((userDetails) => TaskDetails.fromJson(userDetails))
         .toList();

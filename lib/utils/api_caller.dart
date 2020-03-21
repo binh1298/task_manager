@@ -34,15 +34,15 @@ class ApiCaller {
         HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
-    // print('GET $uri ${response.body}');
+    print('GET $uri ${response.body}');
     return response;
   }
 
-  patch({String route, dynamic body}) async {
+  put({String route, dynamic body}) async {
     String token = await getJwtToken();
     var uri = Uri.http(apiUrl, route);
-    print('PATCH $uri');
-    http.Response response = await http.patch(
+    print('PUT $uri');
+    http.Response response = await http.put(
       uri,
       headers: <String, String>{
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -50,7 +50,7 @@ class ApiCaller {
       },
       body: body,
     );
-    // print('PATCH $uri ${response.body}');
+    // print('PUT $uri ${response.body}');
     return response;
   }
 }

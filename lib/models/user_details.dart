@@ -124,7 +124,7 @@ Future<List<UserDetails>> fetchGroupMembersDetailsList(int groupId) async {
 
 // PATCH
 Future<bool> deleteUser(String userId, bool newIsDeleted) async {
-  final http.Response response = await apiCaller.patch(
+  final http.Response response = await apiCaller.put(
     route: await createRoleRoute(apiRoutes.deleteUser),
     body: jsonEncode(
       <String, dynamic>{
@@ -137,7 +137,7 @@ Future<bool> deleteUser(String userId, bool newIsDeleted) async {
 }
 
 Future<bool> patchAvatarUser(String userId, String avatarUrl) async {
-  final http.Response response = await apiCaller.patch(
+  final http.Response response = await apiCaller.put(
     route: await createRoleRoute(apiRoutes.changeAvatar),
     body: jsonEncode(
       <String, dynamic>{
