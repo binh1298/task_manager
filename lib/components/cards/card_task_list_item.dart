@@ -76,14 +76,20 @@ class CardTaskListItem extends StatelessWidget {
               TextSafeComponent(
                 label: 'Creator',
                 text: creatorFullname,
+                textBoxWidth: textboxWidthLarge,
+                style: textStyleSubtitle,
               ),
               TextSafeComponent(
                 label: 'Judge',
                 text: judgeFullname,
+                textBoxWidth: textboxWidthLarge,
+                style: textStyleSubtitle,
               ),
               TextSafeComponent(
                 label: 'Assignee',
                 text: assigneeFullname,
+                textBoxWidth: textboxWidthLarge,
+                style: textStyleSubtitle,
               ),
               IconTextComponent(
                 icon: Icons.access_time,
