@@ -1,24 +1,24 @@
 
 
 class TaskQueryParams {
-  String from, to, status, userId;
+  String beginAt, endAt, taskStatus, userId;
 
-  TaskQueryParams({this.from, this. to, this.status, this.userId});
+  TaskQueryParams({this.beginAt, this. endAt, this.taskStatus, this.userId});
 
   Map<String, String> toMap() {
-    return {
-      'from': from,
-      'to': to,
-      'status': status,
-      'userId': userId,
-    };
+    Map<String, String> map = {};
+    if(beginAt != null) map.addAll({'beginAt': beginAt});
+    if(endAt != null) map.addAll({'endAt': endAt});
+    if(taskStatus != null) map.addAll({'taskStatus': taskStatus});
+    if(userId != null) map.addAll({'userId': userId});
+    return map;
   }
 
   factory TaskQueryParams.fromJson(dynamic json) {
     return TaskQueryParams(
-      from: json['from'],
-      to: json['to'],
-      status: json['status'],
+      beginAt: json['beginAt'],
+      endAt: json['endAt'],
+      taskStatus: json['taskStatus'],
       userId: json['userId'],
     );
   }

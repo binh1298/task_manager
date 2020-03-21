@@ -140,7 +140,7 @@ Future<List<TaskDetails>> fetchTasksList(
   TaskQueryParams taskQueryParams,
 ) async {
   final http.Response response =
-      await apiCaller.get(route: route);
+      await apiCaller.get(route: route, queryParams: taskQueryParams?.toMap());
   if (response.statusCode == 200) {
     var userDetailsListJson = json.decode(response.body)['tasks'] as List;
     return userDetailsListJson

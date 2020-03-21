@@ -3,7 +3,6 @@ import 'package:task_manager/components/buttons/button_confirm.dart';
 import 'package:task_manager/components/cards/card_list_container.dart';
 import 'package:task_manager/components/dropdowns/drop_down_button.dart';
 import 'package:task_manager/components/form_fields/date_form_field.dart';
-import 'package:task_manager/components/form_fields/text_form_field.dart';
 import 'package:task_manager/components/scan_button_to_build_user_card.dart';
 import 'package:task_manager/models/task_query_params.dart';
 import 'package:task_manager/models/user_details.dart';
@@ -22,7 +21,7 @@ class FormQueryTasks extends StatefulWidget {
 class _FormQueryTasksState extends State<FormQueryTasks> {
   final _formKeyQueryTasks = GlobalKey<FormState>();
   final TaskQueryParams _taskQueryParams =
-      TaskQueryParams(status: taskStatuses[0]);
+      TaskQueryParams(taskStatus: taskStatuses[0]);
   @override
   Widget build(BuildContext context) {
     return CardListContainer(
@@ -42,8 +41,7 @@ class _FormQueryTasksState extends State<FormQueryTasks> {
                       label: 'From',
                       onSaved: (value) {
                         setState(() {
-                          print(value);
-                          _taskQueryParams.from = formatDate(value?.toString());
+                          _taskQueryParams.beginAt = formatDate(value?.toString());
                         });
                       },
                     ),
@@ -54,8 +52,7 @@ class _FormQueryTasksState extends State<FormQueryTasks> {
                       label: 'To',
                       onSaved: (value) {
                         setState(() {
-                          print(value);
-                          _taskQueryParams.to = formatDate(value?.toString());
+                          _taskQueryParams.endAt = formatDate(value?.toString());
                         });
                       },
                     ),
@@ -66,7 +63,7 @@ class _FormQueryTasksState extends State<FormQueryTasks> {
                   title: 'Status: ',
                   updateState: (String value) {
                     setState(() {
-                      _taskQueryParams.status = value;
+                      _taskQueryParams.taskStatus = value;
                     });
                   },
                   options: taskStatuses,
@@ -103,11 +100,10 @@ class _FormQueryTasksState extends State<FormQueryTasks> {
                     final form = _formKeyQueryTasks.currentState;
                     if (!form.validate()) return;
                     form.save();
-                    print('gaga $_taskQueryParams');
-                    if (_taskQueryParams.from != null &&
-                        _taskQueryParams.to != null) {
-                      DateTime beginAt = DateTime.parse(_taskQueryParams.from);
-                      DateTime endAt = DateTime.parse(_taskQueryParams.to);
+                    if (_taskQueryParams.beginAt != null &&
+                        _taskQueryParams.endAt != null) {
+                      DateTime beginAt = DateTime.parse(_taskQueryParams.beginAt);
+                      DateTime endAt = DateTime.parse(_taskQueryParams.endAt);
                       if (beginAt.compareTo(endAt) > 0) {
                         showErrorSnackBar(
                             context, 'From has to come before To');

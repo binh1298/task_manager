@@ -49,8 +49,6 @@ class CardTaskListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(status);
-    print(judgeStatus);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,

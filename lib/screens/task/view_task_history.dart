@@ -13,6 +13,7 @@ class ViewTaskHistoryScreen extends StatefulWidget {
 }
 
 class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
+  TaskQueryParams _taskQueryParams;
   Future<List<TaskDetails>> tasksDetailsList;
   GlobalKey<RefreshIndicatorState> refreshKey =
       GlobalKey<RefreshIndicatorState>();
@@ -20,15 +21,15 @@ class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
   @override
   void initState() {
     super.initState();
-    refreshList();
+    tasksDetailsList = fetchTasksToJudge(_taskQueryParams);
   }
 
-  Future<Null> refreshList({TaskQueryParams taskQueryParams}) async {
+  Future<Null> refreshList() async {
     refreshKey.currentState?.show(atTop: true);
     await Future.delayed(Duration(seconds: 1));
 
     setState(() {
-      tasksDetailsList = fetchTaskHistory(taskQueryParams);
+      tasksDetailsList = fetchTaskHistory(_taskQueryParams);
     });
 
     return null;
@@ -58,7 +59,10 @@ class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
               return ListView(
                 children: <Widget>[
                   FormQueryTasks((TaskQueryParams taskQueryParams) {
-                    refreshList(taskQueryParams: taskQueryParams);
+                    setState(() {
+                      _taskQueryParams = taskQueryParams;
+                    });
+                    refreshList();
                   }, TaskTypesForQuery.history),
                   (snapshot.data.length > 0)
                       ? Column(
