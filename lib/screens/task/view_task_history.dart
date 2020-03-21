@@ -3,6 +3,7 @@ import 'package:task_manager/components/cards/card_task_list_item.dart';
 import 'package:task_manager/components/form_query_tasks.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/models/task_query_params.dart';
+import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
@@ -59,7 +60,7 @@ class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
                   FormQueryTasks((TaskQueryParams taskQueryParams) { 
                     refreshList(taskQueryParams: taskQueryParams);
                   }, TaskTypesForQuery.history),
-                    Column(
+                  (snapshot.data.length > 0) ? Column(
                       children: snapshot.data
                           .map(
                             (taskDetails) => CardTaskListItem(
@@ -73,6 +74,11 @@ class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
                             ),
                           )
                           .toList(),
+                    ) : Column(
+                      children: <Widget>[
+                        SizedBox(height: 20,),
+                        Center(child: Text('No Task Found', style: textStyleTitle,)),
+                      ],
                     ),
                 ],
               );

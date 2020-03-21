@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:task_manager/components/labels/icon_text.dart';
+import 'package:task_manager/components/labels/text_safe.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
@@ -15,6 +16,9 @@ class CardTaskListItem extends StatelessWidget {
       status,
       creatorId,
       assigneeId,
+      creatorFullname,
+      judgeFullname,
+      assigneeFullname,
       confirmationImg;
   final String judgeCommentAt, beginAt, endAt, createdAt, updatedAt;
   final Function refreshList;
@@ -24,6 +28,9 @@ class CardTaskListItem extends StatelessWidget {
       this.beginAt,
       this.confirmationImg,
       this.creatorId,
+      this.creatorFullname,
+      this.judgeFullname,
+      this.assigneeFullname,
       this.endAt,
       this.handleProcess,
       this.id,
@@ -65,6 +72,18 @@ class CardTaskListItem extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
                 color: getTaskStatusColor(status),
+              ),
+              TextSafeComponent(
+                label: 'Creator',
+                text: creatorFullname,
+              ),
+              TextSafeComponent(
+                label: 'Judge',
+                text: judgeFullname,
+              ),
+              TextSafeComponent(
+                label: 'Assignee',
+                text: assigneeFullname,
               ),
               IconTextComponent(
                 icon: Icons.access_time,

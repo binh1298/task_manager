@@ -3,6 +3,7 @@ import 'package:task_manager/components/cards/card_task_list_item.dart';
 import 'package:task_manager/components/form_query_tasks.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/models/task_query_params.dart';
+import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/snack_bar.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
@@ -56,24 +57,37 @@ class _ViewJudgeTasksScreenState extends State<ViewJudgeTasksScreen> {
             if (snapshot.hasData) {
               return ListView(
                 children: <Widget>[
-                  FormQueryTasks((TaskQueryParams taskQueryParams) { 
+                  FormQueryTasks((TaskQueryParams taskQueryParams) {
                     refreshList(taskQueryParams: taskQueryParams);
                   }, TaskTypesForQuery.assignee),
-                    Column(
-                      children: snapshot.data
-                          .map(
-                            (taskDetails) => CardTaskListItem(
-                              id: taskDetails.id,
-                              name: taskDetails.name,
-                              sourceTaskId: taskDetails.sourceTaskId,
-                              status: taskDetails.status,
-                              beginAt: taskDetails.beginAt,
-                              endAt: taskDetails.endAt,
-                              refreshList: refreshList,
+                  (snapshot.data.length > 0)
+                      ? Column(
+                          children: snapshot.data
+                              .map(
+                                (taskDetails) => CardTaskListItem(
+                                  id: taskDetails.id,
+                                  name: taskDetails.name,
+                                  sourceTaskId: taskDetails.sourceTaskId,
+                                  status: taskDetails.status,
+                                  beginAt: taskDetails.beginAt,
+                                  endAt: taskDetails.endAt,
+                                  refreshList: refreshList,
+                                ),
+                              )
+                              .toList(),
+                        )
+                      : Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 20,
                             ),
-                          )
-                          .toList(),
-                    ),
+                            Center(
+                                child: Text(
+                              'No Task Found',
+                              style: textStyleTitle,
+                            )),
+                          ],
+                        ),
                 ],
               );
             } else if (snapshot.hasError) {
