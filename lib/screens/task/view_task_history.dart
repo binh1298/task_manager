@@ -72,6 +72,7 @@ class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
                                   creatorFullname: taskDetails.creatorFullname,
                                   assigneeFullname: taskDetails.assigneeFullname,
                                   status: taskDetails.status,
+                                  judgeStatus: taskDetails.judgeStatus,
                                   beginAt: taskDetails.beginAt,
                                   endAt: taskDetails.endAt,
                                   refreshList: refreshList,

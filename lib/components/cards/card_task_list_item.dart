@@ -19,6 +19,7 @@ class CardTaskListItem extends StatelessWidget {
       creatorFullname,
       judgeFullname,
       assigneeFullname,
+      judgeStatus,
       confirmationImg;
   final String judgeCommentAt, beginAt, endAt, createdAt, updatedAt;
   final Function refreshList;
@@ -42,11 +43,14 @@ class CardTaskListItem extends StatelessWidget {
       this.requirement,
       this.sourceTaskId,
       this.status,
+      this.judgeStatus,
       this.updatedAt,
       this.refreshList});
 
   @override
   Widget build(BuildContext context) {
+    print(status);
+    print(judgeStatus);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
@@ -117,6 +121,16 @@ class CardTaskListItem extends StatelessWidget {
             Navigator.pushNamed(context, '/viewTaskDetails', arguments: id);
           },
         ),
+        if (status == TaskStatus.failed && judgeStatus == JudgeStatus.judged)
+          IconSlideAction(
+            caption: 'Create Task',
+            color: colorAccept,
+            icon: Icons.add,
+            onTap: () {
+              Navigator.pushNamed(context, '/createTask', arguments: id);
+            },
+          ),
+
         // IconSlideAction(
         //   caption: isDeleted ? 'Undelete' : 'Delete',
         //   color: isDeleted ? colorAccept : colorWarning,

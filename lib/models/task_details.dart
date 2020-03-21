@@ -61,6 +61,8 @@ class TaskDetails {
       handleProcess: json['handleProcess'] as String,
       submitDescription: json['submitDescription'] as String,
       judgeComment: json['judgeComment'] as String,
+      judgeCommentAt: json['judgeCommentAt'] as String,
+      judgeScore: json['judgeScore'] as int,
       judgeId: json['judgeId'] as String,
       creatorId: json['creatorId'] as String,
       assigneeId: json['assigneeId'] as String,

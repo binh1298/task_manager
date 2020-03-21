@@ -58,7 +58,7 @@ class _DestinationLayoutAdminState extends State<DestinationLayoutAdmin> {
             break;
           case '/createTask':
             title = 'Create Task';
-            body = CreateTaskScreen();
+            body = CreateTaskScreen(sourceTaskId: settings.arguments);
             break;
           case '/viewTaskDetails':
             title = 'View Task Detail';

@@ -40,7 +40,7 @@ class _DestinationLayoutEmployeeState extends State<DestinationLayoutEmployee> {
             break;
           case '/createTask':
             title = 'Create Task';
-            body = CreateTaskScreen();
+            body = CreateTaskScreen(sourceTaskId: settings.arguments);
             break;
           case '/viewTaskDetails':
             title = 'View Task Detail';

@@ -95,6 +95,7 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   DropdownFormFieldComponent(
+                                    initialValue: snapshot.data.judgeStatus,
                                     options: judgeStatuses,
                                     title: 'Judge Status:',
                                     style: textStyleTitle,

@@ -3,6 +3,7 @@ import 'package:task_manager/components/buttons/button_confirm.dart';
 import 'package:task_manager/components/dropdowns/drop_down_button.dart';
 import 'package:task_manager/components/form_fields/date_form_field.dart';
 import 'package:task_manager/components/form_fields/text_form_field.dart';
+import 'package:task_manager/components/labels/text_safe.dart';
 import 'package:task_manager/components/scan_button_to_build_user_card.dart';
 import 'package:task_manager/models/task_details.dart';
 import 'package:task_manager/models/user_details.dart';
@@ -14,6 +15,8 @@ import 'package:task_manager/utils/snack_bar.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
 class CreateTaskScreen extends StatefulWidget {
+  final int sourceTaskId;
+  CreateTaskScreen({this.sourceTaskId});
   @override
   _CreateTaskScreenState createState() => _CreateTaskScreenState();
 }
@@ -27,7 +30,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
     super.initState();
 
     _taskCreateDetails.status = creatableTaskStatuses[0];
-
+    _taskCreateDetails.sourceTaskId = widget.sourceTaskId;
     getUserFromToken().then((user) {}).catchError((onError) {
       logout(context);
     });
@@ -55,6 +58,13 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      TextSafeComponent(
+                        label: 'Source task id',
+                        text: widget.sourceTaskId.toString(),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       TextFormFieldComponent(
                           title: 'Task Name',
                           onSaved: (value) {
