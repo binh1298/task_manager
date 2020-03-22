@@ -9,7 +9,7 @@ class TaskQueryParams {
     Map<String, String> map = {};
     if(beginAt != null) map.addAll({'beginAt': beginAt});
     if(endAt != null) map.addAll({'endAt': endAt});
-    if(taskStatus != null) map.addAll({'taskStatus': taskStatus});
+    if(taskStatus != null && taskStatus != 'ALL') map.addAll({'taskStatus': taskStatus});
     if(userId != null) map.addAll({'userId': userId});
     return map;
   }

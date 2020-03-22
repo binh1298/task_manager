@@ -66,7 +66,7 @@ class _FormQueryTasksState extends State<FormQueryTasks> {
                       _taskQueryParams.taskStatus = value;
                     });
                   },
-                  options: taskStatuses,
+                  options: taskStatusesToQuery,
                 ),
                 ScanButtonToBuildUserCard(
                   roleName: 'user',

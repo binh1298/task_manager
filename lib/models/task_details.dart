@@ -99,13 +99,13 @@ class TaskDetails {
   Future<bool> updateTask(BuildContext context, int taskId) async {
     final http.Response response = await apiCaller.put(
         route: '${await createRoleRoute(apiRoutes.updateTask)}/$taskId',
-        body: jsonEncode(<String, String>{
+        body: jsonEncode(<String, dynamic>{
           'name': name,
           'requirement': requirement,
           'handleProcess': handleProcess,
           'judgeId': judgeId,
           'judgeComment': judgeComment,
-          'judgeScore': judgeScore.toString(),
+          'judgeScore': judgeScore,
           'assigneeId': assigneeId,
           'beginAt': beginAt,
           'endAt': endAt,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/components/cards/card_user_list_item.dart';
 import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
+import 'package:task_manager/utils/string_utils.dart';
 
 class ListOfUsersInAGroup extends StatelessWidget {
   final Future<List<UserDetails>> usersDetailsList;
@@ -22,7 +23,7 @@ class ListOfUsersInAGroup extends StatelessWidget {
                     (userDetail) => CardUserListItem(
                       userId: userDetail.userId,
                       fullname: userDetail.fullname,
-                      role: userDetail.roleName,
+                      role: userDetail.roleName != null ? userDetail.roleName : RoleNames.employee,
                       // phoneNumber: userDetail.phoneNumber,
                       email: userDetail.email,
                       avatar: userDetail.avatar,

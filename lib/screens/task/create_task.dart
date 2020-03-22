@@ -104,6 +104,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                               }
                               return null;
                             },
+                            isAllowPast: false,
                           ),
                           SizedBox(
                             width: 10,
@@ -121,6 +122,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                               }
                               return null;
                             },
+                            isAllowPast: false,
                           ),
                         ],
                       ),

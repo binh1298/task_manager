@@ -21,7 +21,7 @@ class _AssignedTasksScreenState extends State<AssignedTasksScreen> {
   @override
   void initState() {
     super.initState();
-    tasksDetailsList = fetchTasksToJudge(_taskQueryParams);
+    tasksDetailsList = fetchTasksToSubmit(_taskQueryParams);
   }
 
   Future<Null> refreshList() async {
