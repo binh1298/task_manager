@@ -26,7 +26,7 @@ class GroupDetails {
       this.managerId,
       this.isDeleted,
       this.avatar,
-      this.createdAt, // TODO
+      this.createdAt, 
       this.email,
       this.fullname,
       // this.phoneNumber,

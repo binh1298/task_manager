@@ -274,7 +274,6 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                       onPressed: () async {
                         final form = _updateTaskFormKey.currentState;
                         if (!form.validate()) return;
-                        // TODO: Validate for roles
                         form.save();
                         bool success = await _taskUpdateDetails.updateTask(
                             context, _taskUpdateDetails.id);
