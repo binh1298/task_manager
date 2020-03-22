@@ -75,12 +75,6 @@ class CardGroupListItem extends StatelessWidget {
                       arguments: groupId);
                 },
               ),
-              // IconSlideAction(
-              //   caption: 'Delete',
-              //   color: Colors.red,
-              //   icon: Icons.delete,
-              //   onTap: () => print('Delete'),
-              // ),
             ],
           );
         } else if (snapshot.hasError) {

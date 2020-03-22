@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/cards/card_user_list_item.dart';
+import 'package:task_manager/components/secondary_actions/secondary_action_remove_from_group.dart';
 import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
 class ListOfUsersInAGroup extends StatelessWidget {
+  final int groupId;
   final Future<List<UserDetails>> usersDetailsList;
   final Function refreshList;
-  ListOfUsersInAGroup({this.usersDetailsList, this.refreshList});
+  ListOfUsersInAGroup({this.groupId, this.usersDetailsList, this.refreshList});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class ListOfUsersInAGroup extends StatelessWidget {
                       avatar: userDetail.avatar,
                       isDeleted: userDetail.isDeleted,
                       refreshList: refreshList,
+                      secondaryAction: SecondaryActionRemoveFromGroup(userDetail.userId, groupId, refreshList),
                     ),
                   )
                   .toList(),

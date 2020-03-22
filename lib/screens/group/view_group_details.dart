@@ -90,6 +90,7 @@ class _ViewGroupDetailsScreenState extends State<ViewGroupDetailsScreen> {
           ),
         ),
         ListOfUsersInAGroup(
+          groupId: widget.groupId,
           usersDetailsList: groupMembers,
           refreshList: refreshList,
         ),

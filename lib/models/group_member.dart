@@ -34,3 +34,16 @@ Future<bool> addGroupMember(int groupId, String userId) async {
   );
   return (response.statusCode == 201);
 }
+
+Future<bool> deleteGroupMember(int groupId, String userId) async {
+   http.Response response = await apiCaller.put(
+    route: await createRoleRoute(apiRoutes.deleteGroupMember),
+    body: jsonEncode(
+      <String, dynamic>{
+        'groupId': groupId,
+        'userId': userId,
+      },
+    ),
+  );
+  return (response.statusCode == 200);
+}
