@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:task_manager/components/labels/icon_text.dart';
 import 'package:task_manager/components/labels/text_safe.dart';
-import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/resouces.dart';
 import 'package:task_manager/style/style.dart';
-import 'package:task_manager/utils/snack_bar.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
 class CardUserListItem extends StatelessWidget {
   final String userId, fullname, role, email, phoneNumber, avatar;
   final bool isDeleted;
   final Function refreshList;
+  final Widget secondaryAction;
   CardUserListItem(
       {Key key,
       this.userId,
@@ -22,11 +21,23 @@ class CardUserListItem extends StatelessWidget {
       this.phoneNumber,
       this.isDeleted,
       this.refreshList,
+      this.secondaryAction,
       this.avatar})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var secondaryActions = <Widget>[
+        IconSlideAction(
+          caption: 'Details',
+          color: colorPrimary,
+          icon: Icons.account_circle,
+          onTap: () {
+            Navigator.pushNamed(context, '/viewUserDetail', arguments: userId);
+          },
+        ),
+      ];
+    if(secondaryAction != null) secondaryActions.add(secondaryAction);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
@@ -65,10 +76,6 @@ class CardUserListItem extends StatelessWidget {
                   text: email,
                   textBoxWidth: textboxWidthMedium,
                 ),
-                // IconTextComponent(
-                //   icon: Icons.phone,
-                //   text: phoneNumber,
-                // ),
                 IconTextComponent(
                   icon: Icons.flash_on,
                   text: getUserStatus(isDeleted),
@@ -82,30 +89,7 @@ class CardUserListItem extends StatelessWidget {
           ],
         ),
       ),
-      secondaryActions: <Widget>[
-        IconSlideAction(
-          caption: 'Details',
-          color: colorPrimary,
-          icon: Icons.account_circle,
-          onTap: () {
-            Navigator.pushNamed(context, '/viewUserDetail', arguments: userId);
-          },
-        ),
-        IconSlideAction(
-          caption: isDeleted ? 'Undelete' : 'Delete',
-          color: isDeleted ? colorAccept : colorWarning,
-          icon: Icons.delete,
-          onTap: () async {
-            bool success = await deleteUser(userId, !isDeleted);
-            if(success) {
-              showInfoSnackBar(context, '${isDeleted ? 'Undelete' : 'Delete'} user successfully');
-            } else {
-              showErrorSnackBar(context, 'Something went wrong while delete user');
-            }
-            refreshList();
-          },
-        ),
-      ],
+      secondaryActions: secondaryActions,
     );
   }
 }

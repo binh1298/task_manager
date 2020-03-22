@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/components/cards/card_user_list_item.dart';
 import 'package:task_manager/components/labels/text_safe.dart';
 import 'package:task_manager/components/scan_button.dart';
+import 'package:task_manager/components/secondary_actions/secondary_action_delete_user.dart';
 import 'package:task_manager/models/dashboard.dart';
 import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
@@ -176,6 +177,7 @@ class _ViewDashboardState extends State<ViewDashboard> {
                             avatar: userDetail.avatar,
                             isDeleted: userDetail.isDeleted,
                             refreshList: refreshList,
+                            secondaryAction: SecondaryActionDeleteUser(userDetail.isDeleted, userDetail.userId, refreshList),
                           ),
                         )
                         .toList(),
