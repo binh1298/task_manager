@@ -3,10 +3,10 @@ import 'package:task_manager/components/cards/card_user_list_item.dart';
 import 'package:task_manager/models/user_details.dart';
 import 'package:task_manager/style/style.dart';
 
-class ListOfUsers extends StatelessWidget {
+class ListOfUsersInAGroup extends StatelessWidget {
   final Future<List<UserDetails>> usersDetailsList;
-
-  ListOfUsers({this.usersDetailsList});
+  final Function refreshList;
+  ListOfUsersInAGroup({this.usersDetailsList, this.refreshList});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +27,7 @@ class ListOfUsers extends StatelessWidget {
                       email: userDetail.email,
                       avatar: userDetail.avatar,
                       isDeleted: userDetail.isDeleted,
+                      refreshList: refreshList,
                     ),
                   )
                   .toList(),

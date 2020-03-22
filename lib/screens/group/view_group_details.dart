@@ -89,8 +89,9 @@ class _ViewGroupDetailsScreenState extends State<ViewGroupDetailsScreen> {
             ],
           ),
         ),
-        ListOfUsers(
+        ListOfUsersInAGroup(
           usersDetailsList: groupMembers,
+          refreshList: refreshList,
         ),
         FutureBuilder<UserDetails>(
           future: getUserFromToken(),
