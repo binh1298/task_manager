@@ -86,9 +86,7 @@ class _FormQueryTasksState extends State<FormQueryTasks> {
                     }
                   },
                   onSuccessBuild: (userId) {
-                    setState(() {
                       _taskQueryParams.userId = userId;
-                    });
                   },
                   onFailedBuild: () {
                       _taskQueryParams.userId = null;

@@ -36,6 +36,7 @@ Color colorTaskOverdue = Colors.red;
 Color colorTaskFailed = Colors.red;
 
 // Textbox Width
+const double textboxWidthSmall = 170.0;
 const double textboxWidthMedium = 210.0;
 const double textboxWidthLarge = 280.0;
 
