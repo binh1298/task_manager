@@ -18,7 +18,7 @@ String formatDate(String strDate) {
   return DateFormat('yyyy-MM-dd').format(date);
 }
 
-List<dynamic> taskStatusesToQuery = [
+List<String> taskStatusesToQuery = [
   'ALL',
   ...taskStatuses,
 ];
