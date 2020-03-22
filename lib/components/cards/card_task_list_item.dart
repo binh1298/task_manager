@@ -4,6 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:task_manager/components/labels/icon_text.dart';
 import 'package:task_manager/components/labels/text_safe.dart';
 import 'package:task_manager/style/style.dart';
+import 'package:task_manager/utils/snack_bar.dart';
 import 'package:task_manager/utils/string_utils.dart';
 
 class CardTaskListItem extends StatelessWidget {
@@ -124,8 +125,11 @@ class CardTaskListItem extends StatelessWidget {
             caption: 'Create Task',
             color: colorAccept,
             icon: Icons.add,
-            onTap: () {
-              Navigator.pushNamed(context, '/createTask', arguments: id);
+            onTap: () async {
+              final result = await Navigator.pushNamed(context, '/createTask', arguments: id);
+              if (result != null) {
+                showInfoSnackBar(context, 'Created Task Successfully!');
+              }
             },
           ),
 
