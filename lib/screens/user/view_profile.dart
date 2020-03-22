@@ -101,7 +101,11 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
               ),
             );
           } else {
-            return Text('Can\'t find this user');
+            return ListView(
+              children: <Widget>[
+                Center(child: Text('Can\'t find this user')),
+              ],
+            );
           }
         },
       ),
