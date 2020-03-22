@@ -38,7 +38,7 @@ class _ViewDashboardState extends State<ViewDashboard> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         heroTag: 'CreateUser',
-        child: Icon(Icons.add),
+        child: Icon(Icons.person_add),
         onPressed: () async {
           final result = await Navigator.pushNamed(context, '/createUser');
           if (result != null && result) {

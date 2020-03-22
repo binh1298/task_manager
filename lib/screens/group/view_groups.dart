@@ -43,7 +43,7 @@ class _ViewGroupsScreenState extends State<ViewGroupsScreen> {
             floatingActionButton: snapshot.data.roleName == RoleNames.admin
                 ? FloatingActionButton(
                     heroTag: 'CreateGroups',
-                    child: Icon(Icons.add),
+                    child: Icon(Icons.group_add),
                     onPressed: () async {
                       final result =
                           await Navigator.pushNamed(context, '/createGroup');
