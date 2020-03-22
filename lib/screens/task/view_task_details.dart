@@ -172,8 +172,11 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                       });
                                     },
                                     validator: (value) {
-                                      return validateFormField(
-                                          value, 'score', 0);
+                                      if (_taskUpdateDetails.judgeStatus ==
+                                          JudgeStatus.judged) {
+                                        return validateFormField(
+                                            value, 'score', 0);
+                                      }
                                     },
                                   ),
                                 ],
