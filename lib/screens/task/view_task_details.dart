@@ -165,10 +165,12 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                     textInputType: TextInputType.number,
                                     onSaved: (value) {
                                       setState(() {
-                                        int result = int.parse(value);
-                                        if (result != null)
-                                          _taskUpdateDetails.judgeScore =
-                                              result;
+                                        if (value != null && value != '') {
+                                          int result = int.parse(value);
+                                          if (result != null)
+                                            _taskUpdateDetails.judgeScore =
+                                                result;
+                                        }
                                       });
                                     },
                                     validator: (value) {
