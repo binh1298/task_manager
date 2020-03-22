@@ -165,20 +165,24 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                     textInputType: TextInputType.number,
                                     onSaved: (value) {
                                       setState(() {
-                                        if (value != null && value != '') {
-                                          int result = int.parse(value);
-                                          if (result != null)
-                                            _taskUpdateDetails.judgeScore =
-                                                result;
+                                        int result = int.parse(value);
+                                        if (result != null) {
+                                          _taskUpdateDetails.judgeScore =
+                                              result;
                                         }
                                       });
                                     },
                                     validator: (value) {
                                       if (_taskUpdateDetails.judgeStatus ==
                                           JudgeStatus.judged) {
-                                        return validateFormField(
-                                            value, 'score', 0);
+                                        final String validation =
+                                            validateFormField(
+                                                value, 'score', 0);
+                                        if (validation != null)
+                                          return validation;
+                                        return validateNumberField(value, 'score', 0, 10);
                                       }
+                                      return null;
                                     },
                                   ),
                                 ],
