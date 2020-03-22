@@ -13,6 +13,7 @@ class CardUserQrItem extends StatelessWidget {
   final String userId, fullname, role, email, phoneNumber, avatar;
   final bool isDeleted;
   final Function refreshList;
+  final Widget secondaryAction;
   CardUserQrItem(
       {Key key,
       this.userId,
@@ -22,11 +23,23 @@ class CardUserQrItem extends StatelessWidget {
       this.phoneNumber,
       this.isDeleted,
       this.refreshList,
+      this.secondaryAction,
       this.avatar})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var secondaryActions = <Widget>[
+        IconSlideAction(
+          caption: 'Details',
+          color: colorPrimary,
+          icon: Icons.account_circle,
+          onTap: () {
+            Navigator.pushNamed(context, '/viewUserDetail', arguments: userId);
+          },
+        ),
+      ];
+    if(secondaryAction != null) secondaryActions.add(secondaryAction);
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
@@ -78,30 +91,7 @@ class CardUserQrItem extends StatelessWidget {
           ],
         ),
       ),
-      secondaryActions: <Widget>[
-        IconSlideAction(
-          caption: 'Details',
-          color: colorPrimary,
-          icon: Icons.account_circle,
-          onTap: () {
-            Navigator.pushNamed(context, '/viewUserDetail', arguments: userId);
-          },
-        ),
-        IconSlideAction(
-          caption: isDeleted ? 'Undelete' : 'Delete',
-          color: isDeleted ? colorAccept : colorWarning,
-          icon: Icons.delete,
-          onTap: () async {
-            bool success = await deleteUser(userId, !isDeleted);
-            if(success) {
-              showInfoSnackBar(context, '${isDeleted ? 'Undelete' : 'Delete'} user successfully');
-            } else {
-              showErrorSnackBar(context, 'Something went wrong while delete user');
-            }
-            refreshList();
-          },
-        ),
-      ],
+      secondaryActions: secondaryActions,
     );
   }
 }

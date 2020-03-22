@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/cards/card_user_qr_item.dart';
 import 'package:task_manager/components/scan_button.dart';
+import 'package:task_manager/components/secondary_actions/secondary_action_cancel_qr_build.dart';
 import 'package:task_manager/models/user_details.dart';
 
 class ScanButtonToBuildUserCard extends StatefulWidget {
@@ -15,7 +16,7 @@ class ScanButtonToBuildUserCard extends StatefulWidget {
 }
 
 class _ScanButtonToBuildUserCardState extends State<ScanButtonToBuildUserCard> {
-  String userId;
+  String _userId;
 
   Widget buildUserCard(userId) {
     if (userId != null) {
@@ -32,6 +33,12 @@ class _ScanButtonToBuildUserCardState extends State<ScanButtonToBuildUserCard> {
               email: snapshot.data.email,
               avatar: snapshot.data.avatar,
               isDeleted: snapshot.data.isDeleted,
+              secondaryAction: SecondaryActionCancelQrBuild(() {
+                setState(() {
+                  _userId = null;
+                  widget.onFailedBuild();
+                });
+              }),
             );
           } else if (snapshot.hasError) {
             widget.onFailedBuild();
@@ -57,12 +64,12 @@ class _ScanButtonToBuildUserCardState extends State<ScanButtonToBuildUserCard> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        buildUserCard(userId),
+        buildUserCard(_userId),
         ScanButton(
           context: context,
           onSuccessScan: (barcode) {
             setState(() {
-              userId = barcode;
+              _userId = barcode;
             });
           },
           title: 'Scan QR to find ${widget.roleName}',
