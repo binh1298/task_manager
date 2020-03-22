@@ -21,7 +21,7 @@ class _ViewTaskHistoryScreenState extends State<ViewTaskHistoryScreen> {
   @override
   void initState() {
     super.initState();
-    tasksDetailsList = fetchTasksToJudge(_taskQueryParams);
+    tasksDetailsList = fetchTaskHistory(_taskQueryParams);
   }
 
   Future<Null> refreshList() async {
