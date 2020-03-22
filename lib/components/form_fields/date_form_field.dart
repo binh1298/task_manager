@@ -7,7 +7,8 @@ class DateFormField extends StatelessWidget {
   final String label;
   final Function validator;
   final Function onSaved;
-  DateFormField({this.validator, this.label, this.onSaved});
+  final bool isAllowPast;
+  DateFormField({this.validator, this.label, this.onSaved, this.isAllowPast = true});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class DateFormField extends StatelessWidget {
               onShowPicker: (context, currentValue) {
                 return showDatePicker(
                   context: context,
-                  firstDate: DateTime(1900),
+                  firstDate: isAllowPast ? DateTime(1900) : DateTime.now(),
                   initialDate: currentValue ?? DateTime.now(),
                   lastDate: DateTime(2100),
                 );
