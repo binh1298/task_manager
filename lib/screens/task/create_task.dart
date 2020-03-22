@@ -61,6 +61,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                       TextSafeComponent(
                         label: 'Source task id',
                         text: widget.sourceTaskId.toString(),
+                        fallbackText: 'Not Assigned',
                       ),
                       SizedBox(
                         height: 20,
