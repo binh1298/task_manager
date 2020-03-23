@@ -53,7 +53,7 @@ class TaskStatus {
     decline = 'DECLINE',
     finished = 'FINISHED',
     failed = 'FAILED',
-    overdue = 'OVERDUED', 
+    overdue = 'OVERDUE', 
     judged = 'JUDGED',
     notJudged = 'NOT-JUDGED';
   final String status;
@@ -62,15 +62,15 @@ class TaskStatus {
 }
 
 List<TaskStatus> taskStatusesWithColor = <TaskStatus>[
-  TaskStatus(status: 'PENDING', color: colorTaskPending),
-  TaskStatus(status: 'IN-PROGRESS', color: colorTaskInProgress),
-  TaskStatus(status: 'FINISHED', color: colorTaskFinished),
-  TaskStatus(status: 'ACCEPT', color: colorTaskFinished),
-  TaskStatus(status: 'OVERDUE', color: colorTaskOverdue),
-  TaskStatus(status: 'FAILED', color: colorTaskFailed),
-  TaskStatus(status: 'DECLINE', color: colorTaskFailed),
-  TaskStatus(status: 'JUDGED', color: colorTaskFinished),
-  TaskStatus(status: 'NOT-JUDGED', color: colorTaskInProgress),
+  TaskStatus(status: TaskStatus.pending, color: colorTaskPending),
+  TaskStatus(status: TaskStatus.inProgress, color: colorTaskInProgress),
+  TaskStatus(status: TaskStatus.finished, color: colorTaskFinished),
+  TaskStatus(status: TaskStatus.accepted, color: colorTaskFinished),
+  TaskStatus(status: TaskStatus.overdue, color: colorTaskOverdue),
+  TaskStatus(status: TaskStatus.failed, color: colorTaskFailed),
+  TaskStatus(status: TaskStatus.decline, color: colorTaskFailed),
+  TaskStatus(status: TaskStatus.judged, color: colorTaskFinished),
+  TaskStatus(status: TaskStatus.notJudged, color: colorTaskInProgress),
 ];
 Color getTaskStatusColor(String status) {
   for (var task in taskStatusesWithColor) {

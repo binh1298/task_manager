@@ -22,7 +22,7 @@ String validateNumberField(dynamic value, String fieldName, int min, int max) {
       return 'Invalid $fieldName';
     }
     if (result != null) {
-      if (result <= min || result >= max) return 'This is only from $min to $max';
+      if (result < min || result > max) return 'This is only from $min to $max';
     } else {
       return 'Invalid $fieldName';
     }

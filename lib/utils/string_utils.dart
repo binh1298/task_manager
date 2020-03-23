@@ -29,17 +29,21 @@ List<String> taskStatuses = [
   'DECLINE',
   'FINISHED',
   'FAILED',
-  'OVERDUED'
+  'OVERDUE'
 ];
 List<String> creatableTaskStatuses = ['PENDING', 'IN-PROGRESS'];
 
-List<String> updatatableTaskStatusesForJudge = [
+List<String> updatatableTaskStatusesForJudgeWithoutOverdue = [
   'PENDING',
   'IN-PROGRESS',
   'ACCEPTED',
   'DECLINE',
   'FINISHED',
-  'FAILED'
+  'FAILED',
+]; 
+
+List<String> updatatableTaskStatusesForJudge = [
+  ...taskStatuses
 ];
 
 List<String> updatatableTaskStatusesForAssignee = [

@@ -76,7 +76,9 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                     SizedBox(height: 10),
                     DropdownFormFieldComponent(
                       initialValue: snapshot.data.status,
-                      options: updatatableTaskStatusesForJudge,
+                      options: DateTime.parse(snapshot.data.endAt).isAfter(DateTime.now()) 
+                        ? updatatableTaskStatusesForJudgeWithoutOverdue 
+                        : updatatableTaskStatusesForJudge,
                       title: 'Status:',
                       style: textStyleTitle,
                       updateState: (String value) {
@@ -146,6 +148,18 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                         _taskUpdateDetails.judgeComment = value;
                                       });
                                     },
+                                    validator: (value) {
+                                      if (_taskUpdateDetails.judgeStatus ==
+                                          JudgeStatus.judged) {
+                                        return validateFormField(
+                                            value, 'comment', 0);
+                                      } else {
+                                        if (value.isNotEmpty) {
+                                          return 'You can only comment when you judge';
+                                        }
+                                      }
+                                      return null;
+                                    },
                                   ),
                                   IconTextComponent(
                                     icon: Icons.access_alarm,
@@ -163,16 +177,18 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                         : null,
                                     title: 'Score',
                                     textInputType: TextInputType.number,
-                                    onSaved: (value) {
+                                    onSaved: (String value) {
                                       setState(() {
-                                        int result = int.parse(value);
-                                        if (result != null) {
-                                          _taskUpdateDetails.judgeScore =
-                                              result;
+                                        if (value.isNotEmpty) {
+                                          int result = int.parse(value);
+                                          if (result != null) {
+                                            _taskUpdateDetails.judgeScore =
+                                                result;
+                                          }
                                         }
                                       });
                                     },
-                                    validator: (value) {
+                                    validator: (String value) {
                                       if (_taskUpdateDetails.judgeStatus ==
                                           JudgeStatus.judged) {
                                         final String validation =
@@ -180,7 +196,12 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                                                 value, 'score', 0);
                                         if (validation != null)
                                           return validation;
-                                        return validateNumberField(value, 'score', 0, 10);
+                                        return validateNumberField(
+                                            value, 'score', 0, 10);
+                                      } else {
+                                        if (value.isNotEmpty) {
+                                          return 'You can only score when you judge';
+                                        }
                                       }
                                       return null;
                                     },
