@@ -48,11 +48,36 @@ class TaskDetails {
     this.judgeFullname,
   });
 
+  TaskDetails.clone(TaskDetails oldDetails) : this(
+    createdAt: oldDetails.createdAt,
+    assigneeId: oldDetails.assigneeId,
+    beginAt: oldDetails.beginAt,
+    confirmationImg: oldDetails.confirmationImg,
+    creatorId: oldDetails.creatorId,
+    endAt: oldDetails.endAt,
+    handleProcess: oldDetails.handleProcess,
+    submitDescription: oldDetails.submitDescription,
+    id: oldDetails.id,
+    judgeComment: oldDetails.judgeComment,
+    judgeCommentAt: oldDetails.judgeCommentAt,
+    judgeId: oldDetails.judgeId,
+    judgeScore: oldDetails.judgeScore,
+    name: oldDetails.name,
+    requirement: oldDetails.requirement,
+    sourceTaskId: oldDetails.sourceTaskId,
+    status: oldDetails.status,
+    judgeStatus: oldDetails.judgeStatus,
+    updatedAt: oldDetails.updatedAt,
+    creatorFullname: oldDetails.creatorFullname,
+    assigneeFullname: oldDetails.assigneeFullname,
+    judgeFullname: oldDetails.judgeFullname,
+  );
+
   factory TaskDetails.fromJson(dynamic json) {
     return TaskDetails(
       id: json['id'] as int,
       name: json['name'] as String,
-      sourceTaskId: json['null'] as int,
+      sourceTaskId: json['sourceTaskId'] as int,
       status: json['status'] as String,
       judgeStatus: json['judgeStatus'] as String,
       beginAt: json['beginAt'] as String,

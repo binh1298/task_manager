@@ -40,7 +40,7 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
       future: taskDetails,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          _taskUpdateDetails = snapshot.data;
+          _taskUpdateDetails = TaskDetails.clone(snapshot.data);
           return Card(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -56,9 +56,14 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                     TextSafeComponent(
                       label: 'Source task',
                       text: snapshot.data.sourceTaskId.toString(),
-                      onTap: () {
-                        showInfoSnackBar(context, 'Hello');
+                      onTap: () async {
+                        if (snapshot.data.sourceTaskId != null) {
+                          final success = await Navigator.pushNamed(
+                              context, '/viewTaskDetails',
+                              arguments: snapshot.data.sourceTaskId);
+                        }
                       },
+                      style: textStyleDefault.copyWith(fontWeight: FontWeight.bold),
                       fallbackText: 'Not assigned',
                     ),
                     TextSafeComponent(
@@ -76,9 +81,10 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                     SizedBox(height: 10),
                     DropdownFormFieldComponent(
                       initialValue: snapshot.data.status,
-                      options: DateTime.parse(snapshot.data.endAt).isAfter(DateTime.now()) 
-                        ? updatatableTaskStatusesForJudgeWithoutOverdue 
-                        : updatatableTaskStatusesForJudge,
+                      options: DateTime.parse(snapshot.data.endAt)
+                              .isAfter(DateTime.now())
+                          ? updatatableTaskStatusesForJudgeWithoutOverdue
+                          : updatatableTaskStatusesForJudge,
                       title: 'Status:',
                       style: textStyleTitle,
                       updateState: (String value) {
@@ -92,7 +98,9 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                         builder: (context, snapshotUser) {
                           if (snapshotUser.hasData) {
                             if (snapshotUser.data.userId ==
-                                snapshot.data.judgeId) {
+                                    snapshot.data.judgeId &&
+                                snapshot.data.judgeStatus ==
+                                    TaskStatus.notJudged) {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
@@ -299,19 +307,23 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    ButtonConfirmComponent(
-                      text: 'Update Task',
-                      onPressed: () async {
-                        final form = _updateTaskFormKey.currentState;
-                        if (!form.validate()) return;
-                        form.save();
-                        bool success = await _taskUpdateDetails.updateTask(
-                            context, _taskUpdateDetails.id);
-                        if (success) {
-                          Navigator.pop(context, true);
-                        } else {}
-                      },
-                    ),
+                    (snapshot.data.judgeStatus == TaskStatus.notJudged)
+                        ? ButtonConfirmComponent(
+                            text: 'Update Task',
+                            onPressed: () async {
+                              final form = _updateTaskFormKey.currentState;
+                              if (!form.validate()) return;
+                              form.save();
+                              bool success = await _taskUpdateDetails
+                                  .updateTask(context, _taskUpdateDetails.id);
+                              if (success) {
+                                Navigator.pop(context, true);
+                              } else {}
+                            },
+                          )
+                        : SizedBox(
+                            height: 0,
+                          ),
                     SizedBox(
                       height: 20,
                     ),

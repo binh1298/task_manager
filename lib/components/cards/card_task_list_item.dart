@@ -117,20 +117,24 @@ class CardTaskListItem extends StatelessWidget {
           color: colorPrimary,
           icon: Icons.account_circle,
           onTap: () async {
-            final success = await Navigator.pushNamed(context, '/viewTaskDetails', arguments: id);
-            if(success != null && success) {
+            final success = await Navigator.pushNamed(
+                context, '/viewTaskDetails',
+                arguments: id);
+            if (success != null && success) {
               refreshList();
               showInfoSnackBar(context, 'Update successfully');
             }
           },
         ),
-        if (status == TaskStatus.failed && judgeStatus == JudgeStatus.judged)
+        if ((status == TaskStatus.failed || status == TaskStatus.overdue) &&
+            judgeStatus == JudgeStatus.judged)
           IconSlideAction(
             caption: 'Create Task',
             color: colorAccept,
             icon: Icons.add,
             onTap: () async {
-              final result = await Navigator.pushNamed(context, '/createTask', arguments: id);
+              final result = await Navigator.pushNamed(context, '/createTask',
+                  arguments: id);
               if (result != null) {
                 showInfoSnackBar(context, 'Created Task Successfully!');
               }
