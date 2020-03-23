@@ -39,12 +39,35 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: initialRoute,
       routes: {
+        '/admin': (context) => FutureBuilder<UserDetails>(
+            future: getUserFromToken(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData)
+                return AdminHomeScreen();
+              else
+                return LoginScreen();
+            }),
+        '/manager': (context) => FutureBuilder<UserDetails>(
+            future: getUserFromToken(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData)
+                return ManagerHomeScreen();
+              else
+                return LoginScreen();
+            }),
+        '/employee': (context) => FutureBuilder<UserDetails>(
+            future: getUserFromToken(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData)
+                return EmployeeHomeScreen();
+              else
+                return LoginScreen();
+            }),
         '/login': (context) => LoginScreen(),
-        '/admin': (context) => AdminHomeScreen(),
-        '/manager': (context) => ManagerHomeScreen(),
-        '/employee':(context) => EmployeeHomeScreen(),
+        // '/admin': (context) => AdminHomeScreen(),
+        // '/manager': (context) => ManagerHomeScreen(),
+        // '/employee': (context) => EmployeeHomeScreen(),
       },
     );
   }
 }
- 
