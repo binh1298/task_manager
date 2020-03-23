@@ -114,7 +114,7 @@ class TaskDetails {
           'confirmationImg': confirmationImg,
           'submitDescription': submitDescription,
         }));
-    bool success = response.statusCode == 201;
+    bool success = response.statusCode == 200;
     print(response.body);
     if (success) {
       print(json.decode(response.body)['task']);

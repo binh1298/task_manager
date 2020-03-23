@@ -116,8 +116,12 @@ class CardTaskListItem extends StatelessWidget {
           caption: 'Details',
           color: colorPrimary,
           icon: Icons.account_circle,
-          onTap: () {
-            Navigator.pushNamed(context, '/viewTaskDetails', arguments: id);
+          onTap: () async {
+            final success = await Navigator.pushNamed(context, '/viewTaskDetails', arguments: id);
+            if(success != null && success) {
+              refreshList();
+              showInfoSnackBar(context, 'Update successfully');
+            }
           },
         ),
         if (status == TaskStatus.failed && judgeStatus == JudgeStatus.judged)
