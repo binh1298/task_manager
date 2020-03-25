@@ -189,6 +189,10 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                             return;
                           }
 
+                          if(_taskCreateDetails.assigneeId == _taskCreateDetails.judgeId) {
+                            showErrorSnackBar(context, 'Judge and assignee must be different');
+                            return;
+                          }
                           form.save();
                           DateTime beginAt =
                               DateTime.parse(_taskCreateDetails.beginAt);
