@@ -31,7 +31,7 @@ class SectionTaskDetailsOfAssigneeNotEditable extends StatelessWidget {
         ),
         (taskDetails.confirmationImg == null)
             ? TextSafeComponent(
-                text: taskDetails.handleProcess,
+                text: taskDetails.confirmationImg,
                 fallbackText: 'Haven\'t done yet',
               )
             : ImageTaskSafe(

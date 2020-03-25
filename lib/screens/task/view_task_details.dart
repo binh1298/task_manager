@@ -243,7 +243,9 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                       builder: (context, snapshotUser) {
                         if (snapshotUser.hasData) {
                           if (snapshotUser.data.userId ==
-                              snapshot.data.assigneeId) {
+                              snapshot.data.assigneeId &&
+                                snapshot.data.judgeStatus ==
+                                    TaskStatus.notJudged) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
