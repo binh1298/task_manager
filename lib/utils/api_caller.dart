@@ -41,7 +41,7 @@ class ApiCaller {
   put({String route, dynamic body}) async {
     String token = await getJwtToken();
     var uri = Uri.http(apiUrl, route);
-    print('PUT $uri');
+    print('PUT $uri $body');
     http.Response response = await http.put(
       uri,
       headers: <String, String>{
