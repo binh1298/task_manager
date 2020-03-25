@@ -26,7 +26,7 @@ class ViewTaskDetailsScreen extends StatefulWidget {
 class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
   Future<TaskDetails> taskDetails;
   final _updateTaskFormKey = GlobalKey<FormState>();
-  TaskDetails _taskUpdateDetails = TaskDetails();
+  TaskDetails _taskUpdateDetails;
 
   @override
   void initState() {
@@ -40,7 +40,9 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
       future: taskDetails,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          _taskUpdateDetails = TaskDetails.clone(snapshot.data);
+          if (_taskUpdateDetails == null) {
+            _taskUpdateDetails = TaskDetails.clone(snapshot.data);
+          } 
           return Card(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -63,7 +65,8 @@ class _ViewTaskDetailsScreenState extends State<ViewTaskDetailsScreen> {
                               arguments: snapshot.data.sourceTaskId);
                         }
                       },
-                      style: textStyleDefault.copyWith(fontWeight: FontWeight.bold),
+                      style: textStyleDefault.copyWith(
+                          fontWeight: FontWeight.bold),
                       fallbackText: 'Not assigned',
                     ),
                     TextSafeComponent(
