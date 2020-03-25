@@ -109,7 +109,7 @@ class TaskDetails {
           'beginAt': beginAt,
           'endAt': endAt,
           'taskStatus': status,
-          'sourceTaskId': sourceTaskId.toString(),
+          'sourceTaskId': sourceTaskId?.toString(),
         }));
     bool success = response.statusCode == 201;
     print(response.body);
@@ -122,6 +122,7 @@ class TaskDetails {
   }
 
   Future<bool> updateTask(BuildContext context, int taskId) async {
+    print('gege $status');
     final http.Response response = await apiCaller.put(
         route: '${await createRoleRoute(apiRoutes.updateTask)}/$taskId',
         body: jsonEncode(<String, dynamic>{
